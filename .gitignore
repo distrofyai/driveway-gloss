@@ -1,0 +1,28 @@
+# Claude Code session state
+.claude/
+
+# Local dev preview server (not needed in repo or deploy)
+.preview-server.js
+
+# Source/raw assets — kept locally only, not deployed
+Driveway gloss pics and vids/
+source-images/
+images-original-backup/
+web pics/
+
+# Test artifacts
+test-results/
+
+# Random skill folder — not part of this project
+ui-ux-pro-max-skill/
+
+# Node
+node_modules/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
