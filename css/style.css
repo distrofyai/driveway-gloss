@@ -531,7 +531,7 @@ input, select, textarea {
 .services-group__title {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 13px;
+  font-size: 16px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-muted);
@@ -1641,11 +1641,22 @@ input, select, textarea {
   50%      { transform: translate(2px, -2px) rotate(-4deg); }
 }
 
+.step-svg__slider {
+  animation: step-slider-shift 3.6s ease-in-out infinite;
+}
+.step-svg__slider--b { animation-delay: -1.2s; }
+.step-svg__slider--c { animation-delay: -2.4s; }
+@keyframes step-slider-shift {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(5px); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .step__icon::before,
   .step-svg__check,
   .step-svg__rays,
-  .step-svg__plane { animation: none; }
+  .step-svg__plane,
+  .step-svg__slider { animation: none; }
 }
 
 /* Step text block */
@@ -2243,7 +2254,7 @@ input, select, textarea {
     padding: 0 0 8px;
     align-self: end;
     border-bottom: 1px solid var(--border);
-    font-size: 21px;
+    font-size: 24px;
     letter-spacing: 0.06em;
     line-height: 1.05;
   }
@@ -2600,49 +2611,56 @@ input, select, textarea {
     display: none;
   }
 
-  /* Three-step pricing: centered mobile flow with down-arrow connectors */
+  /* Three-step pricing: centered mobile flow with down-arrow connectors — tightened */
+  #how-it-works.section--tight {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+  #how-it-works .section__head--tight {
+    margin-bottom: 14px;
+  }
   #how-it-works .steps {
-    gap: 24px;
+    gap: 18px;
     max-width: 320px;
     margin: 0 auto;
   }
   #how-it-works .step {
     flex-direction: column;
     justify-content: center;
-    padding: 16px 18px;
-    gap: 9px;
-    border-radius: 16px;
+    padding: 12px 14px;
+    gap: 7px;
+    border-radius: 14px;
     text-align: center;
-    min-height: 136px;
+    min-height: 116px;
     box-shadow: 0 12px 26px -18px rgba(0,0,0,0.55);
   }
   #how-it-works .step:not(:last-child)::after {
     content: '↓';
     position: absolute;
     left: 50%;
-    bottom: -22px;
+    bottom: -17px;
     transform: translateX(-50%);
     display: grid;
     place-items: center;
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     background: rgba(255,255,255,0.94);
     color: var(--accent);
     font-family: var(--font-display);
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
     line-height: 1;
     box-shadow: 0 8px 18px -10px rgba(0,0,0,0.5);
   }
   #how-it-works .step__icon {
-    width: 46px;
-    height: 46px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
   }
   #how-it-works .step__icon svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
   }
   #how-it-works .step__tag {
     font-size: 9px;
@@ -2856,7 +2874,7 @@ input, select, textarea {
     border-radius: 14px;
   }
   #upgrades .services-group__title {
-    font-size: 19px;
+    font-size: 22px;
   }
   #recent-work .gallery {
     grid-auto-rows: 132px;
