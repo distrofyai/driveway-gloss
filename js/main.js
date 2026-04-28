@@ -90,18 +90,13 @@
   }
 
   // ---------- Hero video ----------
-  // Desktop & wifi: autoplay muted+looped.
-  // Mobile or Save-Data: keep poster image, show a play button. Tap to start.
+  // Always try to autoplay (muted + playsinline = allowed on iOS/Android).
+  // If the browser blocks it, show the play button as a fallback.
   const hero = document.getElementById('hero');
   const heroVideo = document.getElementById('hero-video');
   const heroPlayBtn = document.getElementById('hero-video-play');
 
   if (hero && heroVideo && heroPlayBtn) {
-    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    const saveData = !!(conn && conn.saveData);
-    const slowConn = !!(conn && /^(2g|slow-2g)$/.test(conn.effectiveType || ''));
-    const isMobile = window.matchMedia('(max-width: 720px)').matches;
-
     const startVideo = () => {
       const playPromise = heroVideo.play();
       if (playPromise && typeof playPromise.then === 'function') {
@@ -111,18 +106,7 @@
       }
     };
 
-    const showPoster = () => {
-      hero.classList.add('is-mobile-paused');
-    };
-
-    if (isMobile || saveData || slowConn) {
-      // Don't burn cellular data — show poster + play button
-      heroVideo.removeAttribute('autoplay');
-      showPoster();
-    } else {
-      // Desktop on a reasonable connection — autoplay
-      startVideo();
-    }
+    startVideo();
 
     heroPlayBtn.addEventListener('click', () => {
       startVideo();
