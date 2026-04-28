@@ -1417,8 +1417,8 @@ input, select, textarea {
   background-position: center 35%;
 }
 .cta-band {
-  padding-top: clamp(36px, 5vw, 60px);
-  padding-bottom: clamp(36px, 5vw, 60px);
+  padding-top: clamp(28px, 4vw, 48px);
+  padding-bottom: clamp(28px, 4vw, 48px);
 }
 .cta-band__inner {
   text-align: center;
@@ -1431,13 +1431,13 @@ input, select, textarea {
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: #fff;
-  margin: 0 0 10px;
+  margin: 0 0 18px;
 }
-.cta-band__lede {
-  font-size: clamp(14px, 1.6vw, 16px);
-  color: rgba(255,255,255,0.78);
-  margin: 0 0 20px;
-  line-height: 1.45;
+.cta-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
 }
 .cta-band__btn {
   background: #fff;
@@ -1446,6 +1446,17 @@ input, select, textarea {
 .cta-band__btn:hover {
   background: #fff;
   box-shadow: 0 14px 32px -10px rgba(255,255,255,0.45);
+}
+.cta-band__btn--ghost {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255,255,255,0.4);
+}
+.cta-band__btn--ghost:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: #fff;
+  color: #fff;
+  box-shadow: none;
 }
 #contact.section--photo-bg .quote__intro .section__title { color: #fff; }
 #contact.section--photo-bg .quote__intro .section__lede { color: rgba(255,255,255,0.78); }
@@ -2270,21 +2281,23 @@ input, select, textarea {
 
   /* Book-a-call CTA band: compact on phones */
   #book-cta.cta-band {
-    padding-top: 28px;
-    padding-bottom: 28px;
+    padding-top: 22px;
+    padding-bottom: 22px;
   }
   .cta-band__title {
-    font-size: 20px;
+    font-size: 19px;
     line-height: 1.18;
-    margin-bottom: 8px;
-  }
-  .cta-band__lede {
-    font-size: 13px;
     margin-bottom: 14px;
   }
+  .cta-band__actions {
+    gap: 10px;
+  }
   .cta-band__btn {
-    padding: 12px 22px;
+    padding: 11px 20px;
     font-size: 14px;
+    flex: 1 1 auto;
+    min-width: 130px;
+    max-width: 180px;
   }
 
   /* Add-ons: mobile becomes a compact service list instead of image-heavy rows */
