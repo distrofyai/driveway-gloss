@@ -24,6 +24,9 @@
   <meta name="twitter:description" content="Mobile car detailing in Greenville, NC. Hand wash, deep cleans, paint correction, protective coatings." />
   <meta name="twitter:image" content="images/og-image.jpg" />
 
+  <!-- Preload the hero poster (LCP candidate) so it paints fast -->
+  <link rel="preload" as="image" href="images/hero.jpg" fetchpriority="high" />
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -63,7 +66,7 @@
       <div class="hero__bg" aria-hidden="true">
         <video class="hero__video" id="hero-video"
                poster="images/hero.jpg"
-               autoplay muted playsinline loop preload="auto"
+               autoplay muted playsinline loop preload="metadata"
                aria-label="Driveway Gloss detailing reel">
           <source src="images/detail-reel.mp4" type="video/mp4" />
         </video>
