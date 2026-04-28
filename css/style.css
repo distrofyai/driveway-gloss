@@ -1427,11 +1427,11 @@ input, select, textarea {
 .cta-band__title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(22px, 4vw, 34px);
-  line-height: 1.1;
+  font-size: clamp(19px, 3vw, 26px);
+  line-height: 1.15;
   letter-spacing: -0.02em;
   color: #fff;
-  margin: 0 0 18px;
+  margin: 0 0 16px;
 }
 .cta-band__actions {
   display: flex;
@@ -1439,24 +1439,31 @@ input, select, textarea {
   gap: 12px;
   justify-content: center;
 }
-.cta-band__btn {
+
+/* Lock in white solid CTA, regardless of base .btn--primary or focus state */
+.cta-band .cta-band__btn,
+.cta-band .cta-band__btn:hover,
+.cta-band .cta-band__btn:focus-visible {
   background: #fff;
   color: var(--ink);
+  border-color: transparent;
 }
-.cta-band__btn:hover {
-  background: #fff;
-  box-shadow: 0 14px 32px -10px rgba(255,255,255,0.45);
+.cta-band .cta-band__btn:hover {
+  box-shadow: 0 14px 32px -10px rgba(255,255,255,0.4);
 }
-.cta-band__btn--ghost {
+
+/* Lock in white outline ghost CTA, regardless of base .btn--ghost or focus state */
+.cta-band .cta-band__btn--ghost,
+.cta-band .cta-band__btn--ghost:hover,
+.cta-band .cta-band__btn--ghost:focus-visible {
   background: transparent;
   color: #fff;
-  border-color: rgba(255,255,255,0.4);
-}
-.cta-band__btn--ghost:hover {
-  background: rgba(255,255,255,0.08);
-  border-color: #fff;
-  color: #fff;
+  border-color: rgba(255,255,255,0.45);
   box-shadow: none;
+}
+.cta-band .cta-band__btn--ghost:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: #fff;
 }
 #contact.section--photo-bg .quote__intro .section__title { color: #fff; }
 #contact.section--photo-bg .quote__intro .section__lede { color: rgba(255,255,255,0.78); }
@@ -2285,9 +2292,9 @@ input, select, textarea {
     padding-bottom: 22px;
   }
   .cta-band__title {
-    font-size: 19px;
-    line-height: 1.18;
-    margin-bottom: 14px;
+    font-size: 16px;
+    line-height: 1.22;
+    margin-bottom: 12px;
   }
   .cta-band__actions {
     gap: 10px;
