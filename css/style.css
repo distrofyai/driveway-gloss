@@ -349,11 +349,11 @@ input, select, textarea {
   pointer-events: none;
   background: linear-gradient(
     to top,
-    rgba(0,0,0,0.88) 0%,
-    rgba(0,0,0,0.72) 20%,
-    rgba(0,0,0,0.5) 45%,
-    rgba(0,0,0,0.25) 70%,
-    rgba(0,0,0,0.08) 88%,
+    rgba(0,0,0,0.96) 0%,
+    rgba(0,0,0,0.85) 18%,
+    rgba(0,0,0,0.65) 40%,
+    rgba(0,0,0,0.42) 62%,
+    rgba(0,0,0,0.2) 82%,
     rgba(0,0,0,0) 100%
   );
 }
@@ -2208,6 +2208,16 @@ input, select, textarea {
   .desktop-copy { display: none; }
   .mobile-copy { display: inline; }
 
+  /* Pricing (Three core packages): tighten top spacing so the first card peeks
+     into the initial viewport on mobile right under the hero */
+  #services.section {
+    padding-top: 22px;
+    padding-bottom: 36px;
+  }
+  #services .section__head {
+    margin-bottom: 16px;
+  }
+
   /* Add-ons: mobile becomes a compact service list instead of image-heavy rows */
   #upgrades.section {
     padding-top: 40px;
@@ -2701,9 +2711,9 @@ input, select, textarea {
     transform: none;
   }
   .hero__inner { width: 100%; }
-  .hero__content { margin-top: 0; padding-bottom: 20px; }
-  .hero__title { font-size: clamp(30px, 8vw, 42px); margin: 12px 0 14px; }
-  .hero__lede { font-size: 14.5px; margin: 0 0 20px; }
+  .hero__content { margin-top: 0; padding-bottom: 14px; }
+  .hero__title { font-size: clamp(28px, 7.5vw, 38px); margin: 10px 0 10px; }
+  .hero__lede { font-size: 14px; margin: 0 0 16px; }
   .hero__actions { margin-bottom: 0; gap: 10px; }
   .hero__actions {
     position: relative;
