@@ -349,12 +349,12 @@ input, select, textarea {
   pointer-events: none;
   background: linear-gradient(
     to top,
-    rgba(0,0,0,0.96) 0%,
-    rgba(0,0,0,0.85) 18%,
-    rgba(0,0,0,0.65) 40%,
-    rgba(0,0,0,0.42) 62%,
-    rgba(0,0,0,0.2) 82%,
-    rgba(0,0,0,0) 100%
+    rgba(0,0,0,0.98) 0%,
+    rgba(0,0,0,0.9) 18%,
+    rgba(0,0,0,0.74) 40%,
+    rgba(0,0,0,0.54) 62%,
+    rgba(0,0,0,0.32) 82%,
+    rgba(0,0,0,0.1) 100%
   );
 }
 
