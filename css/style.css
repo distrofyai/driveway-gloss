@@ -1440,16 +1440,17 @@ input, select, textarea {
   justify-content: center;
 }
 
-/* Lock in white solid CTA, regardless of base .btn--primary or focus state */
+/* Lock in solid-blue CTA (Call Now), regardless of base .btn--primary or focus state */
 .cta-band .cta-band__btn,
 .cta-band .cta-band__btn:hover,
 .cta-band .cta-band__btn:focus-visible {
-  background: #fff;
-  color: var(--ink);
+  background: var(--accent);
+  color: #fff;
   border-color: transparent;
 }
 .cta-band .cta-band__btn:hover {
-  box-shadow: 0 14px 32px -10px rgba(255,255,255,0.4);
+  background: var(--accent-hi);
+  box-shadow: 0 14px 32px -10px var(--accent-glow);
 }
 
 /* Lock in white outline ghost CTA, regardless of base .btn--ghost or focus state */
