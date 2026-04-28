@@ -789,7 +789,7 @@
           </a>
         </div>
 
-        <form class="quote-form reveal" onsubmit="event.preventDefault(); this.querySelectorAll('details').forEach((detail) => detail.open = true); if (!this.checkValidity()) { this.reportValidity(); return; } this.querySelector('.form__success').hidden = false; this.reset();">
+        <form class="quote-form reveal" id="quote-form">
           <fieldset class="quote-form__group">
             <legend>Base Service</legend>
             <div class="radio-group">
@@ -853,7 +853,8 @@
           </details>
 
           <button type="submit" class="btn btn--primary btn--block">Send Quote Request</button>
-          <p class="form__success" hidden>Thanks for submitting!</p>
+          <p class="form__success" hidden>Thanks! Tyler will reach out within 24 hours.</p>
+          <p class="form__error" hidden>Something went wrong. Please call or text 704-591-3265.</p>
         </form>
       </div>
     </section>

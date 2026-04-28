@@ -151,6 +151,74 @@
     revealEls.forEach((el) => el.classList.add('is-visible'));
   }
 
+  // ---------- Quote form: post to Google Apps Script ----------
+  // Replace the placeholder below with the Web App URL from your Apps Script deployment.
+  // It looks like: https://script.google.com/macros/s/AKfyc.../exec
+  const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbw-Pu41dKIKoZVqfXkESTixVQfUuve4qBUCBCfNl8DSiVE5FQiqIe-sCYJVC-lG6xBD/exec';
+
+  const quoteForm = document.getElementById('quote-form');
+  if (quoteForm) {
+    // Capture user agent for the Sheet
+    const uaInput = document.createElement('input');
+    uaInput.type = 'hidden';
+    uaInput.name = '_ua';
+    uaInput.value = navigator.userAgent;
+    quoteForm.appendChild(uaInput);
+
+    const submitBtn = quoteForm.querySelector('button[type="submit"]');
+    const successEl = quoteForm.querySelector('.form__success');
+    const errorEl = quoteForm.querySelector('.form__error');
+    const originalBtnText = submitBtn ? submitBtn.textContent : '';
+
+    quoteForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Open collapsed accordions so validation messages are visible
+      quoteForm.querySelectorAll('details').forEach((d) => d.open = true);
+
+      if (!quoteForm.checkValidity()) {
+        quoteForm.reportValidity();
+        return;
+      }
+
+      if (successEl) successEl.hidden = true;
+      if (errorEl) errorEl.hidden = true;
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+      }
+
+      if (FORM_ENDPOINT.startsWith('PASTE_')) {
+        console.warn('Form endpoint not configured. See main.js FORM_ENDPOINT.');
+        if (errorEl) errorEl.hidden = false;
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+        }
+        return;
+      }
+
+      try {
+        const response = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          body: new FormData(quoteForm),
+        });
+        if (!response.ok) throw new Error('Bad response: ' + response.status);
+        if (successEl) successEl.hidden = false;
+        quoteForm.reset();
+      } catch (err) {
+        console.error('Form submit failed:', err);
+        if (errorEl) errorEl.hidden = false;
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+        }
+      }
+    });
+  }
+
   // ---------- Smooth scroll polish ----------
   // CSS handles smooth-scroll for anchor jumps. We just need to compensate
   // for the sticky nav so anchors don't land underneath it.

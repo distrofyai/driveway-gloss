@@ -985,16 +985,24 @@ input, select, textarea {
   box-shadow: 0 0 0 4px var(--accent-glow);
 }
 
-.form__success {
+.form__success,
+.form__error {
   margin: 0;
   padding: 14px 16px;
-  background: var(--accent-soft);
-  border: 1px solid var(--accent);
   border-radius: 10px;
-  color: var(--accent-hi);
   font-size: 14px;
   text-align: center;
   font-weight: 500;
+}
+.form__success {
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  color: var(--accent-hi);
+}
+.form__error {
+  background: #fef2f2;
+  border: 1px solid #dc2626;
+  color: #991b1b;
 }
 
 /* ---------- Footer ---------- */
