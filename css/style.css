@@ -2938,7 +2938,7 @@ input, select, textarea {
   .hero {
     min-height: 0;
     padding-top: calc(var(--nav-h) + 80px);
-    padding-bottom: 60px;
+    padding-bottom: 28px;
     align-items: flex-start;
   }
   .hero__video,
@@ -2948,12 +2948,12 @@ input, select, textarea {
   .hero__inner { width: 100%; }
   .hero__content { margin-top: 0; padding-bottom: 14px; }
   .hero__title { font-size: clamp(32px, 8.6vw, 44px); margin: 12px 0 12px; line-height: 1.06; }
-  .hero__lede { font-size: 14px; margin: 0 0 20px; }
+  .hero__lede { font-size: 14px; margin: 0 0 36px; }
   .hero__actions { margin-bottom: 0; gap: 10px; }
   .hero__actions {
     position: relative;
     margin-bottom: 0;
-    padding-bottom: 48px;
+    padding-bottom: 22px;
   }
   .hero__actions .btn {
     position: relative;
@@ -2974,7 +2974,7 @@ input, select, textarea {
   .hero__meta {
     position: relative;
     z-index: 1;
-    margin: 44px 0 0;
+    margin: 18px 0 0;
     padding: 0;
     border-top: 0;
     background: transparent;
