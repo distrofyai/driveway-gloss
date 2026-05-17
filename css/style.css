@@ -1601,24 +1601,7 @@ input, select, textarea {
 }
 
 @media (max-width: 960px) {
-  #our-promise .steps::before { display: none; }
   #our-promise .step__text { max-width: none; }
-
-  /* Brand-blue curved arrows between the three pillar icons */
-  #our-promise .step:nth-child(-n+2)::after {
-    content: '';
-    position: absolute;
-    top: 6px;
-    left: calc(50% + 26px);
-    width: calc(100% - 52px);
-    height: 36px;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 36' fill='none' stroke='%232563eb' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' opacity='0.85'><path d='M3 28 Q 22 4, 52 18'/><path d='M44 11 L 53 18 L 46 26'/></svg>");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    pointer-events: none;
-    z-index: 2;
-  }
 }
 .section__head--tight {
   margin-bottom: clamp(28px, 4vw, 40px);
@@ -2816,6 +2799,9 @@ input, select, textarea {
   #our-promise .steps {
     gap: 6px;
     padding-top: 0;
+  }
+  #our-promise .steps::before {
+    top: 18px;
   }
   #our-promise .step {
     gap: 10px;
