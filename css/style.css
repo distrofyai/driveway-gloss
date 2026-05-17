@@ -2801,19 +2801,19 @@ input, select, textarea {
     padding-top: 0;
   }
   #our-promise .steps::before {
-    top: 18px;
+    top: 22px;
   }
   #our-promise .step {
     gap: 10px;
     align-items: center;
   }
   #our-promise .step__icon {
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
   }
   #our-promise .step__icon svg {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
   }
   #our-promise .step__tag {
     font-size: 9px;

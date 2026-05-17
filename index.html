@@ -807,49 +807,43 @@
             </div>
           </fieldset>
 
-          <fieldset class="quote-form__group">
-            <legend>Individual Services &amp; Add-ons</legend>
-            <div class="checkbox-group">
-              <label class="checkbox-tile"><input type="checkbox" name="upgrades" value="Basic Interior" /><span>Basic Interior</span></label>
-              <label class="checkbox-tile"><input type="checkbox" name="upgrades" value="Thorough Interior" /><span>Thorough Interior</span></label>
-              <label class="checkbox-tile"><input type="checkbox" name="upgrades" value="Carpet & Seat Shampoo" /><span>Carpet &amp; Seat Shampoo</span></label>
-              <label class="checkbox-tile"><input type="checkbox" name="upgrades" value="Basic Exterior" /><span>Basic Exterior</span></label>
-              <label class="checkbox-tile"><input type="checkbox" name="upgrades" value="Thorough Exterior" /><span>Thorough Exterior</span></label>
-              <label class="checkbox-tile"><input type="checkbox" name="upgrades" value="Headlight Restoration" /><span>Headlight Restoration</span></label>
-              <label class="checkbox-tile"><input type="checkbox" name="upgrades" value="Exterior Paint Correction & Protection" /><span>Exterior Paint Correction &amp; Protection</span></label>
-              <label class="checkbox-tile"><input type="checkbox" name="upgrades" value="One-Step Paint Correction" /><span>One-Step Paint Correction</span></label>
-              <label class="checkbox-tile"><input type="checkbox" name="upgrades" value="Engine Bay Cleaning" /><span>Engine Bay Cleaning</span></label>
+          <details class="form-accordion form-accordion--services">
+            <summary>Individual Services &amp; Add-ons</summary>
+            <div class="form-accordion__content">
+              <div class="checkbox-group">
+                <label class="checkbox-tile"><input type="checkbox" name="upgrades" value="Basic Interior" /><span>Basic Interior</span></label>
+                <label class="checkbox-tile"><input type="checkbox" name="upgrades" value="Thorough Interior" /><span>Thorough Interior</span></label>
+                <label class="checkbox-tile"><input type="checkbox" name="upgrades" value="Carpet & Seat Shampoo" /><span>Carpet &amp; Seat Shampoo</span></label>
+                <label class="checkbox-tile"><input type="checkbox" name="upgrades" value="Basic Exterior" /><span>Basic Exterior</span></label>
+                <label class="checkbox-tile"><input type="checkbox" name="upgrades" value="Thorough Exterior" /><span>Thorough Exterior</span></label>
+                <label class="checkbox-tile"><input type="checkbox" name="upgrades" value="Headlight Restoration" /><span>Headlight Restoration</span></label>
+                <label class="checkbox-tile"><input type="checkbox" name="upgrades" value="Exterior Paint Correction & Protection" /><span>Exterior Paint Correction &amp; Protection</span></label>
+                <label class="checkbox-tile"><input type="checkbox" name="upgrades" value="One-Step Paint Correction" /><span>One-Step Paint Correction</span></label>
+                <label class="checkbox-tile"><input type="checkbox" name="upgrades" value="Engine Bay Cleaning" /><span>Engine Bay Cleaning</span></label>
+              </div>
             </div>
-          </fieldset>
+          </details>
 
           <label class="form__field">
             <span>Name</span>
             <input type="text" name="name" autocomplete="name" required />
           </label>
 
-          <details class="form-accordion" open>
-            <summary>Tell us about your car</summary>
-            <div class="form-accordion__content">
-              <label class="form__field">
-                <span>Vehicle Make and Model</span>
-                <input type="text" name="vehicle" placeholder="e.g. 2018 Honda Accord" />
-              </label>
-            </div>
-          </details>
+          <label class="form__field">
+            <span>Vehicle Make and Model</span>
+            <input type="text" name="vehicle" placeholder="e.g. 2018 Honda Accord" />
+          </label>
 
-          <details class="form-accordion" open>
-            <summary>Contact Info</summary>
-            <div class="form-accordion__content form__row">
-              <label class="form__field">
-                <span>Phone Number</span>
-                <input type="tel" name="phone" autocomplete="tel" required />
-              </label>
-              <label class="form__field">
-                <span>Email</span>
-                <input type="email" name="email" autocomplete="email" required />
-              </label>
-            </div>
-          </details>
+          <div class="form__row">
+            <label class="form__field">
+              <span>Phone Number</span>
+              <input type="tel" name="phone" autocomplete="tel" required />
+            </label>
+            <label class="form__field">
+              <span>Email</span>
+              <input type="email" name="email" autocomplete="email" required />
+            </label>
+          </div>
 
           <button type="submit" class="btn btn--primary btn--block">Send Quote Request</button>
           <p class="form__success" hidden>Thanks! Tyler will reach out within 24 hours.</p>
