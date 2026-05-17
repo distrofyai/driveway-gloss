@@ -2023,6 +2023,19 @@ input, select, textarea {
     box-shadow: 0 18px 40px -18px rgba(0,0,0,0.32);
   }
 
+  /* Before/After cards are taller than the packages cards (stacked
+     before/after image), so at the same 72vw width the active card
+     visually dominates and the side cards feel cropped. Narrow the BA
+     cards so the side columns peek out as clearly as in the packages
+     carousel. */
+  .base-carousel--ba .ba-grid > .ba-card {
+    flex-basis: 64vw;
+    transform: scale(0.84);
+  }
+  .base-carousel--ba .ba-grid > .ba-card.is-active {
+    transform: scale(1);
+  }
+
   /* Featured ribbon: top-left red pill like the screenshot */
   .base-card--featured { position: relative; }
   .base-card--featured .base-card__tag {
@@ -2221,6 +2234,11 @@ input, select, textarea {
   padding: 0;
   margin: 0;
 }
+.quote-form__hint {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
 .mobile-copy { display: none; }
 .form-accordion {
   display: contents;
@@ -2230,6 +2248,50 @@ input, select, textarea {
 }
 .form-accordion__content {
   display: contents;
+}
+
+/* Services dropdown — always a true dropdown, every breakpoint */
+.form-accordion--services {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface-hi);
+  overflow: hidden;
+}
+.form-accordion--services summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  padding: 12px 16px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  list-style: none;
+}
+.form-accordion--services summary::-webkit-details-marker {
+  display: none;
+}
+.form-accordion--services summary::after {
+  content: '+';
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 18px;
+  line-height: 1;
+}
+.form-accordion--services[open] summary::after {
+  content: '−';
+}
+.form-accordion--services .form-accordion__content {
+  display: block;
+  padding: 0 14px 14px;
 }
 
 .radio-group {

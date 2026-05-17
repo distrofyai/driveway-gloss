@@ -787,9 +787,10 @@
         <form class="quote-form reveal" id="quote-form">
           <fieldset class="quote-form__group">
             <legend>Full Detail Package</legend>
+            <p class="quote-form__hint">Optional — or skip and pick individual services below.</p>
             <div class="radio-group">
               <label class="radio-tile">
-                <input type="radio" name="service" value="Basic" required />
+                <input type="radio" name="service" value="Basic" />
                 <span>Basic</span>
               </label>
               <label class="radio-tile">
@@ -799,10 +800,6 @@
               <label class="radio-tile">
                 <input type="radio" name="service" value="Premium" />
                 <span>Premium</span>
-              </label>
-              <label class="radio-tile">
-                <input type="radio" name="service" value="No package — individual services only" />
-                <span>No package — services only</span>
               </label>
             </div>
           </fieldset>
@@ -831,7 +828,7 @@
 
           <label class="form__field">
             <span>Vehicle Make and Model</span>
-            <input type="text" name="vehicle" placeholder="e.g. 2018 Honda Accord" />
+            <input type="text" name="vehicle" />
           </label>
 
           <div class="form__row">
