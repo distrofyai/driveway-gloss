@@ -2832,13 +2832,13 @@ input, select, textarea {
   /* Hero shrinks to fit content on mobile — video stops at the divider line */
   .hero {
     min-height: 0;
-    padding-top: calc(var(--nav-h) + 24px);
-    padding-bottom: 0;
+    padding-top: calc(var(--nav-h) + 80px);
+    padding-bottom: 60px;
     align-items: flex-start;
   }
   .hero__video,
   .hero__image {
-    transform: scale(1.45);
+    transform: scale(1.12);
   }
   .hero__inner { width: 100%; }
   .hero__content { margin-top: 0; padding-bottom: 14px; }
