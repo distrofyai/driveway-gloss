@@ -1603,6 +1603,22 @@ input, select, textarea {
 @media (max-width: 960px) {
   #our-promise .steps::before { display: none; }
   #our-promise .step__text { max-width: none; }
+
+  /* Red curved arrows between the three pillar icons */
+  #our-promise .step:nth-child(-n+2)::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: calc(50% + 26px);
+    width: calc(100% - 52px);
+    height: 36px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 36' fill='none' stroke='%23ef4444' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 28 Q 22 4, 52 18'/><path d='M44 11 L 53 18 L 46 26'/></svg>");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 2;
+  }
 }
 .section__head--tight {
   margin-bottom: clamp(28px, 4vw, 40px);
@@ -1976,6 +1992,110 @@ input, select, textarea {
   color: #fff;
   border-radius: 999px;
   margin-top: auto;
+}
+
+/* ---------- Base Packages Carousel (mobile) ---------- */
+.base-carousel { position: relative; }
+.base-carousel__arrow,
+.base-carousel__dots { display: none; }
+
+@media (max-width: 720px) {
+  .base-carousel { padding: 0; margin: 0 -20px; }
+  .base-carousel .base-services {
+    display: flex;
+    grid-template-columns: none;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 12% 18px;
+    scrollbar-width: none;
+  }
+  .base-carousel .base-services::-webkit-scrollbar { display: none; }
+  .base-carousel .base-services > .base-card {
+    flex: 0 0 76%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+  .base-card--featured {
+    position: relative;
+  }
+  .base-card--featured .base-card__tag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    margin: 0;
+    z-index: 2;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+  }
+
+  .base-carousel__arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 42%;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+    z-index: 5;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    transition: transform .2s var(--ease), opacity .2s var(--ease), background .2s var(--ease);
+    padding: 0;
+  }
+  .base-carousel__arrow svg { width: 18px; height: 18px; }
+  .base-carousel__arrow:active { transform: translateY(-50%) scale(0.94); }
+  .base-carousel__arrow:disabled { opacity: 0.35; cursor: default; }
+  .base-carousel__arrow--prev { left: 6px; }
+  .base-carousel__arrow--next { right: 6px; }
+
+  .base-carousel__dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .base-carousel__dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: var(--accent-soft, #f6d4cf);
+    cursor: pointer;
+    transition: background .25s var(--ease), transform .25s var(--ease);
+  }
+  .base-carousel__dot.is-active {
+    background: var(--accent);
+    transform: scale(1.25);
+  }
+
+  /* Before/After carousel reuses the same wrapper */
+  .base-carousel--ba .ba-grid {
+    display: flex;
+    grid-template-columns: none;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 12% 18px;
+    scrollbar-width: none;
+  }
+  .base-carousel--ba .ba-grid::-webkit-scrollbar { display: none; }
+  .base-carousel--ba .ba-grid > .ba-card {
+    flex: 0 0 76%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
 }
 
 /* ---------- Quote Form ---------- */
