@@ -1822,6 +1822,24 @@ input, select, textarea {
   max-width: 880px;
   margin: 0 auto;
 }
+.base-services--four {
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1120px;
+}
+@media (max-width: 960px) {
+  .base-services--four { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Single-card layout used by the Paint Correction section */
+.paint-correction { max-width: 640px; margin: 0 auto; }
+.paint-correction__card { }
+
+/* Centered variant for the Upgrades add-on grid (3 cards, no side image) */
+.services-grid--centered {
+  max-width: 1040px;
+  margin: 0 auto;
+  justify-content: center;
+}
 
 /* Slightly tighter spacing for the Three core packages section */
 #services.section {
@@ -3003,4 +3021,14 @@ input, select, textarea {
   .hero__meta-text strong { font-size: 10.5px; }
   .hero__meta-text span { font-size: 8px; }
   .hero__title { line-height: 1.05; }
+}
+
+/* ---------- Honeypot (off-screen, invisible to humans, visible to bots) ---------- */
+.hp-field {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }

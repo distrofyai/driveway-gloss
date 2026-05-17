@@ -1,6 +1,6 @@
 # Driveway Gloss
 
-Marketing site for **Driveway Gloss**, a mobile auto-detailing service in Greenville, NC.
+Marketing site for **Driveway Gloss**, a mobile auto-detailing service in Mooresville, NC.
 
 - **Live site:** https://www.drivewaygloss.net
 - **Hosting:** Vercel (auto-deploys from this GitHub repo on every push to `main`)
