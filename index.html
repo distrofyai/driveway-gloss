@@ -148,6 +148,13 @@
           <p class="section__lede">Select a full detail package to restore your vehicle to a like-new condition inside and out. Pricing varies based on vehicle size and condition.</p>
         </header>
 
+        <div class="base-carousel" data-base-carousel>
+          <button class="base-carousel__arrow base-carousel__arrow--prev" type="button" aria-label="Previous package">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="base-carousel__arrow base-carousel__arrow--next" type="button" aria-label="Next package">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
         <div class="base-services" id="gallery">
           <article class="base-card">
             <div class="base-card__media">
@@ -210,6 +217,12 @@
             </div>
           </article>
         </div>
+          <div class="base-carousel__dots" role="tablist" aria-label="Package navigation">
+            <button class="base-carousel__dot" type="button" role="tab" aria-label="Show Basic package"></button>
+            <button class="base-carousel__dot is-active" type="button" role="tab" aria-label="Show Signature package" aria-selected="true"></button>
+            <button class="base-carousel__dot" type="button" role="tab" aria-label="Show Premium package"></button>
+          </div>
+        </div>
         <p class="pricing-note">All prices are starting estimates. Final pricing may vary based on vehicle size, condition, and selected upgrades.</p>
       </div>
     </section>
@@ -254,11 +267,7 @@
                     <h4>Basic Interior</h4>
                     <span class="service-card__price">Starting at $70</span>
                   </div>
-                  <ul class="service-card__list">
-                    <li>Vacuum</li>
-                    <li>Wipe down all surfaces</li>
-                    <li>Windows</li>
-                  </ul>
+                  <p>Includes a full vacuum, wipe down of all surfaces, and clean windows for a quick interior refresh.</p>
                 </div>
               </article>
               <article class="service-card">
@@ -274,12 +283,7 @@
                     <h4>Thorough Interior</h4>
                     <span class="service-card__price">Starting at $100</span>
                   </div>
-                  <ul class="service-card__list">
-                    <li>Vacuum</li>
-                    <li>Crevice &amp; Steam cleaning</li>
-                    <li>Thorough cleaning of all surfaces</li>
-                    <li>Windows</li>
-                  </ul>
+                  <p>Includes a vacuum, crevice and steam cleaning, a thorough cleaning of every surface, and clean windows for a complete interior reset.</p>
                 </div>
               </article>
               <article class="service-card">
@@ -321,12 +325,7 @@
                     <h4>Basic Exterior</h4>
                     <span class="service-card__price">Starting at $60</span>
                   </div>
-                  <ul class="service-card__list">
-                    <li>Hand wash</li>
-                    <li>Wheels &amp; Tires</li>
-                    <li>Windows</li>
-                    <li>Spray wax</li>
-                  </ul>
+                  <p>Includes a hand wash, wheels and tires, clean windows, and a spray wax for a quick weekly shine.</p>
                 </div>
               </article>
               <article class="service-card">
@@ -341,12 +340,7 @@
                     <h4>Thorough Exterior</h4>
                     <span class="service-card__price">Starting at $90</span>
                   </div>
-                  <ul class="service-card__list">
-                    <li>Hand wash</li>
-                    <li>Wheels &amp; Tires</li>
-                    <li>Clay bar treatment</li>
-                    <li>4–6 month ceramic coating</li>
-                  </ul>
+                  <p>Includes a hand wash, wheels and tires, a clay bar treatment, and a 4–6 month ceramic coating for lasting protection.</p>
                 </div>
               </article>
               <article class="service-card">
@@ -390,14 +384,7 @@
                     <h4>Exterior Paint Correction &amp; Protection</h4>
                     <span class="service-card__price">Starting at $160</span>
                   </div>
-                  <ul class="service-card__list">
-                    <li>Hand wash</li>
-                    <li>Wheels &amp; Tires</li>
-                    <li>Clay bar treatment</li>
-                    <li>Enhancement polish</li>
-                    <li>12 month ceramic coating</li>
-                  </ul>
-                  <p>Removes paint imperfections such as light scratches, sun damage, and deeply embedded water spots, and keeps your vehicle protected for up to a full year!</p>
+                  <p>Includes a hand wash, wheels and tires, clay bar treatment, an enhancement polish, and a 12 month ceramic coating. Removes paint imperfections such as light scratches, sun damage, and deeply embedded water spots, and keeps your vehicle protected for up to a full year!</p>
                   <span class="service-card__tag">Recommended</span>
                 </div>
               </article>
@@ -542,7 +529,14 @@
           <p class="section__lede">A few recent jobs — top of each photo is the starting point, bottom is after a Driveway Gloss detail.</p>
         </header>
 
-        <div class="ba-grid reveal">
+        <div class="base-carousel base-carousel--ba reveal" data-base-carousel>
+          <button class="base-carousel__arrow base-carousel__arrow--prev" type="button" aria-label="Previous transformation">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="base-carousel__arrow base-carousel__arrow--next" type="button" aria-label="Next transformation">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        <div class="ba-grid">
           <figure class="ba-card">
             <div class="ba-card__media">
               <img src="images/before-after-lexus.jpg" alt="Lexus IS-F before and after a full detail — dull dusty paint and grille on top, mirror-finish gloss reflecting trees on the bottom" loading="lazy" />
@@ -578,6 +572,12 @@
               <span>Sat with the windows down for years. Steam clean and shampoo did the rest.</span>
             </figcaption>
           </figure>
+        </div>
+          <div class="base-carousel__dots" role="tablist" aria-label="Transformations navigation">
+            <button class="base-carousel__dot is-active" type="button" role="tab" aria-label="Show transformation 1" aria-selected="true"></button>
+            <button class="base-carousel__dot" type="button" role="tab" aria-label="Show transformation 2"></button>
+            <button class="base-carousel__dot" type="button" role="tab" aria-label="Show transformation 3"></button>
+          </div>
         </div>
       </div>
     </section>
