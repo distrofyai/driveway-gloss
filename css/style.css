@@ -2838,7 +2838,7 @@ input, select, textarea {
   }
   .hero__video,
   .hero__image {
-    transform: scale(1.25);
+    transform: scale(1.45);
   }
   .hero__inner { width: 100%; }
   .hero__content { margin-top: 0; padding-bottom: 14px; }
