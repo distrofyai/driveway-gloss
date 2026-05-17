@@ -1818,8 +1818,8 @@ input, select, textarea {
 .base-services {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  max-width: 1180px;
+  gap: 26px;
+  max-width: 1280px;
   margin: 0 auto;
 }
 
@@ -1831,7 +1831,7 @@ input, select, textarea {
   margin-bottom: clamp(28px, 4.5vw, 44px);
 }
 #services .base-card__media { aspect-ratio: 16 / 10; }
-#services .base-card__body { padding: 26px 28px 28px; gap: 14px; }
+#services .base-card__body { padding: 30px 32px 34px; gap: 16px; }
 #services .base-card__head h3 { font-size: 22px; }
 #services .base-card__price { font-size: 17px; }
 #services .base-card__list li { font-size: 15px; }
