@@ -157,14 +157,6 @@
     quoteForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // Honeypot — if a bot filled the hidden field, fake success and bail.
-      const hp = quoteForm.querySelector('input[name="website"]');
-      if (hp && hp.value) {
-        if (successEl) successEl.hidden = false;
-        quoteForm.reset();
-        return;
-      }
-
       // Open collapsed accordions so validation messages are visible
       quoteForm.querySelectorAll('details').forEach((d) => d.open = true);
 
