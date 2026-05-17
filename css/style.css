@@ -1616,7 +1616,7 @@ input, select, textarea {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  gap: clamp(14px, 3vw, 32px);
 }
 .step {
   position: relative;
@@ -1633,6 +1633,22 @@ input, select, textarea {
   transform: translateY(-3px);
   border-color: var(--accent);
   box-shadow: var(--shadow-md);
+}
+.step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: calc(clamp(14px, 3vw, 32px) / -2);
+  width: 12px;
+  height: 12px;
+  border-top: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+  transform: translate(50%, -50%) rotate(45deg);
+  opacity: .7;
+  pointer-events: none;
+}
+@media (max-width: 900px) {
+  .step:not(:last-child)::after { display: none; }
 }
 
 /* Icon container with idle pulse ring */
