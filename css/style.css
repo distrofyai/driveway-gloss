@@ -305,8 +305,8 @@ input, select, textarea {
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  min-height: 88svh;
-  max-height: 880px;
+  min-height: 96svh;
+  max-height: 1000px;
   display: flex;
   align-items: center;
   padding-top: calc(var(--nav-h) + 64px);
