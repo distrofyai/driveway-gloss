@@ -1616,7 +1616,7 @@ input, select, textarea {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(14px, 3vw, 32px);
+  gap: clamp(14px, 4vw, 48px);
 }
 .step {
   position: relative;
@@ -1638,13 +1638,13 @@ input, select, textarea {
   content: '';
   position: absolute;
   top: 50%;
-  right: calc(clamp(14px, 3vw, 32px) / -2);
+  right: calc(clamp(14px, 4vw, 48px) / -2);
   width: 12px;
   height: 12px;
-  border-top: 2px solid var(--accent);
-  border-right: 2px solid var(--accent);
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
   transform: translate(50%, -50%) rotate(45deg);
-  opacity: .7;
+  opacity: .85;
   pointer-events: none;
 }
 @media (max-width: 900px) {
