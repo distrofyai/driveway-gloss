@@ -238,12 +238,13 @@
         if (active) d.setAttribute('aria-selected', 'true');
         else d.removeAttribute('aria-selected');
       });
-      if (prevBtn) prevBtn.disabled = index <= 0;
-      if (nextBtn) nextBtn.disabled = index >= cards.length - 1;
+      if (prevBtn) prevBtn.disabled = false;
+      if (nextBtn) nextBtn.disabled = false;
     };
 
+    const wrap = (i) => ((i % cards.length) + cards.length) % cards.length;
     const goTo = (i) => {
-      index = Math.max(0, Math.min(cards.length - 1, i));
+      index = wrap(i);
       layout();
     };
 
@@ -274,7 +275,7 @@
       const dx = t.clientX - startX;
       const dy = t.clientY - startY;
       if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
-        if (dx < 0) goTo(index + 1); else goTo(index - 1);
+        goTo(dx < 0 ? index + 1 : index - 1);
       }
     });
 
