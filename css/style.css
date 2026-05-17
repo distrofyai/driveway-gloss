@@ -1929,6 +1929,37 @@ input, select, textarea {
   border: 1.5px solid var(--accent);
   background: var(--accent-soft);
 }
+.base-card__note {
+  margin: 0;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--text-muted);
+}
+.service-card__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.service-card__list li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 13.5px;
+  color: var(--text-body);
+  line-height: 1.5;
+}
+.service-card__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  background: var(--accent-soft);
+}
 .base-card--featured {
   border-color: var(--accent);
   box-shadow: var(--shadow-md), 0 0 0 1px var(--accent-glow);
@@ -2807,7 +2838,7 @@ input, select, textarea {
   }
   .hero__video,
   .hero__image {
-    transform: scale(1.12);
+    transform: scale(1.25);
   }
   .hero__inner { width: 100%; }
   .hero__content { margin-top: 0; padding-bottom: 14px; }
