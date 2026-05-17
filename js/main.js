@@ -203,6 +203,97 @@
     });
   }
 
+  // ---------- Mobile carousels (base packages + before/after) ----------
+  const initCarousel = (root) => {
+    const track = root.querySelector('.base-services, .ba-grid');
+    const prevBtn = root.querySelector('.base-carousel__arrow--prev');
+    const nextBtn = root.querySelector('.base-carousel__arrow--next');
+    const dots = Array.from(root.querySelectorAll('.base-carousel__dot'));
+    if (!track) return;
+    const cards = Array.from(track.children);
+    if (!cards.length) return;
+
+    const carouselMq = window.matchMedia('(max-width: 720px)');
+    let index = cards.findIndex((c) => c.classList.contains('base-card--featured') || c.classList.contains('ba-card--featured'));
+    if (index < 0) index = 0;
+
+    const layout = () => {
+      if (!carouselMq.matches) {
+        // Desktop: clear inline state
+        track.style.transform = '';
+        cards.forEach((c) => c.classList.remove('is-active'));
+        return;
+      }
+      const card = cards[index];
+      if (!card) return;
+      const containerCenter = root.clientWidth / 2;
+      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+      const offset = containerCenter - cardCenter;
+      track.style.setProperty('--offset', offset + 'px');
+
+      cards.forEach((c, i) => c.classList.toggle('is-active', i === index));
+      dots.forEach((d, i) => {
+        const active = i === index;
+        d.classList.toggle('is-active', active);
+        if (active) d.setAttribute('aria-selected', 'true');
+        else d.removeAttribute('aria-selected');
+      });
+      if (prevBtn) prevBtn.disabled = index <= 0;
+      if (nextBtn) nextBtn.disabled = index >= cards.length - 1;
+    };
+
+    const goTo = (i) => {
+      index = Math.max(0, Math.min(cards.length - 1, i));
+      layout();
+    };
+
+    if (prevBtn) prevBtn.addEventListener('click', () => goTo(index - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => goTo(index + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+
+    // Touch swipe
+    let startX = null;
+    let startY = null;
+    let dragging = false;
+    track.addEventListener('touchstart', (e) => {
+      if (!carouselMq.matches) return;
+      const t = e.touches[0];
+      startX = t.clientX; startY = t.clientY; dragging = true;
+    }, { passive: true });
+    track.addEventListener('touchmove', (e) => {
+      if (!dragging) return;
+      const t = e.touches[0];
+      if (Math.abs(t.clientX - startX) > Math.abs(t.clientY - startY) + 4) {
+        // horizontal intent
+      }
+    }, { passive: true });
+    track.addEventListener('touchend', (e) => {
+      if (!dragging) return;
+      dragging = false;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - startX;
+      const dy = t.clientY - startY;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+        if (dx < 0) goTo(index + 1); else goTo(index - 1);
+      }
+    });
+
+    // Recompute on resize / breakpoint changes / image load
+    const onResize = () => layout();
+    window.addEventListener('resize', onResize);
+    if (carouselMq.addEventListener) carouselMq.addEventListener('change', onResize);
+    root.querySelectorAll('img').forEach((img) => {
+      if (!img.complete) img.addEventListener('load', onResize, { once: true });
+    });
+
+    if (document.readyState === 'complete') layout();
+    else window.addEventListener('load', layout, { once: true });
+    // Initial sync immediately too so CSS variable applies on first paint
+    layout();
+  };
+
+  document.querySelectorAll('[data-base-carousel]').forEach(initCarousel);
+
   // ---------- Smooth scroll polish ----------
   // CSS handles smooth-scroll for anchor jumps. We just need to compensate
   // for the sticky nav so anchors don't land underneath it.
