@@ -2554,11 +2554,13 @@ input, select, textarea {
     gap: 10px;
   }
   .cta-band__btn {
-    padding: 9px 16px;
-    font-size: 13px;
-    flex: 0 1 auto;
+    padding: 8px 14px;
+    font-size: 12.5px;
+    flex: 0 0 120px;
+    width: 120px;
     min-width: 0;
-    max-width: 150px;
+    max-width: 120px;
+    text-align: center;
   }
 
   /* Add-ons: mobile becomes a compact service list instead of image-heavy rows */
