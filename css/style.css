@@ -2866,8 +2866,8 @@ input, select, textarea {
   }
   .why__faq-item { border-radius: 14px; }
   .why__faq-item > summary {
-    grid-template-columns: 0 1fr auto;
-    gap: 0;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
     padding: 14px 14px;
     font-size: 14px;
     line-height: 1.35;
