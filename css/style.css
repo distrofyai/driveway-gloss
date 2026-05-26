@@ -2046,10 +2046,16 @@ input, select, textarea {
   /* Steps carousel: no down-arrow chevrons between cards (arrows are on the sides now) */
   #how-it-works .base-carousel--steps .step:not(:last-child)::after { display: none; }
   .base-carousel--steps { padding-bottom: 0; }
-  .base-carousel--steps .base-carousel__arrow { width: 32px; height: 32px; }
-  .base-carousel--steps .base-carousel__arrow svg { width: 14px; height: 14px; }
-  .base-carousel--steps .base-carousel__arrow--prev { left: 6px; }
-  .base-carousel--steps .base-carousel__arrow--next { right: 6px; }
+  .base-carousel--steps .base-carousel__arrow {
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    box-shadow: none;
+    color: #fff;
+  }
+  .base-carousel--steps .base-carousel__arrow svg { width: 26px; height: 26px; }
+  .base-carousel--steps .base-carousel__arrow--prev { left: 4px; }
+  .base-carousel--steps .base-carousel__arrow--next { right: 4px; }
 
   /* Before/After cards are taller than the packages cards (stacked
      before/after image), so at the same 72vw width the active card
