@@ -1137,57 +1137,22 @@ input, select, textarea {
   text-align: left;
   margin-top: 12px;
 }
-.why__points {
-  list-style: none;
-  margin: 28px 0 32px;
-  padding: 0;
-  display: grid;
-  gap: 14px;
-}
-.why__points li {
-  display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 18px;
-  align-items: center;
-  padding: 18px 20px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  transition: border-color .25s var(--ease), background .25s var(--ease), transform .25s var(--ease);
-}
-.why__points li:hover {
-  border-color: var(--accent);
-  background: var(--accent-soft);
-  transform: translateX(2px);
-}
-.why__num {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 22px;
-  color: var(--accent);
-  letter-spacing: -0.01em;
-  text-align: center;
-}
-.why__points li p {
-  margin: 0;
-  color: var(--text-body);
-  line-height: 1.55;
-  font-size: 15px;
-}
-
-/* ---------- Why FAQ (mobile-only Q&A treatment) ---------- */
+/* ---------- Why FAQ (Q&A accordion, desktop + mobile) ---------- */
 .why__faq {
-  display: none;
-  margin: 18px 0 22px;
-  gap: 10px;
+  display: grid;
+  margin: 28px 0 32px;
+  gap: 14px;
   grid-template-columns: 1fr;
 }
 .why__faq-item {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: var(--radius);
   overflow: hidden;
   transition: border-color .25s var(--ease), background .25s var(--ease);
+}
+.why__faq-item:hover {
+  border-color: var(--accent);
 }
 .why__faq-item[open] {
   border-color: var(--accent);
@@ -1196,21 +1161,29 @@ input, select, textarea {
 .why__faq-item > summary {
   list-style: none;
   cursor: pointer;
-  display: flex;
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 14px 14px;
+  gap: 18px;
+  padding: 18px 20px;
   font-family: var(--font-body, inherit);
   font-weight: 600;
-  font-size: 14px;
-  line-height: 1.35;
-  color: var(--text-strong, var(--text-body));
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--text-strong, var(--text));
   -webkit-tap-highlight-color: transparent;
 }
 .why__faq-item > summary::-webkit-details-marker { display: none; }
 .why__faq-item > summary::marker { content: ""; }
-.why__faq-q { flex: 1; }
+.why__faq-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+.why__faq-q { min-width: 0; }
 .why__faq-chevron {
   flex-shrink: 0;
   color: var(--accent);
@@ -1219,10 +1192,10 @@ input, select, textarea {
 .why__faq-item[open] .why__faq-chevron { transform: rotate(180deg); }
 .why__faq-item > p {
   margin: 0;
-  padding: 0 14px 14px;
+  padding: 0 20px 18px 94px;
   color: var(--text-body);
-  line-height: 1.5;
-  font-size: 13.5px;
+  line-height: 1.55;
+  font-size: 15px;
 }
 
 /* ---------- Reviews Google badge ---------- */
@@ -2580,10 +2553,6 @@ input, select, textarea {
   .desktop-copy { display: none; }
   .mobile-copy { display: inline; }
 
-  /* Why Choose: swap numbered list for FAQ accordion on mobile */
-  .why__points { display: none; }
-  .why__faq { display: grid; }
-
   /* Pricing (Three core packages): tighten top spacing so the first card peeks
      into the initial viewport on mobile right under the hero */
   #services.section {
@@ -2891,22 +2860,23 @@ input, select, textarea {
     max-height: 210px;
     border-radius: 16px;
   }
-  .why__points {
-    gap: 8px;
-    margin: 18px 0 20px;
-  }
-  .why__points li {
-    grid-template-columns: 38px 1fr;
+  .why__faq {
     gap: 10px;
-    padding: 11px 12px;
-    border-radius: 12px;
+    margin: 18px 0 22px;
   }
-  .why__num {
-    font-size: 16px;
-  }
-  .why__points li p {
-    font-size: 13px;
+  .why__faq-item { border-radius: 14px; }
+  .why__faq-item > summary {
+    grid-template-columns: 0 1fr auto;
+    gap: 0;
+    padding: 14px 14px;
+    font-size: 14px;
     line-height: 1.35;
+  }
+  .why__faq-num { display: none; }
+  .why__faq-item > p {
+    padding: 0 14px 14px;
+    font-size: 13.5px;
+    line-height: 1.5;
   }
 
   /* Before/after cards: shorter, easier scan on phone */
@@ -3218,8 +3188,7 @@ input, select, textarea {
   .btn { padding: 14px 22px; }
 
   /* New components on mobile */
-  .why__points li { grid-template-columns: 44px 1fr; gap: 14px; padding: 14px 16px; }
-  .why__num { font-size: 18px; }
+  .why__faq-item > summary { padding: 14px 16px; }
 
   .radio-group { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .checkbox-group { grid-template-columns: repeat(2, minmax(0, 1fr)); }
