@@ -1175,6 +1175,56 @@ input, select, textarea {
   font-size: 15px;
 }
 
+/* ---------- Why FAQ (mobile-only Q&A treatment) ---------- */
+.why__faq {
+  display: none;
+  margin: 18px 0 22px;
+  gap: 10px;
+  grid-template-columns: 1fr;
+}
+.why__faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color .25s var(--ease), background .25s var(--ease);
+}
+.why__faq-item[open] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.why__faq-item > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 14px;
+  font-family: var(--font-body, inherit);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.35;
+  color: var(--text-strong, var(--text-body));
+  -webkit-tap-highlight-color: transparent;
+}
+.why__faq-item > summary::-webkit-details-marker { display: none; }
+.why__faq-item > summary::marker { content: ""; }
+.why__faq-q { flex: 1; }
+.why__faq-chevron {
+  flex-shrink: 0;
+  color: var(--accent);
+  transition: transform .25s var(--ease);
+}
+.why__faq-item[open] .why__faq-chevron { transform: rotate(180deg); }
+.why__faq-item > p {
+  margin: 0;
+  padding: 0 14px 14px;
+  color: var(--text-body);
+  line-height: 1.5;
+  font-size: 13.5px;
+}
+
 /* ---------- Reviews Google badge ---------- */
 .reviews-badge {
   display: inline-flex;
@@ -2529,6 +2579,10 @@ input, select, textarea {
   }
   .desktop-copy { display: none; }
   .mobile-copy { display: inline; }
+
+  /* Why Choose: swap numbered list for FAQ accordion on mobile */
+  .why__points { display: none; }
+  .why__faq { display: grid; }
 
   /* Pricing (Three core packages): tighten top spacing so the first card peeks
      into the initial viewport on mobile right under the hero */
