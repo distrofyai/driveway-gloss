@@ -1368,7 +1368,13 @@ input, select, textarea {
   border-color: rgba(255,255,255,0.18);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  will-change: backdrop-filter;
+  isolation: isolate;
 }
+/* Don't translateY the steps carousel on reveal — a transformed ancestor
+   clips backdrop-filter on the .step cards, so the blur visibly snaps in
+   after the slide-up settles. Keep the opacity fade only. */
+.base-carousel--steps.reveal { transform: none; }
 .section--photo-bg .step:hover {
   background: rgba(255,255,255,0.12);
   border-color: rgba(255,255,255,0.4);
