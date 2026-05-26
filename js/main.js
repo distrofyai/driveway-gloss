@@ -205,7 +205,8 @@
 
   // ---------- Mobile carousels (base packages + before/after) ----------
   const initCarousel = (root) => {
-    const track = root.querySelector('.base-services, .ba-grid');
+    const track = root.querySelector('.base-services, .ba-grid, .steps');
+    const noWrap = root.hasAttribute('data-no-wrap');
     const prevBtn = root.querySelector('.base-carousel__arrow--prev');
     const nextBtn = root.querySelector('.base-carousel__arrow--next');
     const dots = Array.from(root.querySelectorAll('.base-carousel__dot'));
@@ -238,13 +239,14 @@
         if (active) d.setAttribute('aria-selected', 'true');
         else d.removeAttribute('aria-selected');
       });
-      if (prevBtn) prevBtn.disabled = false;
-      if (nextBtn) nextBtn.disabled = false;
+      if (prevBtn) prevBtn.disabled = noWrap && index === 0;
+      if (nextBtn) nextBtn.disabled = noWrap && index === cards.length - 1;
     };
 
     const wrap = (i) => ((i % cards.length) + cards.length) % cards.length;
+    const clamp = (i) => Math.max(0, Math.min(cards.length - 1, i));
     const goTo = (i) => {
-      index = wrap(i);
+      index = noWrap ? clamp(i) : wrap(i);
       layout();
     };
 

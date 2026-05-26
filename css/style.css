@@ -2009,11 +2009,13 @@ input, select, textarea {
 
   /* Track: a centered flex row that we translate via --offset */
   .base-carousel .base-services,
-  .base-carousel--ba .ba-grid {
+  .base-carousel--ba .ba-grid,
+  #how-it-works .base-carousel--steps .steps {
     display: flex;
     grid-template-columns: none;
     gap: 18px;
     width: max-content;
+    max-width: none;
     margin: 0;
     padding: 14px 0 18px;
     transform: translate3d(var(--offset, 0px), 0, 0);
@@ -2023,7 +2025,8 @@ input, select, textarea {
 
   /* Cards: side cards scaled down + dimmed; active card full-size */
   .base-carousel .base-services > .base-card,
-  .base-carousel--ba .ba-grid > .ba-card {
+  .base-carousel--ba .ba-grid > .ba-card,
+  #how-it-works .base-carousel--steps .steps > .step {
     flex: 0 0 72vw;
     max-width: 320px;
     transform: scale(0.82);
@@ -2032,12 +2035,17 @@ input, select, textarea {
     transform-origin: center center;
   }
   .base-carousel .base-services > .base-card.is-active,
-  .base-carousel--ba .ba-grid > .ba-card.is-active {
+  .base-carousel--ba .ba-grid > .ba-card.is-active,
+  #how-it-works .base-carousel--steps .steps > .step.is-active {
     transform: scale(1);
     opacity: 1;
     z-index: 2;
     box-shadow: 0 18px 40px -18px rgba(0,0,0,0.32);
   }
+
+  /* Steps carousel: no down-arrow chevrons between cards (arrows are on the sides now) */
+  #how-it-works .base-carousel--steps .step:not(:last-child)::after { display: none; }
+  .base-carousel--steps { padding-bottom: 0; }
 
   /* Before/After cards are taller than the packages cards (stacked
      before/after image), so at the same 72vw width the active card
