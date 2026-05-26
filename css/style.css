@@ -2054,8 +2054,18 @@ input, select, textarea {
     color: #fff;
   }
   .base-carousel--steps .base-carousel__arrow svg { width: 26px; height: 26px; }
-  .base-carousel--steps .base-carousel__arrow--prev { left: 4px; }
-  .base-carousel--steps .base-carousel__arrow--next { right: 4px; }
+  .base-carousel--steps .base-carousel__arrow--prev { left: 22px; }
+  .base-carousel--steps .base-carousel__arrow--next { right: 22px; }
+
+  /* Section header polish on mobile */
+  #how-it-works .section__lede { display: none; }
+  #how-it-works .section__title--small {
+    font-size: clamp(24px, 6.8vw, 30px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  #how-it-works .mobile-copy { display: inline; }
+  #how-it-works .desktop-copy { display: none; }
 
   /* Before/After cards are taller than the packages cards (stacked
      before/after image), so at the same 72vw width the active card
