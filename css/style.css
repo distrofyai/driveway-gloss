@@ -3205,7 +3205,7 @@ input, select, textarea {
   .hero {
     min-height: 0;
     padding-top: calc(var(--nav-h) + 80px);
-    padding-bottom: 46px;
+    padding-bottom: 42px;
     align-items: flex-start;
   }
   .hero__video,
