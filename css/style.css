@@ -2174,6 +2174,23 @@ input, select, textarea {
     width: 22px;
     border-radius: 5px;
   }
+
+  /* Smaller price + checkmark bullets on mobile cards */
+  #services .base-card__price { font-size: 13px; }
+  #services .base-card__list { gap: 11px; }
+  #services .base-card__list li {
+    padding-left: 28px;
+    font-size: 14px;
+  }
+  #services .base-card__list li::before {
+    top: 2px;
+    width: 18px;
+    height: 18px;
+    border: none;
+    border-radius: 50%;
+    background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 13l4 4L19 7'/%3E%3C/svg%3E") center / 11px no-repeat;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  }
 }
 
 /* ---------- Quote Form ---------- */
