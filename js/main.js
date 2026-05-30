@@ -89,6 +89,22 @@
     else if (accordionMq.addListener) accordionMq.addListener(syncQuoteAccordions);
   }
 
+  // ---------- Single-select button groups (Individual Services + Packages) ----------
+  // Checkboxes (not radios) so a second click can clear the selection,
+  // while still allowing only one choice per group.
+  document.querySelectorAll('.quote-form .radio-group').forEach((group) => {
+    const boxes = group.querySelectorAll('input[type="checkbox"]');
+    boxes.forEach((box) => {
+      box.addEventListener('change', () => {
+        if (box.checked) {
+          boxes.forEach((other) => {
+            if (other !== box) other.checked = false;
+          });
+        }
+      });
+    });
+  });
+
   // ---------- Hero video ----------
   // Always try to autoplay (muted + playsinline = allowed on iOS/Android).
   // If the browser blocks it, show the play button as a fallback.
