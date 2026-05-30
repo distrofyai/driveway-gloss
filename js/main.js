@@ -18,12 +18,39 @@
   const nav = document.getElementById('nav');
   const SCROLL_THRESHOLD = 24;
 
+  // Hide-on-scroll-down / show-on-scroll-up (mobile only)
+  const hideNavMq = window.matchMedia('(max-width: 720px)');
+  const HIDE_AFTER = 80;        // don't hide until past the top region
+  const DELTA = 6;              // ignore tiny scroll jitters
+  let lastY = window.scrollY;
+
   const onScroll = () => {
     if (!nav) return;
-    if (window.scrollY > SCROLL_THRESHOLD) {
+
+    const y = window.scrollY;
+
+    if (y > SCROLL_THRESHOLD) {
       nav.classList.add('is-scrolled');
     } else {
       nav.classList.remove('is-scrolled');
+    }
+
+    // Direction-based show/hide — mobile only, and never while the menu is open
+    const navLinks = document.getElementById('nav-links');
+    const menuOpen = navLinks && navLinks.classList.contains('is-open');
+    if (hideNavMq.matches && !menuOpen) {
+      const diff = y - lastY;
+      if (Math.abs(diff) > DELTA) {
+        if (diff > 0 && y > HIDE_AFTER) {
+          nav.classList.add('is-hidden');   // scrolling down
+        } else {
+          nav.classList.remove('is-hidden'); // scrolling up
+        }
+        lastY = y;
+      }
+    } else {
+      nav.classList.remove('is-hidden');
+      lastY = y;
     }
   };
   onScroll();
@@ -43,6 +70,7 @@
 
   const openMenu = () => {
     if (!toggle || !links) return;
+    nav && nav.classList.remove('is-hidden');
     toggle.classList.add('is-open');
     links.classList.add('is-open');
     toggle.setAttribute('aria-expanded', 'true');

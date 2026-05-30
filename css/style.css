@@ -225,7 +225,7 @@ input, select, textarea {
   z-index: 50;
   background: #ffffff;
   border-bottom: 1px solid var(--border);
-  transition: box-shadow .3s var(--ease);
+  transition: box-shadow .3s var(--ease), transform .3s var(--ease);
 }
 .nav.is-scrolled {
   box-shadow: 0 1px 0 rgba(15,23,42,0.04), 0 4px 16px -8px rgba(15,23,42,0.08);
@@ -3099,6 +3099,9 @@ input, select, textarea {
 
 @media (max-width: 720px) {
   .nav__toggle { display: flex; }
+
+  /* Hide nav on scroll-down, reveal on scroll-up (mobile only) */
+  .nav.is-hidden { transform: translateY(-100%); }
 
   .nav__brand-name { font-size: 15px; }
   .nav__brand-mark { width: 40px; height: 40px; }
