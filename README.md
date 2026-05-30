@@ -39,7 +39,7 @@ Drop the new image into the `images/` folder using the **same filename** as the 
 
 The form posts customer requests to a Google Apps Script Web App, which appends them to a Google Sheet **and emails a notification**. The endpoint URL is in `js/main.js` (search for `FORM_ENDPOINT`). Test submissions land in the Sheet within a few seconds.
 
-**Sheet columns (left to right):** Timestamp · Name · Phone · Email · Vehicle · Service · Package · Upgrades · User Agent.
+**Sheet columns (left to right):** Timestamp · Name · Phone · Email · Vehicle · Service · Package · Upgrades.
 - **Service** = the "Individual Services" answer (Interior / Exterior / Full Detail).
 - **Package** = the "Packages" answer (Basic / Signature / Premium).
 

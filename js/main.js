@@ -158,13 +158,6 @@
 
   const quoteForm = document.getElementById('quote-form');
   if (quoteForm) {
-    // Capture user agent for the Sheet
-    const uaInput = document.createElement('input');
-    uaInput.type = 'hidden';
-    uaInput.name = '_ua';
-    uaInput.value = navigator.userAgent;
-    quoteForm.appendChild(uaInput);
-
     const submitBtn = quoteForm.querySelector('button[type="submit"]');
     const successEl = quoteForm.querySelector('.form__success');
     const errorEl = quoteForm.querySelector('.form__error');
