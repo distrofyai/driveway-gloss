@@ -37,9 +37,17 @@ Drop the new image into the `images/` folder using the **same filename** as the 
 
 ## Quote form
 
-The form posts customer requests to a Google Apps Script Web App, which appends them to a Google Sheet. The endpoint URL is in `js/main.js` (search for `FORM_ENDPOINT`). Test submissions land in the Sheet within a few seconds.
+The form posts customer requests to a Google Apps Script Web App, which appends them to a Google Sheet **and emails a notification**. The endpoint URL is in `js/main.js` (search for `FORM_ENDPOINT`). Test submissions land in the Sheet within a few seconds.
 
-If form submissions stop working, the most likely cause is the Apps Script deployment was redeployed and got a new URL — update `FORM_ENDPOINT` in `js/main.js` to match.
+**Sheet columns (left to right):** Timestamp · Name · Phone · Email · Vehicle · Service · Package · Upgrades · User Agent.
+- **Service** = the "Individual Services" answer (Interior / Exterior / Full Detail).
+- **Package** = the "Packages" answer (Basic / Signature / Premium).
+
+**Email notifications** go to both `distrofyai@gmail.com` and `tyler@drivewaygloss.com` — set in the `NOTIFY_EMAIL` constant at the top of the Apps Script (comma-separated; add or remove addresses there).
+
+**Editing the Apps Script:** open the Sheet → **Extensions → Apps Script**. After any code change you must cut a new version for it to go live: **Deploy → Manage deployments → Edit (pencil) → Version: New version → Deploy**. This keeps the same `/exec` URL, so `js/main.js` needs no change. If you add/remove form fields, update the `appendRow([...])` array in the script and the Sheet's header row to match.
+
+If form submissions stop working, the most likely cause is the Apps Script deployment got a brand-new URL — update `FORM_ENDPOINT` in `js/main.js` to match.
 
 ## Local preview (optional)
 
