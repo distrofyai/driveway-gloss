@@ -3096,7 +3096,7 @@ input, select, textarea {
     transform: scale(1.12);
   }
   .hero__inner { width: 100%; }
-  .hero__content { margin-top: 0; padding-bottom: 14px; }
+  .hero__content { margin-top: 0; padding-bottom: 14px; transform: translateY(5px); }
   .hero__title { font-size: clamp(32px, 8.6vw, 44px); margin: 12px 0 12px; line-height: 1.06; }
   .hero__lede { font-size: 14px; margin: 0 0 36px; }
   .hero__actions { margin-bottom: 0; gap: 10px; }
