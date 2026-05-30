@@ -3164,10 +3164,14 @@ input, select, textarea {
     border: 1px solid rgba(37,99,235,0.18);
     color: var(--accent);
   }
-  .hero__meta--inline .hero__meta-icon--google {
+  .hero__meta--inline .hero__meta-icon--google,
+  .hero__meta--inline .hero__meta-icon--clock,
+  .hero__meta--inline .hero__meta-icon--pin {
     background: #fff;
     border-color: var(--border);
   }
+  .hero__meta--inline .hero__meta-icon--clock { color: var(--accent); }
+  .hero__meta--inline .hero__meta-icon--pin { color: #ea4335; }
   .hero__meta--inline .hero__meta-text strong { color: var(--text); }
   .hero__meta--inline .hero__meta-text span { color: var(--text-muted); }
 
