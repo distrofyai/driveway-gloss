@@ -3083,11 +3083,12 @@ input, select, textarea {
     font-size: 16px;
   }
 
-  /* Hero shrinks to fit content on mobile — video stops at the divider line */
+  /* Hero shrinks to fit content on mobile — video stops at the divider line.
+     Extra bottom padding restores the height the badge strip used to occupy. */
   .hero {
     min-height: 0;
     padding-top: calc(var(--nav-h) + 80px);
-    padding-bottom: 28px;
+    padding-bottom: 120px;
     align-items: flex-start;
   }
   .hero__video,
