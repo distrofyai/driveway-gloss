@@ -465,6 +465,9 @@ input, select, textarea {
   letter-spacing: 0.04em;
 }
 
+/* Duplicate trust strip rendered under the pricing carousel — mobile only */
+.hero__meta--inline { display: none; }
+
 /* Hero video play overlay (mobile) */
 .hero__video-play {
   position: absolute;
@@ -3155,6 +3158,26 @@ input, select, textarea {
   .hero__meta-text { align-items: center; gap: 3px; }
   .hero__meta-text strong { font-size: 15px; line-height: 1.1; }
   .hero__meta-text span { font-size: 11px; line-height: 1.25; }
+
+  /* On mobile, the trust strip lives under the pricing carousel instead of the hero */
+  .hero .hero__meta { display: none; }
+  .hero__meta--inline {
+    display: flex;
+    margin: 18px 0 4px;
+  }
+  /* Recolor for the light pricing section background */
+  .hero__meta--inline li { color: var(--text-muted); }
+  .hero__meta--inline .hero__meta-icon {
+    background: rgba(37,99,235,0.08);
+    border: 1px solid rgba(37,99,235,0.18);
+    color: var(--accent);
+  }
+  .hero__meta--inline .hero__meta-icon--google {
+    background: #fff;
+    border-color: var(--border);
+  }
+  .hero__meta--inline .hero__meta-text strong { color: var(--text); }
+  .hero__meta--inline .hero__meta-text span { color: var(--text-muted); }
 
   /* Move play button to top-right so it doesn't sit behind the meta strip */
   .hero__video-play {
