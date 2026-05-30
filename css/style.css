@@ -2209,6 +2209,9 @@ input, select, textarea {
   margin-top: 8px;
 }
 
+/* Mobile-only "Five Stars on Google" banner (between form and map) */
+.quote__stars { display: none; }
+
 /* Embedded Google Map under the quote intro */
 .quote__map {
   position: relative;
@@ -2723,9 +2726,38 @@ input, select, textarea {
   .quote__intro .contact__info {
     margin-top: 18px;
   }
+  .quote__stars {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-top: 20px;
+    padding: 13px 16px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.16);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    text-decoration: none;
+    transition: border-color .25s var(--ease), background .25s var(--ease);
+  }
+  .quote__stars:active { background: rgba(255,255,255,0.12); }
+  .quote__stars-rating {
+    display: inline-flex;
+    gap: 3px;
+  }
+  .quote__stars-rating svg { width: 19px; height: 19px; }
+  .quote__stars-text {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+  .quote__stars-google { font-weight: 700; }
   .quote__map {
     height: 150px;
-    margin-top: 18px;
+    margin-top: 16px;
     border-radius: 12px;
   }
   .quote__map-callout {
