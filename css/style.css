@@ -1974,7 +1974,7 @@ input, select, textarea {
 }
 .base-card__list li {
   position: relative;
-  padding-left: 22px;
+  padding-left: 28px;
   font-size: 14px;
   color: var(--text-body);
   line-height: 1.5;
@@ -1983,12 +1983,13 @@ input, select, textarea {
   content: '';
   position: absolute;
   left: 0;
-  top: 6px;
-  width: 12px;
-  height: 12px;
+  top: 2px;
+  width: 18px;
+  height: 18px;
+  border: none;
   border-radius: 50%;
-  border: 1.5px solid var(--accent);
-  background: var(--accent-soft);
+  background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 13l4 4L19 7'/%3E%3C/svg%3E") center / 11px no-repeat;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
 }
 .base-card__note {
   margin: 0;
@@ -2189,22 +2190,10 @@ input, select, textarea {
     border-radius: 5px;
   }
 
-  /* Smaller price + checkmark bullets on mobile cards */
+  /* Smaller price + tighter list on mobile cards (checkmark bullets inherited from base) */
   #services .base-card__price { font-size: 13px; }
   #services .base-card__list { gap: 11px; }
-  #services .base-card__list li {
-    padding-left: 28px;
-    font-size: 14px;
-  }
-  #services .base-card__list li::before {
-    top: 2px;
-    width: 18px;
-    height: 18px;
-    border: none;
-    border-radius: 50%;
-    background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 13l4 4L19 7'/%3E%3C/svg%3E") center / 11px no-repeat;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
-  }
+  #services .base-card__list li { font-size: 14px; }
 }
 
 /* ---------- Quote Form ---------- */
