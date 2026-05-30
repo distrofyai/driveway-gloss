@@ -3088,7 +3088,7 @@ input, select, textarea {
   .hero {
     min-height: 0;
     padding-top: calc(var(--nav-h) + 80px);
-    padding-bottom: 96px;
+    padding-bottom: 89px;
     align-items: flex-start;
   }
   .hero__video,
@@ -3171,7 +3171,7 @@ input, select, textarea {
     border-color: var(--border);
   }
   .hero__meta--inline .hero__meta-icon--clock { color: var(--accent); }
-  .hero__meta--inline .hero__meta-icon--pin { color: #ea4335; }
+  .hero__meta--inline .hero__meta-icon--pin { color: #d93025; }
   .hero__meta--inline .hero__meta-text strong { color: var(--text); }
   .hero__meta--inline .hero__meta-text span { color: var(--text-muted); }
 
