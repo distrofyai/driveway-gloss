@@ -3088,7 +3088,7 @@ input, select, textarea {
   .hero {
     min-height: 0;
     padding-top: calc(var(--nav-h) + 80px);
-    padding-bottom: 120px;
+    padding-bottom: 105px;
     align-items: flex-start;
   }
   .hero__video,
@@ -3109,16 +3109,7 @@ input, select, textarea {
     position: relative;
     z-index: 1;
   }
-  .hero__actions::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 1px;
-    background: rgba(255,255,255,0.22);
-    pointer-events: none;
-  }
+  .hero__actions::after { display: none; }
 
   /* Meta strip floats over the hero image on mobile with transparent backing. */
   .hero__meta {
