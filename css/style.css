@@ -3425,3 +3425,142 @@ input, select, textarea {
   .hero__meta-text span { font-size: 10px; }
   .hero__title { line-height: 1.05; }
 }
+
+/* =====================================================
+   Sticky "Free Quote" call bar — mobile only (<= 768px)
+   ===================================================== */
+
+/* Desktop / default: hidden entirely. */
+.sticky-call { display: none; }
+
+@media (max-width: 768px) {
+  .sticky-call {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    z-index: 49; /* above page content, below the nav (50) + its mobile menu */
+    padding: 11px 12px 11px 16px;
+    border-radius: 16px;
+    background: rgba(18, 18, 22, 0.72);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 14px 34px -10px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.28);
+    /* Entrance: start just below the screen, slide up when .is-visible is added. */
+    transform: translateY(calc(100% + 24px));
+    transition: transform 0.32s var(--ease, cubic-bezier(.2,.7,.2,1));
+  }
+  .sticky-call.is-visible { transform: translateY(0); }
+  .sticky-call.is-dismissed {
+    transform: translateY(calc(100% + 24px));
+    pointer-events: none;
+  }
+
+  /* Text block (left) */
+  .sticky-call__text {
+    flex: 1 1 auto;
+    min-width: 0; /* allows the tagline to ellipsis-truncate */
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .sticky-call__title {
+    font-family: var(--font-display, sans-serif);
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.2;
+    color: #fff;
+  }
+  .sticky-call__tag {
+    font-family: var(--font-body, sans-serif);
+    font-size: 12px;
+    line-height: 1.25;
+    color: rgba(255, 255, 255, 0.66);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Call Now pill (right) */
+  .sticky-call__btn {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px 16px 7px 7px;
+    border-radius: 999px;
+    text-decoration: none;
+    background: linear-gradient(to bottom, var(--accent, #2563eb), var(--accent-hi, #1d4ed8));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28),
+                0 5px 14px -3px var(--accent-glow, rgba(37, 99, 235, 0.45));
+    transition: transform 0.12s ease;
+  }
+  .sticky-call__btn:active { transform: scale(0.96); }
+
+  .sticky-call__btn-icon {
+    flex: 0 0 auto;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+  }
+  .sticky-call__btn-icon svg { width: 18px; height: 18px; }
+
+  .sticky-call__btn-text { display: flex; flex-direction: column; line-height: 1.1; }
+  .sticky-call__btn-label {
+    font-family: var(--font-display, sans-serif);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .sticky-call__btn-num {
+    font-family: var(--font-display, sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  /* Close (X) — small circle floating just outside the top-right corner */
+  .sticky-call__close {
+    position: absolute;
+    top: -10px;
+    right: -8px;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    background: rgba(18, 18, 22, 0.92);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: transform 0.12s ease;
+  }
+  .sticky-call__close svg { width: 14px; height: 14px; }
+  .sticky-call__close:active { transform: scale(0.9); }
+
+  /* Keep the bar from covering footer content (and avoid a white gap). */
+  .footer { padding-bottom: 90px; }
+}
+
+/* Pre-paint dismissed (set by the head script): hide instantly, no animation. */
+.sticky-call-pre-dismissed .sticky-call {
+  transform: translateY(calc(100% + 24px)) !important;
+  transition: none !important;
+  pointer-events: none;
+}
+
+/* Respect reduced-motion: no slide animation. */
+@media (prefers-reduced-motion: reduce) {
+  .sticky-call { transition: none !important; }
+}

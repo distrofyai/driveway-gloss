@@ -352,4 +352,32 @@
       });
     });
   });
+
+  // ---------- Sticky "Free Quote" call bar (mobile) ----------
+  (function () {
+    const bar = document.getElementById('stickyCall');
+    if (!bar) return;
+
+    const KEY = 'sticky-call-dismissed';
+    let dismissed = false;
+    try { dismissed = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
+
+    // The head script already hides it instantly if pre-dismissed; otherwise
+    // slide it up on load. Double rAF lets the browser register the off-screen
+    // start state before the transition runs, so the slide actually animates.
+    if (!dismissed && !document.documentElement.classList.contains('sticky-call-pre-dismissed')) {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { bar.classList.add('is-visible'); });
+      });
+    }
+
+    const closeBtn = document.getElementById('stickyCallClose');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function () {
+        bar.classList.remove('is-visible');
+        bar.classList.add('is-dismissed'); // slides down + disables pointer events
+        try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
+      });
+    }
+  })();
 })();

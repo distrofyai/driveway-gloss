@@ -7,6 +7,25 @@
   <meta name="description" content="Driveway Gloss is a fully mobile car detailing service in Mooresville, NC. Hand wash, interior deep cleans, paint correction, and protective coatings — done in your driveway." />
   <meta name="theme-color" content="#ffffff" />
 
+  <!-- Sticky call bar: pre-paint dismissed-state check (runs before first paint to prevent a flash).
+       A hard refresh resets it; normal link/back-forward navigation keeps it dismissed. -->
+  <script>
+    (function () {
+      try {
+        var KEY = 'sticky-call-dismissed';
+        var navEntry = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || null;
+        var isReload = navEntry
+          ? navEntry.type === 'reload'
+          : (performance.navigation && performance.navigation.type === 1);
+        if (isReload) {
+          sessionStorage.removeItem(KEY);
+        } else if (sessionStorage.getItem(KEY) === '1') {
+          document.documentElement.classList.add('sticky-call-pre-dismissed');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- Favicon (uses the brand logo) -->
   <link rel="icon" type="image/jpeg" href="images/logo-dark.jpg" />
   <link rel="apple-touch-icon" href="images/logo-dark.jpg" />
@@ -996,6 +1015,32 @@
       <p class="footer__legal">© <span id="year"></span> Driveway Gloss. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- ==================== STICKY CALL BAR (mobile only) ==================== -->
+  <aside class="sticky-call" id="stickyCall" aria-label="Call Driveway Gloss">
+    <button class="sticky-call__close" id="stickyCallClose" type="button" aria-label="Dismiss">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <div class="sticky-call__text">
+      <span class="sticky-call__title">Free Quote</span>
+      <span class="sticky-call__tag">No obligation · Mobile detailing near you</span>
+    </div>
+
+    <a class="sticky-call__btn" href="tel:+17045913265" aria-label="Call 704-591-3265">
+      <span class="sticky-call__btn-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1.02-.24 11.4 11.4 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.57 1 1 0 0 1-.25 1.02z" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="sticky-call__btn-text">
+        <span class="sticky-call__btn-label">Call Now</span>
+        <span class="sticky-call__btn-num">704-591-3265</span>
+      </span>
+    </a>
+  </aside>
 
   <script src="js/main.js" defer></script>
 </body>
