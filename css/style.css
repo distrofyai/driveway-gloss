@@ -3602,6 +3602,7 @@ input, select, textarea {
 }
 .page-hero__inner { max-width: 900px; }
 .page-hero .eyebrow { color: #93c5fd; margin-bottom: 16px; }
+.page-hero__title .accent { color: #93c5fd; }
 .page-hero__title {
   font-family: var(--font-display);
   font-weight: 700;
