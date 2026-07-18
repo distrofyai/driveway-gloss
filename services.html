@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Services &amp; Pricing — Driveway Gloss Mobile Auto Detailing, Mooresville NC</title>
   <meta name="description" content="Driveway Gloss detailing services in Mooresville, NC — full-detail packages (Basic, Signature, Premium), build-your-own interior and exterior details, paint correction, ceramic coatings, and add-on upgrades." />
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="theme-color" content="#0b0b0f" />
 
   <!-- Sticky call bar: pre-paint dismissed-state check (runs before first paint to prevent a flash). -->
   <script>
@@ -39,6 +39,176 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/style.css" />
+
+  <!-- ============================================================
+       Services page — self-contained design (scoped under .sv)
+       Deliberately shares no layout components with other pages.
+       ============================================================ -->
+  <style>
+    .sv {
+      --sv-bg: #0b0b0f;
+      --sv-bg-2: #101017;
+      --sv-panel: #16161d;
+      --sv-panel-hi: #1c1c25;
+      --sv-line: rgba(255,255,255,0.09);
+      --sv-line-hi: rgba(255,255,255,0.16);
+      --sv-text: #f5f5f7;
+      --sv-muted: rgba(255,255,255,0.62);
+      --sv-faint: rgba(255,255,255,0.42);
+      --sv-accent: #4f8cff;
+      --sv-accent-2: #93c5fd;
+      --sv-fd: 'Space Grotesk', sans-serif;
+      --sv-fb: 'Inter', sans-serif;
+      background: var(--sv-bg);
+      color: var(--sv-text);
+      font-family: var(--sv-fb);
+      overflow: hidden;
+    }
+    .sv-wrap { width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 44px); }
+    .sv-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--sv-fd); font-size: 12px; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--sv-accent-2);
+    }
+    .sv-eyebrow::before { content: ''; width: 26px; height: 1px; background: var(--sv-accent-2); opacity: .7; }
+    .sv-h2 {
+      font-family: var(--sv-fd); font-weight: 700; letter-spacing: -0.03em;
+      font-size: clamp(26px, 3.6vw, 40px); line-height: 1.08; margin: 14px 0 0; color: #fff;
+    }
+    .sv-sec-head { max-width: 640px; margin-bottom: clamp(34px, 5vw, 52px); }
+    .sv-sec-head p { margin: 14px 0 0; color: var(--sv-muted); font-size: clamp(15px,1.5vw,17px); line-height: 1.6; }
+
+    .sv-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      font-family: var(--sv-fd); font-weight: 600; font-size: 14.5px; letter-spacing: 0.01em;
+      padding: 14px 26px; border-radius: 999px; border: 1px solid transparent;
+      transition: transform .25s cubic-bezier(.2,.7,.2,1), background .25s, border-color .25s, color .25s, box-shadow .25s;
+      cursor: pointer; white-space: nowrap;
+    }
+    .sv-btn--solid { background: var(--sv-accent); color: #fff; box-shadow: 0 12px 30px -12px rgba(79,140,255,0.7); }
+    .sv-btn--solid:hover { transform: translateY(-2px); background: #3a7bf5; box-shadow: 0 18px 40px -14px rgba(79,140,255,0.8); }
+    .sv-btn--line { background: transparent; color: #fff; border-color: var(--sv-line-hi); }
+    .sv-btn--line:hover { transform: translateY(-2px); border-color: #fff; background: rgba(255,255,255,0.05); }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .sv-hero {
+      position: relative;
+      padding: calc(var(--nav-h, 68px) + clamp(70px, 9vw, 120px)) 0 clamp(64px, 8vw, 100px);
+      background:
+        radial-gradient(120% 80% at 85% -10%, rgba(79,140,255,0.18) 0%, rgba(79,140,255,0) 55%),
+        linear-gradient(180deg, var(--sv-bg-2) 0%, var(--sv-bg) 100%);
+      border-bottom: 1px solid var(--sv-line);
+    }
+    .sv-hero__grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: end; }
+    .sv-hero__title {
+      font-family: var(--sv-fd); font-weight: 700; letter-spacing: -0.04em;
+      font-size: clamp(42px, 7vw, 82px); line-height: 0.98; margin: 22px 0 0; color: #fff;
+    }
+    .sv-hero__title em { font-style: normal; color: var(--sv-accent-2); }
+    .sv-hero__aside p { margin: 0 0 26px; color: var(--sv-muted); font-size: clamp(15px, 1.5vw, 17px); line-height: 1.7; }
+    .sv-hero__cta { display: flex; flex-wrap: wrap; gap: 12px; }
+    .sv-hero__meta {
+      list-style: none; margin: 40px 0 0; padding: 26px 0 0; border-top: 1px solid var(--sv-line);
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+    }
+    .sv-hero__meta b { display: block; font-family: var(--sv-fd); font-size: clamp(20px,2.4vw,28px); font-weight: 700; color: #fff; letter-spacing: -0.02em; }
+    .sv-hero__meta span { font-size: 12.5px; color: var(--sv-faint); letter-spacing: 0.02em; }
+
+    /* ── FEATURE BAR ──────────────────────────────────── */
+    .sv-bar {
+      background: var(--sv-bg-2); border-bottom: 1px solid var(--sv-line);
+    }
+    .sv-bar__in { display: flex; flex-wrap: wrap; gap: 10px 34px; padding: 20px 0; justify-content: space-between; }
+    .sv-bar__item { display: inline-flex; align-items: center; gap: 11px; font-size: 14px; color: var(--sv-muted); }
+    .sv-bar__item svg { width: 20px; height: 20px; stroke: var(--sv-accent-2); fill: none; stroke-width: 1.7; flex-shrink: 0; }
+    .sv-bar__item b { color: #fff; font-weight: 600; }
+
+    /* ── PACKAGE TIERS (spec-sheet rows) ──────────────── */
+    .sv-tiers { padding: clamp(64px, 8vw, 104px) 0; }
+    .sv-tier-list { display: grid; gap: 16px; }
+    .sv-tier {
+      position: relative; display: grid; grid-template-columns: auto 1fr auto;
+      gap: clamp(20px, 3vw, 44px); align-items: center;
+      background: var(--sv-panel); border: 1px solid var(--sv-line);
+      border-radius: 20px; padding: clamp(24px, 3vw, 38px);
+      transition: transform .3s cubic-bezier(.2,.7,.2,1), border-color .3s, background .3s;
+    }
+    .sv-tier:hover { transform: translateY(-3px); border-color: var(--sv-line-hi); background: var(--sv-panel-hi); }
+    .sv-tier__num {
+      font-family: var(--sv-fd); font-weight: 700; font-size: clamp(30px, 4vw, 46px);
+      color: transparent; -webkit-text-stroke: 1.3px rgba(255,255,255,0.28); line-height: 1; letter-spacing: -0.02em;
+    }
+    .sv-tier__name { font-family: var(--sv-fd); font-weight: 700; font-size: clamp(21px,2.4vw,27px); color: #fff; margin: 0; letter-spacing: -0.02em; }
+    .sv-tier__desc { margin: 7px 0 16px; color: var(--sv-muted); font-size: 14.5px; line-height: 1.55; max-width: 52ch; }
+    .sv-tier__feats { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .sv-tier__feats li {
+      font-size: 12.5px; color: var(--sv-text); padding: 6px 12px;
+      border: 1px solid var(--sv-line-hi); border-radius: 999px; background: rgba(255,255,255,0.03);
+    }
+    .sv-tier__price { text-align: right; display: grid; justify-items: end; gap: 4px; min-width: 168px; }
+    .sv-tier__from { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--sv-faint); font-family: var(--sv-fd); }
+    .sv-tier__amt { font-family: var(--sv-fd); font-weight: 700; font-size: clamp(30px, 3.6vw, 42px); color: #fff; line-height: 1; letter-spacing: -0.02em; }
+    .sv-tier__cta { margin-top: 12px; padding: 11px 22px; font-size: 13.5px; }
+    .sv-tier__badge {
+      position: absolute; top: -11px; left: clamp(24px,3vw,38px);
+      font-family: var(--sv-fd); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #fff; background: var(--sv-accent); padding: 5px 13px; border-radius: 999px;
+      box-shadow: 0 8px 20px -8px rgba(79,140,255,0.8);
+    }
+    .sv-tier--featured {
+      border-color: rgba(79,140,255,0.55);
+      background: linear-gradient(180deg, rgba(79,140,255,0.10) 0%, var(--sv-panel) 60%);
+      box-shadow: 0 30px 70px -40px rgba(79,140,255,0.6);
+    }
+    .sv-tier--featured .sv-tier__num { -webkit-text-stroke-color: rgba(147,197,253,0.7); }
+
+    /* ── À LA CARTE (chip grid) ───────────────────────── */
+    .sv-ala { padding: clamp(56px, 7vw, 92px) 0; background: var(--sv-bg-2); border-top: 1px solid var(--sv-line); border-bottom: 1px solid var(--sv-line); }
+    .sv-ala__cols { display: grid; grid-template-columns: 1fr 1.6fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
+    .sv-ala__group + .sv-ala__group { }
+    .sv-ala__label {
+      font-family: var(--sv-fd); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--sv-accent-2); margin: 0 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--sv-line);
+    }
+    .sv-chip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+    .sv-chip {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 14px 16px; border: 1px solid var(--sv-line); border-radius: 13px;
+      background: var(--sv-panel); transition: transform .22s, border-color .22s, background .22s;
+    }
+    .sv-chip:hover { transform: translateY(-2px); border-color: rgba(79,140,255,0.5); background: var(--sv-panel-hi); }
+    .sv-chip__name { font-size: 13.5px; color: var(--sv-text); line-height: 1.3; }
+    .sv-chip__amt { font-family: var(--sv-fd); font-weight: 700; font-size: 15px; color: var(--sv-accent-2); flex-shrink: 0; }
+    .sv-ala__note { margin: 26px 0 0; font-size: 12.5px; color: var(--sv-faint); line-height: 1.5; }
+
+    /* ── FINAL CTA ────────────────────────────────────── */
+    .sv-final { position: relative; padding: clamp(64px, 8vw, 104px) 0; overflow: hidden; }
+    .sv-final::before {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background:
+        linear-gradient(180deg, rgba(11,11,15,0.82), rgba(11,11,15,0.92)),
+        url('images/hero.jpg') center 30% / cover no-repeat;
+    }
+    .sv-final__in { position: relative; z-index: 1; text-align: center; max-width: 640px; margin: 0 auto; }
+    .sv-final h2 { font-family: var(--sv-fd); font-weight: 700; font-size: clamp(26px,3.6vw,40px); letter-spacing: -0.03em; color: #fff; margin: 16px 0 0; }
+    .sv-final p { margin: 14px auto 28px; color: var(--sv-muted); font-size: clamp(15px,1.5vw,17px); line-height: 1.6; max-width: 500px; }
+    .sv-final .sv-hero__cta { justify-content: center; }
+
+    /* ── RESPONSIVE ───────────────────────────────────── */
+    @media (max-width: 880px) {
+      .sv-hero__grid { grid-template-columns: 1fr; align-items: start; gap: 34px; }
+      .sv-tier { grid-template-columns: auto 1fr; }
+      .sv-tier__price { grid-column: 1 / -1; justify-items: start; text-align: left; border-top: 1px solid var(--sv-line); padding-top: 18px; margin-top: 4px; }
+      .sv-tier__cta { justify-self: start; }
+      .sv-ala__cols { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .sv-tier { grid-template-columns: 1fr; }
+      .sv-tier__num { font-size: 30px; }
+      .sv-hero__meta { grid-template-columns: 1fr; gap: 14px; }
+      .sv-bar__in { flex-direction: column; gap: 14px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -64,330 +234,173 @@
     </div>
   </header>
 
-  <main id="top">
+  <main class="sv" id="top">
 
-    <!-- ==================== PAGE HERO ==================== -->
-    <section class="page-hero">
-      <div class="page-hero__inner">
-        <span class="eyebrow">Services &amp; Pricing</span>
-        <h1 class="page-hero__title">Everything we do for your car.</h1>
-        <p class="page-hero__lede">Pick a full-detail package, or build your own from an interior or exterior base and add only what you need. Pricing varies with vehicle size and condition.</p>
+    <!-- ── HERO ── -->
+    <section class="sv-hero">
+      <div class="sv-wrap sv-hero__grid">
+        <div class="sv-hero__lead">
+          <span class="sv-eyebrow">Services &amp; Pricing</span>
+          <h1 class="sv-hero__title">Detailing,<br>built <em>around your car.</em></h1>
+        </div>
+        <div class="sv-hero__aside">
+          <p>Pick a complete package, or build your own detail from an interior or exterior base and add only what your car actually needs. One detailer, one standard — every job.</p>
+          <div class="sv-hero__cta">
+            <a class="sv-btn sv-btn--solid" href="contact.html">Get a Quote</a>
+            <a class="sv-btn sv-btn--line" href="#tiers">View Packages</a>
+          </div>
+          <ul class="sv-hero__meta">
+            <li><b>3</b><span>Full-detail tiers</span></li>
+            <li><b>8+</b><span>À la carte add-ons</span></li>
+            <li><b>100%</b><span>Mobile service</span></li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <!-- ==================== FULL-DETAIL PACKAGES ==================== -->
-    <section class="section section--tight" id="packages">
-      <div class="container">
-        <header class="section__head section__head--tight">
-          <span class="eyebrow">Pricing · Full Detail Packages</span>
-          <h2 class="section__title section__title--small">Full-detail Packages.</h2>
-          <p class="section__lede">Select a full detail package to restore your vehicle to a like-new condition inside and out. Pricing varies based on vehicle size and condition.</p>
-        </header>
+    <!-- ── FEATURE BAR ── -->
+    <div class="sv-bar">
+      <div class="sv-wrap sv-bar__in">
+        <span class="sv-bar__item">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-7 7-12a7 7 0 1 0-14 0c0 5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <span><b>We come to you</b> — home or office</span>
+        </span>
+        <span class="sv-bar__item">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+          <span><b>One detailer</b> — every job, start to finish</span>
+        </span>
+        <span class="sv-bar__item">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4-3.5 7.5-8 9-4.5-1.5-8-5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          <span><b>Pro-grade</b> products &amp; tools</span>
+        </span>
+      </div>
+    </div>
 
-        <div class="base-carousel" data-base-carousel>
-          <button class="base-carousel__arrow base-carousel__arrow--prev" type="button" aria-label="Previous package">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <button class="base-carousel__arrow base-carousel__arrow--next" type="button" aria-label="Next package">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        <div class="base-services">
-          <article class="base-card">
-            <div class="base-card__media">
-              <img src="images/gallery-2.jpg" alt="Clean car interior after a Basic package detail" loading="lazy" />
-            </div>
-            <div class="base-card__body">
-              <header class="base-card__head">
-                <h3>Basic</h3>
-                <span class="base-card__price">Starting at $100</span>
-              </header>
-              <ul class="base-card__list">
+    <!-- ── PACKAGES ── -->
+    <section class="sv-tiers" id="tiers">
+      <div class="sv-wrap">
+        <div class="sv-sec-head">
+          <span class="sv-eyebrow">Full-detail Packages</span>
+          <h2 class="sv-h2">Three tiers. One standard.</h2>
+          <p>Each package is a complete inside-and-out detail. Move up a tier for deeper correction and longer-lasting protection.</p>
+        </div>
+
+        <div class="sv-tier-list">
+
+          <article class="sv-tier">
+            <div class="sv-tier__num">01</div>
+            <div class="sv-tier__main">
+              <h3 class="sv-tier__name">Basic</h3>
+              <p class="sv-tier__desc">A clean, refreshed car inside and out — ideal for well-maintained vehicles that just need a reset.</p>
+              <ul class="sv-tier__feats">
                 <li>Interior vacuum &amp; wipe down</li>
                 <li>Exterior hand wash</li>
                 <li>Wheels &amp; tires</li>
                 <li>Windows</li>
                 <li>Spray wax</li>
               </ul>
-              <p class="base-card__note">Best for well-maintained vehicles</p>
+            </div>
+            <div class="sv-tier__price">
+              <span class="sv-tier__from">Starting at</span>
+              <span class="sv-tier__amt">$100</span>
+              <a class="sv-btn sv-btn--line sv-tier__cta" href="contact.html">Book Basic</a>
             </div>
           </article>
 
-          <article class="base-card base-card--featured">
-            <div class="base-card__media">
-              <img src="images/gallery-4.jpg" alt="Vehicle with mirror-finish paint after a Signature package detail" loading="lazy" />
-            </div>
-            <div class="base-card__body">
-              <header class="base-card__head">
-                <h3>Signature</h3>
-                <span class="base-card__price">Starting at $140</span>
-              </header>
-              <ul class="base-card__list">
+          <article class="sv-tier sv-tier--featured">
+            <span class="sv-tier__badge">Most Popular</span>
+            <div class="sv-tier__num">02</div>
+            <div class="sv-tier__main">
+              <h3 class="sv-tier__name">Signature</h3>
+              <p class="sv-tier__desc">Our most-booked detail — a deeper interior clean plus real, lasting paint protection.</p>
+              <ul class="sv-tier__feats">
                 <li>Deep interior cleaning</li>
                 <li>Exterior hand wash</li>
-                <li>Wheels &amp; Tires</li>
+                <li>Wheels &amp; tires</li>
                 <li>Windows</li>
                 <li>4–6 month ceramic coating</li>
               </ul>
-              <span class="base-card__tag">Most Popular</span>
+            </div>
+            <div class="sv-tier__price">
+              <span class="sv-tier__from">Starting at</span>
+              <span class="sv-tier__amt">$140</span>
+              <a class="sv-btn sv-btn--solid sv-tier__cta" href="contact.html">Book Signature</a>
             </div>
           </article>
 
-          <article class="base-card">
-            <div class="base-card__media">
-              <img src="images/gallery-1.jpg" alt="Vehicle with deep paint gloss after a Premium package detail" loading="lazy" />
-            </div>
-            <div class="base-card__body">
-              <header class="base-card__head">
-                <h3>Premium</h3>
-                <span class="base-card__price">Starting at $260</span>
-              </header>
-              <ul class="base-card__list">
+          <article class="sv-tier">
+            <div class="sv-tier__num">03</div>
+            <div class="sv-tier__main">
+              <h3 class="sv-tier__name">Premium</h3>
+              <p class="sv-tier__desc">The full transformation — paint correction, clay bar, and a full year of ceramic protection.</p>
+              <ul class="sv-tier__feats">
                 <li>Deep interior cleaning</li>
                 <li>Exterior hand wash</li>
-                <li>Wheels &amp; Tires</li>
+                <li>Wheels &amp; tires</li>
                 <li>Windows</li>
                 <li>Clay bar treatment</li>
-                <li>Paint Enhancement Polish</li>
+                <li>Paint enhancement polish</li>
                 <li>12 month ceramic coating</li>
               </ul>
             </div>
+            <div class="sv-tier__price">
+              <span class="sv-tier__from">Starting at</span>
+              <span class="sv-tier__amt">$260</span>
+              <a class="sv-btn sv-btn--line sv-tier__cta" href="contact.html">Book Premium</a>
+            </div>
           </article>
-        </div>
-          <div class="base-carousel__dots" role="tablist" aria-label="Package navigation">
-            <button class="base-carousel__dot" type="button" role="tab" aria-label="Show Basic package"></button>
-            <button class="base-carousel__dot is-active" type="button" role="tab" aria-label="Show Signature package" aria-selected="true"></button>
-            <button class="base-carousel__dot" type="button" role="tab" aria-label="Show Premium package"></button>
-          </div>
-        </div>
-        <p class="pricing-note">All prices are starting estimates. Final pricing may vary based on vehicle size, condition, and selected upgrades.</p>
-      </div>
-    </section>
 
-    <!-- ==================== BUILD YOUR OWN ==================== -->
-    <section class="section section--alt" id="build">
-      <div class="container">
-        <header class="section__head reveal">
-          <span class="eyebrow">Build Your Own</span>
-          <h2 class="section__title">The detail you actually want.</h2>
-          <p class="section__lede">Pick a base — Interior or Exterior — then add on whatever you want. No paying for things you don't need.</p>
-        </header>
-
-        <div class="services-group services-group--image-left reveal">
-          <h3 class="services-group__title">Interior</h3>
-          <div class="services-group__row">
-            <figure class="services-group__image">
-              <img src="images/gallery-2.jpg" alt="Audi Q5 brown leather interior after a full interior detail" loading="lazy" />
-            </figure>
-            <div class="services-grid">
-              <article class="service-card">
-                <div class="service-card__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 14V9a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v5"/>
-                    <path d="M3 14h18v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3z"/>
-                    <path d="M6 19v2M18 19v2"/>
-                  </svg>
-                </div>
-                <div class="service-card__body">
-                  <div class="service-card__head">
-                    <h4>Interior</h4>
-                  </div>
-                  <p>Full vacuum, wipe-down of every surface, and clean windows. A complete interior reset on its own — or the foundation for the add-ons below.</p>
-                </div>
-              </article>
-              <article class="service-card">
-                <div class="service-card__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 19c0-2 1-3 1-5s-1-3-1-5"/>
-                    <path d="M12 19c0-2 1-3 1-5s-1-3-1-5"/>
-                    <path d="M16 19c0-2 1-3 1-5s-1-3-1-5"/>
-                  </svg>
-                </div>
-                <div class="service-card__body">
-                  <div class="service-card__head">
-                    <h4>Steam Cleaning</h4>
-                  </div>
-                  <p>Deep steam clean of vents, crevices, and tight spots a standard wipe-down can't reach.</p>
-                </div>
-              </article>
-              <article class="service-card">
-                <div class="service-card__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <ellipse cx="6.5" cy="10" rx="1.6" ry="2.2"/>
-                    <ellipse cx="17.5" cy="10" rx="1.6" ry="2.2"/>
-                    <ellipse cx="9.5" cy="6" rx="1.5" ry="2"/>
-                    <ellipse cx="14.5" cy="6" rx="1.5" ry="2"/>
-                    <path d="M12 12.5c-3 0-5 2.2-5 4.7 0 1.5 1 2.3 2 2.3 1 0 1.5-.5 3-.5s2 .5 3 .5c1 0 2-.8 2-2.3 0-2.5-2-4.7-5-4.7z"/>
-                  </svg>
-                </div>
-                <div class="service-card__body">
-                  <div class="service-card__head">
-                    <h4>Carpet &amp; Seat Shampoo</h4>
-                  </div>
-                  <p>Deep-cleans carpets and upholstery — lifts stains, spills, and embedded dirt a basic clean can't.</p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-
-        <div class="services-group services-group--image-right reveal">
-          <h3 class="services-group__title">Exterior</h3>
-          <div class="services-group__row">
-            <div class="services-grid">
-              <article class="service-card">
-                <div class="service-card__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="5" y="9" width="14" height="6" rx="1.5"/>
-                    <path d="M2 12h2M20 12h2"/>
-                    <path d="M9 9v6M14 9v6"/>
-                  </svg>
-                </div>
-                <div class="service-card__body">
-                  <div class="service-card__head">
-                    <h4>Exterior</h4>
-                  </div>
-                  <p>Hand wash, wheels and tires with tire shine, clean windows, and spray wax. Quick shine on its own — or the foundation for the add-ons below.</p>
-                </div>
-              </article>
-              <article class="service-card">
-                <div class="service-card__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/>
-                    <path d="M19 16l.7 2 2 .7-2 .7L19 22l-.7-1.6-2-.7 2-.7z"/>
-                  </svg>
-                </div>
-                <div class="service-card__body">
-                  <div class="service-card__head">
-                    <h4>Clay Bar Treatment</h4>
-                  </div>
-                  <p>Removes embedded contaminants from paint that washing can't lift — leaves a glass-smooth finish before wax or coating.</p>
-                </div>
-              </article>
-              <article class="service-card">
-                <div class="service-card__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="9" cy="12" r="4"/>
-                    <path d="M15 8.5l5-2M15 12h6M15 15.5l5 2"/>
-                  </svg>
-                </div>
-                <div class="service-card__body">
-                  <div class="service-card__head">
-                    <h4>Headlight Restoration</h4>
-                  </div>
-                  <p>Cuts cloudiness and yellowing — restores night visibility and refreshes the front-end.</p>
-                </div>
-              </article>
-            </div>
-            <figure class="services-group__image">
-              <img src="images/gallery-4.jpg" alt="Vehicle with mirror-finish paint after Exterior detailing" loading="lazy" />
-            </figure>
-          </div>
-        </div>
-
-        <div class="services-group services-group--image-left reveal">
-          <h3 class="services-group__title">Full Detail</h3>
-          <div class="services-group__row">
-            <figure class="services-group__image">
-              <img src="images/about.jpg" alt="Vehicle with deep paint gloss after a premium detail" loading="lazy" />
-            </figure>
-            <div class="services-grid">
-              <article class="service-card service-card--featured">
-                <div class="service-card__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 3l8 3v6c0 4-3.5 7.5-8 9-4.5-1.5-8-5-8-9V6l8-3z"/>
-                    <path d="M9 12l2 2 4-4"/>
-                  </svg>
-                </div>
-                <div class="service-card__body">
-                  <div class="service-card__head">
-                    <h4>Exterior Paint Correction &amp; Protection</h4>
-                  </div>
-                  <p>Hand wash, wheels and tires, clay bar, enhancement polish, and a 12-month ceramic coating. Removes light scratches, sun damage, and embedded water spots — protected for up to a full year.</p>
-                  <span class="service-card__tag">Recommended</span>
-                </div>
-              </article>
-              <article class="service-card">
-                <div class="service-card__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 3c2 5 6 7 6 12a6 6 0 0 1-12 0c0-5 4-7 6-12z"/>
-                    <path d="M9 14a3 3 0 0 0 3 3"/>
-                  </svg>
-                </div>
-                <div class="service-card__body">
-                  <div class="service-card__head">
-                    <h4>One-Step Paint Correction</h4>
-                  </div>
-                  <p>Removes light scratches, water spots, oxidation, and sun damage to restore your paint to a like-new condition.</p>
-                </div>
-              </article>
-              <article class="service-card">
-                <div class="service-card__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M5 13V9a2 2 0 0 1 2-2h7l3 3h2a1 1 0 0 1 1 1v2"/>
-                    <circle cx="8" cy="16" r="2"/>
-                    <circle cx="17" cy="16" r="2"/>
-                    <path d="M10 16h5"/>
-                  </svg>
-                </div>
-                <div class="service-card__body">
-                  <div class="service-card__head">
-                    <h4>Engine Bay Cleaning</h4>
-                  </div>
-                  <p>Degrease and detail your engine bay — removes built-up grime and gives the under-hood area a clean, finished look.</p>
-                </div>
-              </article>
-            </div>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- ==================== A LA CARTE PRICING ==================== -->
-    <section class="section section--tight" id="pricing">
-      <div class="container">
-        <header class="section__head section__head--tight reveal">
-          <span class="eyebrow">À la carte Pricing</span>
-          <h2 class="section__title section__title--small">Build-your-own pricing.</h2>
-          <p class="section__lede">Start with a base, then add only the upgrades you want. Final pricing varies with vehicle size and condition.</p>
-        </header>
+    <!-- ── À LA CARTE ── -->
+    <section class="sv-ala" id="ala-carte">
+      <div class="sv-wrap">
+        <div class="sv-sec-head">
+          <span class="sv-eyebrow">Build Your Own</span>
+          <h2 class="sv-h2">Start with a base. Add only what you need.</h2>
+          <p>Prefer to keep it simple? Choose a base detail and stack on the upgrades that matter for your car.</p>
+        </div>
 
-        <div class="price-block reveal">
-          <div class="price-group">
-            <p class="price-group__title">Bases</p>
-            <ul class="price-list">
-              <li class="price-row"><span class="price-row__name">Interior</span><span class="price-row__amt">$X</span></li>
-              <li class="price-row"><span class="price-row__name">Exterior</span><span class="price-row__amt">$X</span></li>
-              <li class="price-row"><span class="price-row__name">Full Detail</span><span class="price-row__amt">$X</span></li>
-            </ul>
+        <div class="sv-ala__cols">
+          <div class="sv-ala__group">
+            <p class="sv-ala__label">Choose a Base</p>
+            <div class="sv-chip-grid">
+              <div class="sv-chip"><span class="sv-chip__name">Interior</span><span class="sv-chip__amt">$X</span></div>
+              <div class="sv-chip"><span class="sv-chip__name">Exterior</span><span class="sv-chip__amt">$X</span></div>
+              <div class="sv-chip"><span class="sv-chip__name">Full Detail</span><span class="sv-chip__amt">$X</span></div>
+            </div>
           </div>
 
-          <div class="price-group">
-            <p class="price-group__title">Upgrades &amp; Add-ons</p>
-            <ul class="price-list">
-              <li class="price-row"><span class="price-row__name">Steam Cleaning</span><span class="price-row__amt">$X</span></li>
-              <li class="price-row"><span class="price-row__name">Carpet &amp; Seat Shampoo</span><span class="price-row__amt">$X</span></li>
-              <li class="price-row"><span class="price-row__name">Clay Bar Treatment</span><span class="price-row__amt">$X</span></li>
-              <li class="price-row"><span class="price-row__name">Headlight Restoration</span><span class="price-row__amt">$X</span></li>
-              <li class="price-row"><span class="price-row__name">Paint Enhancement Polish</span><span class="price-row__amt">$X</span></li>
-              <li class="price-row"><span class="price-row__name">One-Step Paint Correction</span><span class="price-row__amt">$X</span></li>
-              <li class="price-row"><span class="price-row__name">Engine Bay Cleaning</span><span class="price-row__amt">$X</span></li>
-              <li class="price-row"><span class="price-row__name">Car Seat Cleaning</span><span class="price-row__amt">$X</span></li>
-            </ul>
+          <div class="sv-ala__group">
+            <p class="sv-ala__label">Upgrades &amp; Add-ons</p>
+            <div class="sv-chip-grid">
+              <div class="sv-chip"><span class="sv-chip__name">Steam Cleaning</span><span class="sv-chip__amt">$X</span></div>
+              <div class="sv-chip"><span class="sv-chip__name">Carpet &amp; Seat Shampoo</span><span class="sv-chip__amt">$X</span></div>
+              <div class="sv-chip"><span class="sv-chip__name">Clay Bar Treatment</span><span class="sv-chip__amt">$X</span></div>
+              <div class="sv-chip"><span class="sv-chip__name">Headlight Restoration</span><span class="sv-chip__amt">$X</span></div>
+              <div class="sv-chip"><span class="sv-chip__name">Paint Enhancement Polish</span><span class="sv-chip__amt">$X</span></div>
+              <div class="sv-chip"><span class="sv-chip__name">One-Step Paint Correction</span><span class="sv-chip__amt">$X</span></div>
+              <div class="sv-chip"><span class="sv-chip__name">Engine Bay Cleaning</span><span class="sv-chip__amt">$X</span></div>
+              <div class="sv-chip"><span class="sv-chip__name">Car Seat Cleaning</span><span class="sv-chip__amt">$X</span></div>
+            </div>
           </div>
         </div>
 
-        <p class="pricing-note">All prices are starting estimates. Final pricing may vary based on vehicle size, condition, and selected upgrades.</p>
+        <p class="sv-ala__note">All prices are starting estimates. Final pricing varies with vehicle size, condition, and selected upgrades.</p>
       </div>
     </section>
 
-    <!-- ==================== CTA BAND ==================== -->
-    <section class="section section--tight section--photo-bg cta-band" id="services-cta">
-      <div class="container cta-band__inner">
-        <h2 class="cta-band__title">Not sure which service you need?</h2>
-        <p class="cta-band__sub">Tell Tyler about your car and he'll recommend the right package — no upsell, just an honest quote.</p>
-        <div class="cta-band__actions">
-          <a href="tel:+17045913265" class="btn btn--primary cta-band__btn">Call Now</a>
-          <a href="contact.html" class="btn btn--ghost cta-band__btn cta-band__btn--ghost">Get a Quote</a>
+    <!-- ── FINAL CTA ── -->
+    <section class="sv-final">
+      <div class="sv-wrap sv-final__in">
+        <span class="sv-eyebrow" style="justify-content:center;">Free, No-obligation Quote</span>
+        <h2>Not sure which service you need?</h2>
+        <p>Tell Tyler about your car and he'll recommend the right package — no upsell, just an honest quote.</p>
+        <div class="sv-hero__cta">
+          <a class="sv-btn sv-btn--solid" href="tel:+17045913265">Call 704-591-3265</a>
+          <a class="sv-btn sv-btn--line" href="contact.html">Get a Quote</a>
         </div>
       </div>
     </section>
