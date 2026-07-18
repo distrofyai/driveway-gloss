@@ -98,6 +98,9 @@
     /* white pill with blue label — used on the dark package cards */
     .sv-btn--white { background: #fff; color: var(--sv-accent); border-color: #fff; box-shadow: 0 10px 26px -14px rgba(0,0,0,0.55); }
     .sv-btn--white:hover { transform: translateY(-2px); background: #eaf1ff; color: var(--sv-accent-hi); }
+    /* Hero CTA row sits on the dark photo hero — white outline for the ghost button */
+    .page-hero .sv-btn--line { color: #fff; border-color: rgba(255,255,255,0.4); }
+    .page-hero .sv-btn--line:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
 
     /* ── HERO (photo background) ───────────────────────── */
     .sv-hero {
@@ -293,19 +296,15 @@
 
   <main class="sv" id="top">
 
-    <!-- ── HERO ── -->
-    <section class="sv-hero">
-      <div class="sv-wrap sv-hero__grid">
-        <div class="sv-hero__lead">
-          <span class="sv-eyebrow">Services &amp; Pricing</span>
-          <h1 class="sv-hero__title">Detailing,<br>built <em>around your car.</em></h1>
-        </div>
-        <div class="sv-hero__aside">
-          <p>Pick a complete package, or build your own from an interior or exterior base — and add only what your car actually needs.</p>
-          <div class="sv-hero__cta">
-            <a class="sv-btn sv-btn--solid" href="contact.html">Get a Quote</a>
-            <a class="sv-btn sv-btn--line" href="#tiers">View Packages</a>
-          </div>
+    <!-- ── HERO (uses the shared .page-hero so it matches About/Gallery exactly) ── -->
+    <section class="page-hero">
+      <div class="page-hero__inner">
+        <span class="eyebrow">Services &amp; Pricing</span>
+        <h1 class="page-hero__title">Detailing, built <span class="accent">around your car.</span></h1>
+        <p class="page-hero__lede">Pick a complete package, or build your own from an interior or exterior base — and add only what your car actually needs.</p>
+        <div class="sv-hero__cta" style="margin-top: 28px;">
+          <a class="sv-btn sv-btn--solid" href="contact.html">Get a Quote</a>
+          <a class="sv-btn sv-btn--line" href="#tiers">View Packages</a>
         </div>
       </div>
     </section>
