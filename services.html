@@ -146,7 +146,7 @@
     .sv-tier:hover { transform: translateY(-3px); border-color: var(--sv-border-hi); box-shadow: 0 28px 56px -28px rgba(15,23,42,0.22); }
     .sv-tier__num {
       font-family: var(--sv-fd); font-weight: 700; font-size: clamp(30px, 4vw, 46px);
-      color: transparent; -webkit-text-stroke: 1.4px var(--sv-accent); line-height: 1; letter-spacing: -0.02em;
+      color: var(--sv-accent); -webkit-text-stroke: 0; line-height: 1; letter-spacing: -0.02em;
     }
     .sv-tier__name { font-family: var(--sv-fd); font-weight: 700; font-size: clamp(21px,2.4vw,27px); color: var(--sv-ink); margin: 0; letter-spacing: -0.02em; }
     .sv-tier__desc { margin: 7px 0 16px; color: var(--sv-muted); font-size: 14.5px; line-height: 1.55; max-width: 52ch; }
@@ -170,7 +170,7 @@
       background: linear-gradient(180deg, var(--sv-accent-soft) 0%, #fff 60%);
       box-shadow: 0 28px 60px -30px rgba(37,99,235,0.32);
     }
-    .sv-tier--featured .sv-tier__num { -webkit-text-stroke-color: var(--sv-accent); }
+    .sv-tier--featured .sv-tier__num { color: var(--sv-accent); }
 
     /* ── BUILD YOUR OWN (photo panel + à la carte menu) ── */
     .sv-build { padding: clamp(60px, 8vw, 100px) 0; background: var(--sv-bg-2); border-top: 1px solid var(--sv-border); }
