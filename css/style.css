@@ -3602,9 +3602,9 @@ input, select, textarea {
 }
 .page-hero__inner {
   width: 100%;
-  max-width: 1160px;
+  max-width: var(--max);
   margin: 0 auto;
-  padding: 0 clamp(20px, 4vw, 44px);
+  padding: 0 var(--pad);
 }
 .page-hero .eyebrow { color: #93c5fd; margin-bottom: 16px; }
 .page-hero__title .accent { color: #93c5fd; }
