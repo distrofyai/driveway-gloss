@@ -131,32 +131,32 @@
     .sv-hero__meta b { display: block; font-family: var(--sv-fd); font-size: clamp(20px,2.4vw,28px); font-weight: 700; color: #fff; letter-spacing: -0.02em; }
     .sv-hero__meta span { font-size: 12.5px; color: rgba(255,255,255,0.62); letter-spacing: 0.02em; }
 
-    /* ── PACKAGE TIERS (dark spec-sheet rows) ─────────── */
+    /* ── PACKAGE TIERS (light spec-sheet rows) ────────── */
     .sv-tiers { padding: clamp(64px, 8vw, 104px) 0; background: var(--sv-bg); }
     .sv-tier-list { display: grid; gap: 16px; }
     .sv-tier {
       position: relative; display: grid; grid-template-columns: auto 1fr auto;
       gap: clamp(20px, 3vw, 44px); align-items: center;
-      background: var(--sv-panel); border: 1px solid transparent;
-      border-radius: 20px; padding: clamp(24px, 3vw, 38px); color: #fff;
-      box-shadow: 0 24px 50px -34px rgba(0,0,0,0.5);
-      transition: transform .3s cubic-bezier(.2,.7,.2,1), background .3s, box-shadow .3s;
+      background: #fff; border: 1px solid var(--sv-border);
+      border-radius: 20px; padding: clamp(24px, 3vw, 38px); color: var(--sv-ink);
+      box-shadow: 0 18px 40px -28px rgba(15,23,42,0.16);
+      transition: transform .3s cubic-bezier(.2,.7,.2,1), border-color .3s, box-shadow .3s;
     }
-    .sv-tier:hover { transform: translateY(-3px); background: var(--sv-panel-hi); box-shadow: 0 34px 64px -34px rgba(0,0,0,0.55); }
+    .sv-tier:hover { transform: translateY(-3px); border-color: var(--sv-border-hi); box-shadow: 0 28px 56px -28px rgba(15,23,42,0.22); }
     .sv-tier__num {
       font-family: var(--sv-fd); font-weight: 700; font-size: clamp(30px, 4vw, 46px);
-      color: transparent; -webkit-text-stroke: 1.3px rgba(255,255,255,0.28); line-height: 1; letter-spacing: -0.02em;
+      color: transparent; -webkit-text-stroke: 1.3px rgba(24,24,27,0.18); line-height: 1; letter-spacing: -0.02em;
     }
-    .sv-tier__name { font-family: var(--sv-fd); font-weight: 700; font-size: clamp(21px,2.4vw,27px); color: #fff; margin: 0; letter-spacing: -0.02em; }
-    .sv-tier__desc { margin: 7px 0 16px; color: rgba(255,255,255,0.62); font-size: 14.5px; line-height: 1.55; max-width: 52ch; }
+    .sv-tier__name { font-family: var(--sv-fd); font-weight: 700; font-size: clamp(21px,2.4vw,27px); color: var(--sv-ink); margin: 0; letter-spacing: -0.02em; }
+    .sv-tier__desc { margin: 7px 0 16px; color: var(--sv-muted); font-size: 14.5px; line-height: 1.55; max-width: 52ch; }
     .sv-tier__feats { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
     .sv-tier__feats li {
-      font-size: 12.5px; color: #fff; padding: 6px 12px;
-      border: 1px solid var(--sv-line-hi); border-radius: 999px; background: rgba(255,255,255,0.03);
+      font-size: 12.5px; color: var(--sv-body); padding: 6px 12px;
+      border: 1px solid var(--sv-border); border-radius: 999px; background: var(--sv-bg-2);
     }
     .sv-tier__price { text-align: right; display: grid; justify-items: end; gap: 4px; min-width: 168px; }
-    .sv-tier__from { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.5); font-family: var(--sv-fd); }
-    .sv-tier__amt { font-family: var(--sv-fd); font-weight: 700; font-size: clamp(30px, 3.6vw, 42px); color: #fff; line-height: 1; letter-spacing: -0.02em; }
+    .sv-tier__from { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--sv-faint); font-family: var(--sv-fd); }
+    .sv-tier__amt { font-family: var(--sv-fd); font-weight: 700; font-size: clamp(30px, 3.6vw, 42px); color: var(--sv-ink); line-height: 1; letter-spacing: -0.02em; }
     .sv-tier__cta { margin-top: 12px; padding: 11px 22px; font-size: 13.5px; }
     .sv-tier__badge {
       position: absolute; top: -11px; left: clamp(24px,3vw,38px);
@@ -165,11 +165,11 @@
       box-shadow: 0 8px 20px -8px rgba(37,99,235,0.7);
     }
     .sv-tier--featured {
-      border-color: rgba(147,197,253,0.5);
-      background: linear-gradient(180deg, rgba(79,140,255,0.16) 0%, var(--sv-panel) 62%);
-      box-shadow: 0 34px 70px -34px rgba(37,99,235,0.5);
+      border-color: rgba(37,99,235,0.35);
+      background: linear-gradient(180deg, var(--sv-accent-soft) 0%, #fff 60%);
+      box-shadow: 0 28px 60px -30px rgba(37,99,235,0.32);
     }
-    .sv-tier--featured .sv-tier__num { -webkit-text-stroke-color: rgba(147,197,253,0.75); }
+    .sv-tier--featured .sv-tier__num { -webkit-text-stroke-color: rgba(37,99,235,0.42); }
 
     /* ── BUILD YOUR OWN (photo panel + à la carte menu) ── */
     .sv-build { padding: clamp(60px, 8vw, 100px) 0; background: var(--sv-bg-2); border-top: 1px solid var(--sv-border); }
@@ -228,7 +228,7 @@
     @media (max-width: 880px) {
       .sv-hero__grid { grid-template-columns: 1fr; align-items: start; gap: 34px; }
       .sv-tier { grid-template-columns: auto 1fr; }
-      .sv-tier__price { grid-column: 1 / -1; justify-items: start; text-align: left; border-top: 1px solid var(--sv-line); padding-top: 18px; margin-top: 4px; }
+      .sv-tier__price { grid-column: 1 / -1; justify-items: start; text-align: left; border-top: 1px solid var(--sv-border); padding-top: 18px; margin-top: 4px; }
       .sv-tier__cta { justify-self: start; }
       .sv-build__layout { grid-template-columns: 1fr; }
       .sv-build__visual { min-height: 240px; }
@@ -315,7 +315,7 @@
             <div class="sv-tier__price">
               <span class="sv-tier__from">Starting at</span>
               <span class="sv-tier__amt">$100</span>
-              <a class="sv-btn sv-btn--white sv-tier__cta" href="contact.html">Book Basic</a>
+              <a class="sv-btn sv-btn--solid sv-tier__cta" href="contact.html">Book Basic</a>
             </div>
           </article>
 
@@ -336,7 +336,7 @@
             <div class="sv-tier__price">
               <span class="sv-tier__from">Starting at</span>
               <span class="sv-tier__amt">$140</span>
-              <a class="sv-btn sv-btn--white sv-tier__cta" href="contact.html">Book Signature</a>
+              <a class="sv-btn sv-btn--solid sv-tier__cta" href="contact.html">Book Signature</a>
             </div>
           </article>
 
@@ -358,7 +358,7 @@
             <div class="sv-tier__price">
               <span class="sv-tier__from">Starting at</span>
               <span class="sv-tier__amt">$260</span>
-              <a class="sv-btn sv-btn--white sv-tier__cta" href="contact.html">Book Premium</a>
+              <a class="sv-btn sv-btn--solid sv-tier__cta" href="contact.html">Book Premium</a>
             </div>
           </article>
 
