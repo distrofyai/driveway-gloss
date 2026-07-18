@@ -209,6 +209,13 @@
     .sv-menu__cta { margin-top: 24px; }
     .sv-menu__cta .sv-btn { width: 100%; }
     .sv-build__note { margin: 26px 0 0; font-size: 12.5px; color: var(--sv-faint); line-height: 1.5; }
+    /* Desktop only: stretch the left column so the "built to fit" card
+       bottom-aligns with the à la carte menu beside it. */
+    @media (min-width: 881px) {
+      .sv-build__layout { align-items: stretch; }
+      .sv-build__aside { grid-template-rows: auto 1fr; }
+      .sv-build__how { display: flex; flex-direction: column; justify-content: center; }
+    }
 
     /* ── FINAL CTA ────────────────────────────────────── */
     .sv-final { position: relative; padding: clamp(64px, 8vw, 104px) 0; overflow: hidden; }
