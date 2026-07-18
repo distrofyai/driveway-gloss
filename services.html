@@ -113,14 +113,15 @@
     }
     .sv-hero .sv-eyebrow { color: var(--sv-accent-2); }
     .sv-hero .sv-eyebrow::before { background: var(--sv-accent-2); opacity: .7; }
-    .sv-hero__grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: end; }
+    .sv-hero__grid { display: block; max-width: 900px; }
     .sv-hero__title {
       font-family: var(--sv-fd); font-weight: 700; letter-spacing: -0.04em;
       font-size: clamp(42px, 7vw, 80px); line-height: 0.98; margin: 22px 0 0; color: #fff;
       text-shadow: 0 2px 24px rgba(0,0,0,0.28);
     }
     .sv-hero__title em { font-style: normal; color: var(--sv-accent-2); }
-    .sv-hero__aside p { margin: 0 0 26px; color: rgba(255,255,255,0.84); font-size: clamp(15px, 1.5vw, 17px); line-height: 1.7; text-shadow: 0 1px 10px rgba(0,0,0,0.25); }
+    .sv-hero__aside { margin-top: 26px; }
+    .sv-hero__aside p { margin: 0 0 26px; max-width: 640px; color: rgba(255,255,255,0.84); font-size: clamp(15px, 1.6vw, 18px); line-height: 1.7; text-shadow: 0 1px 10px rgba(0,0,0,0.25); }
     .sv-hero__cta { display: flex; flex-wrap: wrap; gap: 12px; }
     .sv-hero .sv-btn--line { color: #fff; border-color: rgba(255,255,255,0.4); }
     .sv-hero .sv-btn--line:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
@@ -145,7 +146,7 @@
     .sv-tier:hover { transform: translateY(-3px); border-color: var(--sv-border-hi); box-shadow: 0 28px 56px -28px rgba(15,23,42,0.22); }
     .sv-tier__num {
       font-family: var(--sv-fd); font-weight: 700; font-size: clamp(30px, 4vw, 46px);
-      color: transparent; -webkit-text-stroke: 1.3px rgba(24,24,27,0.18); line-height: 1; letter-spacing: -0.02em;
+      color: transparent; -webkit-text-stroke: 1.4px var(--sv-accent); line-height: 1; letter-spacing: -0.02em;
     }
     .sv-tier__name { font-family: var(--sv-fd); font-weight: 700; font-size: clamp(21px,2.4vw,27px); color: var(--sv-ink); margin: 0; letter-spacing: -0.02em; }
     .sv-tier__desc { margin: 7px 0 16px; color: var(--sv-muted); font-size: 14.5px; line-height: 1.55; max-width: 52ch; }
@@ -169,23 +170,25 @@
       background: linear-gradient(180deg, var(--sv-accent-soft) 0%, #fff 60%);
       box-shadow: 0 28px 60px -30px rgba(37,99,235,0.32);
     }
-    .sv-tier--featured .sv-tier__num { -webkit-text-stroke-color: rgba(37,99,235,0.42); }
+    .sv-tier--featured .sv-tier__num { -webkit-text-stroke-color: var(--sv-accent); }
 
     /* ── BUILD YOUR OWN (photo panel + à la carte menu) ── */
     .sv-build { padding: clamp(60px, 8vw, 100px) 0; background: var(--sv-bg-2); border-top: 1px solid var(--sv-border); }
-    .sv-build__layout { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(22px, 3.5vw, 44px); align-items: stretch; }
+    .sv-build__layout { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(22px, 3.5vw, 44px); align-items: start; }
 
-    .sv-build__visual { position: relative; isolation: isolate; border-radius: 20px; overflow: hidden; min-height: 360px; }
-    .sv-build__visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
-    .sv-build__visual::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(11,11,15,0.10) 0%, rgba(11,11,15,0.88) 76%); }
-    .sv-build__visual-in { height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(24px, 3vw, 34px); color: #fff; }
-    .sv-build__visual-in h3 { font-family: var(--sv-fd); font-weight: 700; font-size: clamp(21px, 2.4vw, 27px); letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 20px; }
+    .sv-build__aside { display: grid; gap: 14px; }
+    .sv-build__gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .sv-build__gallery img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; display: block; }
+    .sv-build__gallery .g-wide { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
+    .sv-build__gallery .g-sq { aspect-ratio: 1 / 1; }
+    .sv-build__how { background: #fff; border: 1px solid var(--sv-border); border-radius: 18px; padding: clamp(22px, 3vw, 28px); box-shadow: 0 18px 40px -30px rgba(15,23,42,0.16); }
+    .sv-build__how h3 { font-family: var(--sv-fd); font-weight: 700; font-size: clamp(19px, 2.2vw, 23px); letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 18px; color: var(--sv-ink); }
     .sv-mini-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 13px; }
-    .sv-mini-steps li { display: flex; align-items: center; gap: 13px; font-size: 14px; color: rgba(255,255,255,0.88); }
+    .sv-mini-steps li { display: flex; align-items: center; gap: 13px; font-size: 14px; color: var(--sv-body); }
     .sv-mini-steps i {
       flex-shrink: 0; width: 27px; height: 27px; border-radius: 50%; font-style: normal;
-      background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.3);
-      display: grid; place-items: center; font-family: var(--sv-fd); font-weight: 700; font-size: 12px; color: #fff;
+      background: var(--sv-accent); color: #fff;
+      display: grid; place-items: center; font-family: var(--sv-fd); font-weight: 700; font-size: 12px;
     }
 
     .sv-menu { background: #fff; border: 1px solid var(--sv-border); border-radius: 20px; padding: clamp(22px, 3vw, 32px); box-shadow: 0 24px 50px -30px rgba(15,23,42,0.18); }
@@ -231,7 +234,6 @@
       .sv-tier__price { grid-column: 1 / -1; justify-items: start; text-align: left; border-top: 1px solid var(--sv-border); padding-top: 18px; margin-top: 4px; }
       .sv-tier__cta { justify-self: start; }
       .sv-build__layout { grid-template-columns: 1fr; }
-      .sv-build__visual { min-height: 240px; }
     }
     @media (max-width: 560px) {
       .sv-tier { grid-template-columns: 1fr; }
@@ -377,11 +379,15 @@
 
         <div class="sv-build__layout">
 
-          <!-- Left: photo panel + how it works -->
-          <div class="sv-build__visual">
-            <img src="images/gallery-2.jpg" alt="Clean detailed car interior" loading="lazy" />
-            <div class="sv-build__visual-in">
-              <h3>A detail that's<br>built to fit.</h3>
+          <!-- Left: photo collage + how it works -->
+          <div class="sv-build__aside">
+            <div class="sv-build__gallery">
+              <img class="g-wide" src="images/gallery-4.jpg" alt="Vehicle with mirror-finish paint after a detail" loading="lazy" />
+              <img class="g-sq" src="images/gallery-2.jpg" alt="Clean detailed car interior" loading="lazy" />
+              <img class="g-sq" src="images/gallery-5.jpg" alt="BMW dashboard and steering wheel after an interior detail" loading="lazy" />
+            </div>
+            <div class="sv-build__how">
+              <h3>A detail that's built to fit.</h3>
               <ul class="sv-mini-steps">
                 <li><i>1</i> Pick a base — Interior, Exterior, or Full</li>
                 <li><i>2</i> Add the upgrades your car needs</li>
