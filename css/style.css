@@ -3654,6 +3654,45 @@ input, select, textarea {
   .contact-quote .quote__stars-text { color: var(--text); }
 }
 
+/* Services page: à la carte price list */
+.price-block {
+  max-width: 760px;
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(28px, 4vw, 40px);
+}
+.price-group__title {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 6px;
+}
+.price-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+}
+.price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 2px;
+  border-bottom: 1px solid var(--border);
+}
+.price-row__name { color: var(--text); font-weight: 500; }
+.price-row__amt {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
 /* About page: quick stat row */
 .stat-row {
   display: grid;
