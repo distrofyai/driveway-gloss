@@ -3583,9 +3583,8 @@ input, select, textarea {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
-  min-height: 44vh;
-  padding: calc(var(--nav-h) + clamp(56px, 10vw, 104px)) var(--pad) clamp(52px, 8vw, 92px);
+  justify-content: flex-start;
+  padding: calc(var(--nav-h) + clamp(80px, 10vw, 132px)) var(--pad) clamp(64px, 8vw, 104px);
   --page-hero-image: url('../images/hero.jpg');
 }
 .page-hero::before {
