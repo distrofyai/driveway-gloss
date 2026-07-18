@@ -468,9 +468,9 @@ input, select, textarea {
 /* Desktop-only: trim the hero block so it reads more proportionate on wide screens */
 @media (min-width: 881px) {
   .hero { min-height: calc(96svh + 15px); }
-  .hero__content { max-width: 660px; margin-top: 20px; }
-  .hero__title { font-size: clamp(38px, 4.4vw, 58px); margin: 14px 0 20px; }
-  .hero__lede { font-size: clamp(15px, 1.5vw, 17px); margin: 0 0 30px; }
+  .hero__content { max-width: 760px; margin-top: 20px; }
+  .hero__title { font-size: clamp(52px, 5.6vw, 76px); margin: 14px 0 24px; }
+  .hero__lede { font-size: clamp(17px, 1.7vw, 21px); margin: 0 0 34px; max-width: 620px; }
   .hero__actions { margin-bottom: 38px; }
   .hero__meta { gap: 24px; padding-top: 22px; }
   .hero__meta-icon { width: 40px; height: 40px; border-radius: 11px; }
