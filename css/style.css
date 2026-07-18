@@ -1480,6 +1480,13 @@ input, select, textarea {
   color: #fff;
   margin: 0 0 16px;
 }
+.cta-band__sub {
+  color: rgba(255,255,255,0.78);
+  font-size: clamp(14px, 1.5vw, 16px);
+  line-height: 1.55;
+  max-width: 520px;
+  margin: -6px auto 20px;
+}
 .cta-band__actions {
   display: flex;
   flex-wrap: wrap;
@@ -3613,6 +3620,38 @@ input, select, textarea {
   margin: 0 auto;
   max-width: 620px;
   text-shadow: 0 1px 12px rgba(0,0,0,0.2);
+}
+
+/* Contact page: quote section on a plain white background
+   (overrides the dark-on-photo styling the same block uses on the home page) */
+.contact-quote .quote__map-callout {
+  border-color: var(--border);
+  background: var(--surface-hi);
+  color: var(--text);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.contact-quote .quote__map-callout:hover,
+.contact-quote .quote__map-callout:focus-visible {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.contact-quote .quote__map-callout-text strong { color: var(--text); }
+.contact-quote .quote__map-callout-text span { color: var(--text-muted); }
+.contact-quote .quote__map-logo { border-color: var(--border); }
+@media (max-width: 720px) {
+  .contact-quote .quote__stars {
+    background: var(--surface-hi);
+    border-color: var(--border);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .contact-quote .quote__stars:hover,
+  .contact-quote .quote__stars:focus-visible {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .contact-quote .quote__stars-text { color: var(--text); }
 }
 
 /* About page: quick stat row */
