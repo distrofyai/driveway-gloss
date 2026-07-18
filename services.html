@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Services &amp; Pricing — Driveway Gloss Mobile Auto Detailing, Mooresville NC</title>
   <meta name="description" content="Driveway Gloss detailing services in Mooresville, NC — full-detail packages (Basic, Signature, Premium), build-your-own interior and exterior details, paint correction, ceramic coatings, and add-on upgrades." />
-  <meta name="theme-color" content="#0b0b0f" />
+  <meta name="theme-color" content="#ffffff" />
 
   <!-- Sticky call bar: pre-paint dismissed-state check (runs before first paint to prevent a flash). -->
   <script>
@@ -42,25 +42,31 @@
 
   <!-- ============================================================
        Services page — self-contained design (scoped under .sv)
-       Deliberately shares no layout components with other pages.
+       Light theme to match the site; packages kept as dark cards.
        ============================================================ -->
   <style>
     .sv {
-      --sv-bg: #0b0b0f;
-      --sv-bg-2: #101017;
+      --sv-bg: #ffffff;
+      --sv-bg-2: #f5f5f7;
+      --sv-ink: #18181b;
+      --sv-body: #3f3f46;
+      --sv-muted: #71717a;
+      --sv-faint: #a1a1aa;
+      --sv-border: #e4e4e7;
+      --sv-border-hi: #d4d4d8;
+      --sv-accent: #2563eb;
+      --sv-accent-hi: #1d4ed8;
+      --sv-accent-soft: #eff6ff;
+      /* dark package cards */
       --sv-panel: #16161d;
       --sv-panel-hi: #1c1c25;
       --sv-line: rgba(255,255,255,0.09);
       --sv-line-hi: rgba(255,255,255,0.16);
-      --sv-text: #f5f5f7;
-      --sv-muted: rgba(255,255,255,0.62);
-      --sv-faint: rgba(255,255,255,0.42);
-      --sv-accent: #4f8cff;
       --sv-accent-2: #93c5fd;
       --sv-fd: 'Space Grotesk', sans-serif;
       --sv-fb: 'Inter', sans-serif;
       background: var(--sv-bg);
-      color: var(--sv-text);
+      color: var(--sv-body);
       font-family: var(--sv-fb);
       overflow: hidden;
     }
@@ -68,12 +74,12 @@
     .sv-eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
       font-family: var(--sv-fd); font-size: 12px; font-weight: 600;
-      letter-spacing: 0.22em; text-transform: uppercase; color: var(--sv-accent-2);
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--sv-accent);
     }
-    .sv-eyebrow::before { content: ''; width: 26px; height: 1px; background: var(--sv-accent-2); opacity: .7; }
+    .sv-eyebrow::before { content: ''; width: 26px; height: 1px; background: var(--sv-accent); opacity: .6; }
     .sv-h2 {
       font-family: var(--sv-fd); font-weight: 700; letter-spacing: -0.03em;
-      font-size: clamp(26px, 3.6vw, 40px); line-height: 1.08; margin: 14px 0 0; color: #fff;
+      font-size: clamp(26px, 3.6vw, 40px); line-height: 1.08; margin: 14px 0 0; color: var(--sv-ink);
     }
     .sv-sec-head { max-width: 640px; margin-bottom: clamp(34px, 5vw, 52px); }
     .sv-sec-head p { margin: 14px 0 0; color: var(--sv-muted); font-size: clamp(15px,1.5vw,17px); line-height: 1.6; }
@@ -85,113 +91,144 @@
       transition: transform .25s cubic-bezier(.2,.7,.2,1), background .25s, border-color .25s, color .25s, box-shadow .25s;
       cursor: pointer; white-space: nowrap;
     }
-    .sv-btn--solid { background: var(--sv-accent); color: #fff; box-shadow: 0 12px 30px -12px rgba(79,140,255,0.7); }
-    .sv-btn--solid:hover { transform: translateY(-2px); background: #3a7bf5; box-shadow: 0 18px 40px -14px rgba(79,140,255,0.8); }
-    .sv-btn--line { background: transparent; color: #fff; border-color: var(--sv-line-hi); }
-    .sv-btn--line:hover { transform: translateY(-2px); border-color: #fff; background: rgba(255,255,255,0.05); }
+    .sv-btn--solid { background: var(--sv-accent); color: #fff; box-shadow: 0 12px 30px -12px rgba(37,99,235,0.55); }
+    .sv-btn--solid:hover { transform: translateY(-2px); background: var(--sv-accent-hi); box-shadow: 0 18px 40px -14px rgba(37,99,235,0.6); }
+    .sv-btn--line { background: transparent; color: var(--sv-ink); border-color: var(--sv-border-hi); }
+    .sv-btn--line:hover { transform: translateY(-2px); border-color: var(--sv-ink); background: rgba(0,0,0,0.03); }
+    /* line buttons that live on dark surfaces */
+    .sv-tier .sv-btn--line, .sv-final .sv-btn--line { color: #fff; border-color: var(--sv-line-hi); }
+    .sv-tier .sv-btn--line:hover, .sv-final .sv-btn--line:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
 
     /* ── HERO ─────────────────────────────────────────── */
     .sv-hero {
       position: relative;
-      padding: calc(var(--nav-h, 68px) + clamp(70px, 9vw, 120px)) 0 clamp(64px, 8vw, 100px);
+      padding: calc(var(--nav-h, 68px) + clamp(70px, 9vw, 116px)) 0 clamp(60px, 8vw, 96px);
       background:
-        radial-gradient(120% 80% at 85% -10%, rgba(79,140,255,0.18) 0%, rgba(79,140,255,0) 55%),
+        radial-gradient(120% 80% at 88% -10%, rgba(37,99,235,0.10) 0%, rgba(37,99,235,0) 55%),
         linear-gradient(180deg, var(--sv-bg-2) 0%, var(--sv-bg) 100%);
-      border-bottom: 1px solid var(--sv-line);
+      border-bottom: 1px solid var(--sv-border);
     }
     .sv-hero__grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: end; }
     .sv-hero__title {
       font-family: var(--sv-fd); font-weight: 700; letter-spacing: -0.04em;
-      font-size: clamp(42px, 7vw, 82px); line-height: 0.98; margin: 22px 0 0; color: #fff;
+      font-size: clamp(42px, 7vw, 80px); line-height: 0.98; margin: 22px 0 0; color: var(--sv-ink);
     }
-    .sv-hero__title em { font-style: normal; color: var(--sv-accent-2); }
+    .sv-hero__title em { font-style: normal; color: var(--sv-accent); }
     .sv-hero__aside p { margin: 0 0 26px; color: var(--sv-muted); font-size: clamp(15px, 1.5vw, 17px); line-height: 1.7; }
     .sv-hero__cta { display: flex; flex-wrap: wrap; gap: 12px; }
     .sv-hero__meta {
-      list-style: none; margin: 40px 0 0; padding: 26px 0 0; border-top: 1px solid var(--sv-line);
+      list-style: none; margin: 40px 0 0; padding: 26px 0 0; border-top: 1px solid var(--sv-border);
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
     }
-    .sv-hero__meta b { display: block; font-family: var(--sv-fd); font-size: clamp(20px,2.4vw,28px); font-weight: 700; color: #fff; letter-spacing: -0.02em; }
+    .sv-hero__meta b { display: block; font-family: var(--sv-fd); font-size: clamp(20px,2.4vw,28px); font-weight: 700; color: var(--sv-ink); letter-spacing: -0.02em; }
     .sv-hero__meta span { font-size: 12.5px; color: var(--sv-faint); letter-spacing: 0.02em; }
 
     /* ── FEATURE BAR ──────────────────────────────────── */
-    .sv-bar {
-      background: var(--sv-bg-2); border-bottom: 1px solid var(--sv-line);
-    }
+    .sv-bar { background: var(--sv-bg-2); border-bottom: 1px solid var(--sv-border); }
     .sv-bar__in { display: flex; flex-wrap: wrap; gap: 10px 34px; padding: 20px 0; justify-content: space-between; }
     .sv-bar__item { display: inline-flex; align-items: center; gap: 11px; font-size: 14px; color: var(--sv-muted); }
-    .sv-bar__item svg { width: 20px; height: 20px; stroke: var(--sv-accent-2); fill: none; stroke-width: 1.7; flex-shrink: 0; }
-    .sv-bar__item b { color: #fff; font-weight: 600; }
+    .sv-bar__item svg { width: 20px; height: 20px; stroke: var(--sv-accent); fill: none; stroke-width: 1.7; flex-shrink: 0; }
+    .sv-bar__item b { color: var(--sv-ink); font-weight: 600; }
 
-    /* ── PACKAGE TIERS (spec-sheet rows) ──────────────── */
-    .sv-tiers { padding: clamp(64px, 8vw, 104px) 0; }
+    /* ── PACKAGE TIERS (dark spec-sheet rows) ─────────── */
+    .sv-tiers { padding: clamp(64px, 8vw, 104px) 0; background: var(--sv-bg); }
     .sv-tier-list { display: grid; gap: 16px; }
     .sv-tier {
       position: relative; display: grid; grid-template-columns: auto 1fr auto;
       gap: clamp(20px, 3vw, 44px); align-items: center;
-      background: var(--sv-panel); border: 1px solid var(--sv-line);
-      border-radius: 20px; padding: clamp(24px, 3vw, 38px);
-      transition: transform .3s cubic-bezier(.2,.7,.2,1), border-color .3s, background .3s;
+      background: var(--sv-panel); border: 1px solid transparent;
+      border-radius: 20px; padding: clamp(24px, 3vw, 38px); color: #fff;
+      box-shadow: 0 24px 50px -34px rgba(0,0,0,0.5);
+      transition: transform .3s cubic-bezier(.2,.7,.2,1), background .3s, box-shadow .3s;
     }
-    .sv-tier:hover { transform: translateY(-3px); border-color: var(--sv-line-hi); background: var(--sv-panel-hi); }
+    .sv-tier:hover { transform: translateY(-3px); background: var(--sv-panel-hi); box-shadow: 0 34px 64px -34px rgba(0,0,0,0.55); }
     .sv-tier__num {
       font-family: var(--sv-fd); font-weight: 700; font-size: clamp(30px, 4vw, 46px);
       color: transparent; -webkit-text-stroke: 1.3px rgba(255,255,255,0.28); line-height: 1; letter-spacing: -0.02em;
     }
     .sv-tier__name { font-family: var(--sv-fd); font-weight: 700; font-size: clamp(21px,2.4vw,27px); color: #fff; margin: 0; letter-spacing: -0.02em; }
-    .sv-tier__desc { margin: 7px 0 16px; color: var(--sv-muted); font-size: 14.5px; line-height: 1.55; max-width: 52ch; }
+    .sv-tier__desc { margin: 7px 0 16px; color: rgba(255,255,255,0.62); font-size: 14.5px; line-height: 1.55; max-width: 52ch; }
     .sv-tier__feats { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
     .sv-tier__feats li {
-      font-size: 12.5px; color: var(--sv-text); padding: 6px 12px;
+      font-size: 12.5px; color: #fff; padding: 6px 12px;
       border: 1px solid var(--sv-line-hi); border-radius: 999px; background: rgba(255,255,255,0.03);
     }
     .sv-tier__price { text-align: right; display: grid; justify-items: end; gap: 4px; min-width: 168px; }
-    .sv-tier__from { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--sv-faint); font-family: var(--sv-fd); }
+    .sv-tier__from { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.5); font-family: var(--sv-fd); }
     .sv-tier__amt { font-family: var(--sv-fd); font-weight: 700; font-size: clamp(30px, 3.6vw, 42px); color: #fff; line-height: 1; letter-spacing: -0.02em; }
     .sv-tier__cta { margin-top: 12px; padding: 11px 22px; font-size: 13.5px; }
     .sv-tier__badge {
       position: absolute; top: -11px; left: clamp(24px,3vw,38px);
       font-family: var(--sv-fd); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
       color: #fff; background: var(--sv-accent); padding: 5px 13px; border-radius: 999px;
-      box-shadow: 0 8px 20px -8px rgba(79,140,255,0.8);
+      box-shadow: 0 8px 20px -8px rgba(37,99,235,0.7);
     }
     .sv-tier--featured {
-      border-color: rgba(79,140,255,0.55);
-      background: linear-gradient(180deg, rgba(79,140,255,0.10) 0%, var(--sv-panel) 60%);
-      box-shadow: 0 30px 70px -40px rgba(79,140,255,0.6);
+      border-color: rgba(147,197,253,0.5);
+      background: linear-gradient(180deg, rgba(79,140,255,0.16) 0%, var(--sv-panel) 62%);
+      box-shadow: 0 34px 70px -34px rgba(37,99,235,0.5);
     }
-    .sv-tier--featured .sv-tier__num { -webkit-text-stroke-color: rgba(147,197,253,0.7); }
+    .sv-tier--featured .sv-tier__num { -webkit-text-stroke-color: rgba(147,197,253,0.75); }
 
-    /* ── À LA CARTE (chip grid) ───────────────────────── */
-    .sv-ala { padding: clamp(56px, 7vw, 92px) 0; background: var(--sv-bg-2); border-top: 1px solid var(--sv-line); border-bottom: 1px solid var(--sv-line); }
-    .sv-ala__cols { display: grid; grid-template-columns: 1fr 1.6fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
-    .sv-ala__group + .sv-ala__group { }
-    .sv-ala__label {
-      font-family: var(--sv-fd); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--sv-accent-2); margin: 0 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--sv-line);
+    /* ── BUILD YOUR OWN ───────────────────────────────── */
+    .sv-build { padding: clamp(60px, 8vw, 100px) 0; background: var(--sv-bg-2); border-top: 1px solid var(--sv-border); }
+
+    .sv-step-label {
+      display: inline-flex; align-items: center; gap: 9px; margin-bottom: 18px;
+      font-family: var(--sv-fd); font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sv-ink);
     }
-    .sv-chip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
-    .sv-chip {
-      display: flex; align-items: center; justify-content: space-between; gap: 12px;
-      padding: 14px 16px; border: 1px solid var(--sv-line); border-radius: 13px;
-      background: var(--sv-panel); transition: transform .22s, border-color .22s, background .22s;
+    .sv-step-label i {
+      font-style: normal; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center;
+      background: var(--sv-accent); color: #fff; font-size: 12px; font-weight: 700;
     }
-    .sv-chip:hover { transform: translateY(-2px); border-color: rgba(79,140,255,0.5); background: var(--sv-panel-hi); }
-    .sv-chip__name { font-size: 13.5px; color: var(--sv-text); line-height: 1.3; }
-    .sv-chip__amt { font-family: var(--sv-fd); font-weight: 700; font-size: 15px; color: var(--sv-accent-2); flex-shrink: 0; }
-    .sv-ala__note { margin: 26px 0 0; font-size: 12.5px; color: var(--sv-faint); line-height: 1.5; }
+
+    /* Step 1 — base cards */
+    .sv-base-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .sv-base {
+      position: relative; display: flex; flex-direction: column;
+      background: #fff; border: 1px solid var(--sv-border); border-radius: 18px; padding: 26px 24px;
+      transition: transform .25s cubic-bezier(.2,.7,.2,1), border-color .25s, box-shadow .25s;
+    }
+    .sv-base:hover { transform: translateY(-3px); border-color: var(--sv-accent); box-shadow: 0 20px 44px -22px rgba(37,99,235,0.28); }
+    .sv-base__icon { width: 46px; height: 46px; border-radius: 13px; background: var(--sv-accent-soft); display: grid; place-items: center; margin-bottom: 16px; }
+    .sv-base__icon svg { width: 23px; height: 23px; stroke: var(--sv-accent); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .sv-base__name { font-family: var(--sv-fd); font-weight: 700; font-size: 19px; color: var(--sv-ink); margin: 0 0 6px; letter-spacing: -0.01em; }
+    .sv-base__desc { color: var(--sv-muted); font-size: 13.5px; line-height: 1.5; margin: 0 0 20px; }
+    .sv-base__foot { margin-top: auto; display: flex; align-items: baseline; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--sv-border); }
+    .sv-base__foot span { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--sv-faint); font-family: var(--sv-fd); }
+    .sv-base__price { font-family: var(--sv-fd); font-weight: 700; font-size: 24px; color: var(--sv-accent); letter-spacing: -0.02em; }
+
+    .sv-build__divider { height: 1px; background: var(--sv-border); margin: clamp(36px, 5vw, 52px) 0; }
+
+    /* Step 2 — add-on tiles */
+    .sv-addon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(258px, 1fr)); gap: 14px; }
+    .sv-addon {
+      display: flex; align-items: center; gap: 14px;
+      background: #fff; border: 1px solid var(--sv-border); border-radius: 15px; padding: 16px 18px;
+      transition: transform .22s, border-color .22s, box-shadow .22s;
+    }
+    .sv-addon:hover { transform: translateY(-2px); border-color: var(--sv-accent); box-shadow: 0 16px 34px -20px rgba(37,99,235,0.25); }
+    .sv-addon__icon { flex-shrink: 0; width: 42px; height: 42px; border-radius: 11px; background: var(--sv-accent-soft); display: grid; place-items: center; }
+    .sv-addon__icon svg { width: 20px; height: 20px; stroke: var(--sv-accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .sv-addon__body { flex: 1; min-width: 0; }
+    .sv-addon__name { font-family: var(--sv-fd); font-weight: 600; font-size: 14.5px; color: var(--sv-ink); line-height: 1.25; }
+    .sv-addon__desc { font-size: 12px; color: var(--sv-muted); line-height: 1.3; margin-top: 2px; }
+    .sv-addon__amt { flex-shrink: 0; align-self: flex-start; font-family: var(--sv-fd); font-weight: 700; font-size: 16px; color: var(--sv-accent); }
+    .sv-build__note { margin: 28px 0 0; font-size: 12.5px; color: var(--sv-faint); line-height: 1.5; }
 
     /* ── FINAL CTA ────────────────────────────────────── */
     .sv-final { position: relative; padding: clamp(64px, 8vw, 104px) 0; overflow: hidden; }
     .sv-final::before {
       content: ''; position: absolute; inset: 0; z-index: 0;
       background:
-        linear-gradient(180deg, rgba(11,11,15,0.82), rgba(11,11,15,0.92)),
+        linear-gradient(180deg, rgba(11,11,15,0.80), rgba(11,11,15,0.90)),
         url('images/hero.jpg') center 30% / cover no-repeat;
     }
     .sv-final__in { position: relative; z-index: 1; text-align: center; max-width: 640px; margin: 0 auto; }
+    .sv-final .sv-eyebrow { color: var(--sv-accent-2); justify-content: center; }
+    .sv-final .sv-eyebrow::before { background: var(--sv-accent-2); }
     .sv-final h2 { font-family: var(--sv-fd); font-weight: 700; font-size: clamp(26px,3.6vw,40px); letter-spacing: -0.03em; color: #fff; margin: 16px 0 0; }
-    .sv-final p { margin: 14px auto 28px; color: var(--sv-muted); font-size: clamp(15px,1.5vw,17px); line-height: 1.6; max-width: 500px; }
+    .sv-final p { margin: 14px auto 28px; color: rgba(255,255,255,0.66); font-size: clamp(15px,1.5vw,17px); line-height: 1.6; max-width: 500px; }
     .sv-final .sv-hero__cta { justify-content: center; }
 
     /* ── RESPONSIVE ───────────────────────────────────── */
@@ -200,13 +237,14 @@
       .sv-tier { grid-template-columns: auto 1fr; }
       .sv-tier__price { grid-column: 1 / -1; justify-items: start; text-align: left; border-top: 1px solid var(--sv-line); padding-top: 18px; margin-top: 4px; }
       .sv-tier__cta { justify-self: start; }
-      .sv-ala__cols { grid-template-columns: 1fr; }
+      .sv-base-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 560px) {
       .sv-tier { grid-template-columns: 1fr; }
       .sv-tier__num { font-size: 30px; }
       .sv-hero__meta { grid-template-columns: 1fr; gap: 14px; }
       .sv-bar__in { flex-direction: column; gap: 14px; }
+      .sv-addon-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -354,48 +392,99 @@
       </div>
     </section>
 
-    <!-- ── À LA CARTE ── -->
-    <section class="sv-ala" id="ala-carte">
+    <!-- ── BUILD YOUR OWN ── -->
+    <section class="sv-build" id="build">
       <div class="sv-wrap">
         <div class="sv-sec-head">
           <span class="sv-eyebrow">Build Your Own</span>
           <h2 class="sv-h2">Start with a base. Add only what you need.</h2>
-          <p>Prefer to keep it simple? Choose a base detail and stack on the upgrades that matter for your car.</p>
+          <p>Prefer to keep it simple? Choose a base detail, then stack on the exact upgrades that matter for your car — nothing you don't.</p>
         </div>
 
-        <div class="sv-ala__cols">
-          <div class="sv-ala__group">
-            <p class="sv-ala__label">Choose a Base</p>
-            <div class="sv-chip-grid">
-              <div class="sv-chip"><span class="sv-chip__name">Interior</span><span class="sv-chip__amt">$X</span></div>
-              <div class="sv-chip"><span class="sv-chip__name">Exterior</span><span class="sv-chip__amt">$X</span></div>
-              <div class="sv-chip"><span class="sv-chip__name">Full Detail</span><span class="sv-chip__amt">$X</span></div>
+        <!-- Step 1 -->
+        <div class="sv-step-label"><i>1</i> Choose a base</div>
+        <div class="sv-base-grid">
+          <div class="sv-base">
+            <div class="sv-base__icon">
+              <svg viewBox="0 0 24 24"><path d="M4 14V9a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v5"/><path d="M3 14h18v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3z"/><path d="M6 19v2M18 19v2"/></svg>
             </div>
+            <h3 class="sv-base__name">Interior</h3>
+            <p class="sv-base__desc">Full vacuum, wipe-down of every surface, and clean windows — a complete cabin reset.</p>
+            <div class="sv-base__foot"><span>Starting at</span><span class="sv-base__price">$X</span></div>
           </div>
-
-          <div class="sv-ala__group">
-            <p class="sv-ala__label">Upgrades &amp; Add-ons</p>
-            <div class="sv-chip-grid">
-              <div class="sv-chip"><span class="sv-chip__name">Steam Cleaning</span><span class="sv-chip__amt">$X</span></div>
-              <div class="sv-chip"><span class="sv-chip__name">Carpet &amp; Seat Shampoo</span><span class="sv-chip__amt">$X</span></div>
-              <div class="sv-chip"><span class="sv-chip__name">Clay Bar Treatment</span><span class="sv-chip__amt">$X</span></div>
-              <div class="sv-chip"><span class="sv-chip__name">Headlight Restoration</span><span class="sv-chip__amt">$X</span></div>
-              <div class="sv-chip"><span class="sv-chip__name">Paint Enhancement Polish</span><span class="sv-chip__amt">$X</span></div>
-              <div class="sv-chip"><span class="sv-chip__name">One-Step Paint Correction</span><span class="sv-chip__amt">$X</span></div>
-              <div class="sv-chip"><span class="sv-chip__name">Engine Bay Cleaning</span><span class="sv-chip__amt">$X</span></div>
-              <div class="sv-chip"><span class="sv-chip__name">Car Seat Cleaning</span><span class="sv-chip__amt">$X</span></div>
+          <div class="sv-base">
+            <div class="sv-base__icon">
+              <svg viewBox="0 0 24 24"><rect x="5" y="9" width="14" height="6" rx="1.5"/><path d="M2 12h2M20 12h2"/><path d="M9 9v6M14 9v6"/></svg>
             </div>
+            <h3 class="sv-base__name">Exterior</h3>
+            <p class="sv-base__desc">Hand wash, wheels and tires with tire shine, clean windows, and a spray wax finish.</p>
+            <div class="sv-base__foot"><span>Starting at</span><span class="sv-base__price">$X</span></div>
+          </div>
+          <div class="sv-base">
+            <div class="sv-base__icon">
+              <svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4-3.5 7.5-8 9-4.5-1.5-8-5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <h3 class="sv-base__name">Full Detail</h3>
+            <p class="sv-base__desc">The complete inside-and-out reset — interior deep clean plus a full exterior treatment.</p>
+            <div class="sv-base__foot"><span>Starting at</span><span class="sv-base__price">$X</span></div>
           </div>
         </div>
 
-        <p class="sv-ala__note">All prices are starting estimates. Final pricing varies with vehicle size, condition, and selected upgrades.</p>
+        <div class="sv-build__divider"></div>
+
+        <!-- Step 2 -->
+        <div class="sv-step-label"><i>2</i> Add your upgrades</div>
+        <div class="sv-addon-grid">
+          <div class="sv-addon">
+            <div class="sv-addon__icon"><svg viewBox="0 0 24 24"><path d="M8 19c0-2 1-3 1-5s-1-3-1-5"/><path d="M12 19c0-2 1-3 1-5s-1-3-1-5"/><path d="M16 19c0-2 1-3 1-5s-1-3-1-5"/></svg></div>
+            <div class="sv-addon__body"><div class="sv-addon__name">Steam Cleaning</div><div class="sv-addon__desc">Vents, crevices &amp; tight spots</div></div>
+            <div class="sv-addon__amt">$X</div>
+          </div>
+          <div class="sv-addon">
+            <div class="sv-addon__icon"><svg viewBox="0 0 24 24"><path d="M4 14V9a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v5"/><path d="M3 14h18v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3z"/></svg></div>
+            <div class="sv-addon__body"><div class="sv-addon__name">Carpet &amp; Seat Shampoo</div><div class="sv-addon__desc">Lifts stains &amp; embedded dirt</div></div>
+            <div class="sv-addon__amt">$X</div>
+          </div>
+          <div class="sv-addon">
+            <div class="sv-addon__icon"><svg viewBox="0 0 24 24"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/></svg></div>
+            <div class="sv-addon__body"><div class="sv-addon__name">Clay Bar Treatment</div><div class="sv-addon__desc">Glass-smooth paint prep</div></div>
+            <div class="sv-addon__amt">$X</div>
+          </div>
+          <div class="sv-addon">
+            <div class="sv-addon__icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="12" r="4"/><path d="M15 8.5l5-2M15 12h6M15 15.5l5 2"/></svg></div>
+            <div class="sv-addon__body"><div class="sv-addon__name">Headlight Restoration</div><div class="sv-addon__desc">Clears cloudy, yellowed lenses</div></div>
+            <div class="sv-addon__amt">$X</div>
+          </div>
+          <div class="sv-addon">
+            <div class="sv-addon__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M7 12h10"/></svg></div>
+            <div class="sv-addon__body"><div class="sv-addon__name">Paint Enhancement Polish</div><div class="sv-addon__desc">Boosts gloss &amp; depth</div></div>
+            <div class="sv-addon__amt">$X</div>
+          </div>
+          <div class="sv-addon">
+            <div class="sv-addon__icon"><svg viewBox="0 0 24 24"><path d="M12 3c2 5 6 7 6 12a6 6 0 0 1-12 0c0-5 4-7 6-12z"/><path d="M9 14a3 3 0 0 0 3 3"/></svg></div>
+            <div class="sv-addon__body"><div class="sv-addon__name">One-Step Paint Correction</div><div class="sv-addon__desc">Removes light scratches &amp; swirls</div></div>
+            <div class="sv-addon__amt">$X</div>
+          </div>
+          <div class="sv-addon">
+            <div class="sv-addon__icon"><svg viewBox="0 0 24 24"><path d="M5 13V9a2 2 0 0 1 2-2h7l3 3h2a1 1 0 0 1 1 1v2"/><circle cx="8" cy="16" r="2"/><circle cx="17" cy="16" r="2"/><path d="M10 16h5"/></svg></div>
+            <div class="sv-addon__body"><div class="sv-addon__name">Engine Bay Cleaning</div><div class="sv-addon__desc">Degreased, finished under-hood</div></div>
+            <div class="sv-addon__amt">$X</div>
+          </div>
+          <div class="sv-addon">
+            <div class="sv-addon__icon"><svg viewBox="0 0 24 24"><path d="M6 10V7a3 3 0 0 1 3-3h0a3 3 0 0 1 3 3v3"/><rect x="5" y="10" width="14" height="10" rx="2"/></svg></div>
+            <div class="sv-addon__body"><div class="sv-addon__name">Car Seat Cleaning</div><div class="sv-addon__desc">Fresh, sanitized child seats</div></div>
+            <div class="sv-addon__amt">$X</div>
+          </div>
+        </div>
+
+        <p class="sv-build__note">All prices are starting estimates. Final pricing varies with vehicle size, condition, and selected upgrades.</p>
       </div>
     </section>
 
     <!-- ── FINAL CTA ── -->
     <section class="sv-final">
       <div class="sv-wrap sv-final__in">
-        <span class="sv-eyebrow" style="justify-content:center;">Free, No-obligation Quote</span>
+        <span class="sv-eyebrow">Free, No-obligation Quote</span>
         <h2>Not sure which service you need?</h2>
         <p>Tell Tyler about your car and he'll recommend the right package — no upsell, just an honest quote.</p>
         <div class="sv-hero__cta">
