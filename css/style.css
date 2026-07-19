@@ -1469,7 +1469,7 @@ input, select, textarea {
 }
 .cta-band__inner {
   text-align: center;
-  max-width: 640px;
+  max-width: 720px;
 }
 .cta-band__title {
   font-family: var(--font-display);
@@ -1485,7 +1485,7 @@ input, select, textarea {
   color: rgba(255,255,255,0.82);
   font-size: clamp(15px, 1.55vw, 17px);
   line-height: 1.6;
-  max-width: 600px;
+  max-width: 680px;
   margin: 0 auto 26px;
   text-wrap: balance;
 }
