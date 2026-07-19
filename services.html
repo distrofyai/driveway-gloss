@@ -181,7 +181,7 @@
 
     /* ── BUILD YOUR OWN (photo panel + à la carte menu) ── */
     .sv-build { padding: clamp(60px, 8vw, 100px) 0; background: var(--sv-bg-2); border-top: 1px solid var(--sv-border); }
-    .sv-build__layout { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(22px, 3.5vw, 44px); align-items: start; }
+    .sv-build__layout { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(22px, 3.5vw, 44px); align-items: center; }
 
     .sv-build__aside { display: grid; gap: 14px; }
     .sv-build__gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -216,31 +216,33 @@
     .sv-mini-steps__t b { display: block; font-family: var(--sv-fd); font-weight: 600; font-size: 15px; color: var(--sv-ink); letter-spacing: -0.01em; }
     .sv-mini-steps__t span { display: block; font-size: 13px; color: var(--sv-muted); margin-top: 2px; line-height: 1.45; }
 
-    .sv-menu { background: #fff; border: 1px solid var(--sv-border); border-radius: 20px; padding: clamp(22px, 3vw, 32px); box-shadow: 0 24px 50px -30px rgba(15,23,42,0.18); }
-    .sv-menu__group + .sv-menu__group { margin-top: 26px; padding-top: 24px; border-top: 1px solid var(--sv-border); }
-    .sv-menu__group-title {
+    /* Right side: two stacked menu cards (Bases / Upgrades) */
+    .sv-build__right { min-width: 0; }
+    .sv-build__menus { display: grid; gap: 16px; }
+    .sv-menu-card {
+      background: #fff; border: 1px solid var(--sv-border); border-radius: 20px;
+      padding: clamp(18px, 2.2vw, 26px); box-shadow: 0 20px 44px -30px rgba(15,23,42,0.16);
+      display: flex; flex-direction: column;
+    }
+    .sv-menu-card__head {
       display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
-      font-family: var(--sv-fd); font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--sv-accent); margin: 0 0 8px;
+      padding-bottom: 14px; margin-bottom: 4px; border-bottom: 1px solid var(--sv-border);
     }
-    .sv-menu__group-title em { font-style: normal; color: var(--sv-faint); letter-spacing: 0.02em; text-transform: none; font-size: 11px; font-weight: 500; }
-    .sv-menu__list { list-style: none; margin: 0; padding: 0; }
-    .sv-menu__row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--sv-border); }
-    .sv-menu__row:last-child { border-bottom: 0; padding-bottom: 0; }
-    .sv-menu__info { min-width: 0; }
-    .sv-menu__name { font-weight: 600; color: var(--sv-ink); font-size: 14.5px; line-height: 1.3; }
-    .sv-menu__desc { color: var(--sv-muted); font-size: 12.5px; line-height: 1.4; margin-top: 2px; }
-    .sv-menu__price { flex-shrink: 0; font-family: var(--sv-fd); font-weight: 700; font-size: 16px; color: var(--sv-accent); }
-    .sv-menu__cta { margin-top: 24px; }
-    .sv-menu__cta .sv-btn { width: 100%; }
-    .sv-build__note { margin: 26px 0 0; font-size: 12.5px; color: var(--sv-faint); line-height: 1.5; }
-    /* Desktop only: stretch the left column so the "built to fit" card
-       bottom-aligns with the à la carte menu beside it. */
-    @media (min-width: 881px) {
-      .sv-build__layout { align-items: stretch; }
-      .sv-build__aside { grid-template-rows: auto 1fr; }
-      .sv-build__how { display: flex; flex-direction: column; justify-content: center; }
-    }
+    .sv-menu-card__title { font-family: var(--sv-fd); font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sv-accent); margin: 0; }
+    .sv-menu-card__hint { font-size: 11px; color: var(--sv-faint); letter-spacing: 0.02em; }
+    .sv-menu-list { list-style: none; margin: 0; padding: 0; }
+    .sv-menu-row { display: flex; align-items: center; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--sv-border); transition: transform .2s var(--ease, ease); }
+    .sv-menu-row:last-child { border-bottom: 0; padding-bottom: 2px; }
+    .sv-menu-thumb { flex-shrink: 0; width: 54px; height: 54px; border-radius: 12px; overflow: hidden; background: var(--sv-bg-2); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05); }
+    .sv-menu-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .sv-menu-info { flex: 1; min-width: 0; }
+    .sv-menu-name { font-family: var(--sv-fd); font-weight: 600; font-size: 15px; color: var(--sv-ink); line-height: 1.25; letter-spacing: -0.01em; }
+    .sv-menu-desc { font-size: 12.5px; color: var(--sv-muted); line-height: 1.4; margin-top: 2px; }
+    .sv-menu-price { flex-shrink: 0; font-family: var(--sv-fd); font-weight: 700; font-size: 16px; color: var(--sv-accent); }
+    .sv-swipe-hint { display: none; }
+    .sv-build__cta { display: flex; justify-content: center; margin-top: clamp(24px, 3.4vw, 40px); }
+    .sv-build__cta .sv-btn { min-width: 320px; }
+    .sv-build__note { margin: 20px 0 0; font-size: 12.5px; color: var(--sv-faint); line-height: 1.5; text-align: center; }
 
     /* ── FINAL CTA ────────────────────────────────────── */
     .sv-final { position: relative; padding: clamp(48px, 6vw, 80px) 0; overflow: hidden; }
@@ -260,12 +262,41 @@
     .sv-final .sv-btn--line:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
 
     /* ── RESPONSIVE ───────────────────────────────────── */
+    /* Desktop hover polish on menu rows */
+    @media (hover: hover) and (min-width: 721px) {
+      .sv-menu-row:hover { transform: translateX(4px); }
+    }
     @media (max-width: 880px) {
       .sv-hero__grid { grid-template-columns: 1fr; align-items: start; gap: 34px; }
       .sv-tier { grid-template-columns: auto 1fr; }
       .sv-tier__price { grid-column: 1 / -1; justify-items: start; text-align: left; border-top: 1px solid var(--sv-border); padding-top: 18px; margin-top: 4px; }
       .sv-tier__cta { justify-self: start; }
-      .sv-build__layout { grid-template-columns: 1fr; }
+      .sv-build__layout { grid-template-columns: 1fr; align-items: stretch; }
+    }
+    /* Mobile: Bases / Upgrades become a swipeable, snap-scrolling carousel */
+    @media (max-width: 720px) {
+      .sv-swipe-hint {
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+        margin: 0 0 14px; font-family: var(--sv-fd); font-size: 11.5px; font-weight: 600;
+        letter-spacing: 0.12em; text-transform: uppercase; color: var(--sv-accent);
+      }
+      .sv-swipe-hint span { font-size: 15px; line-height: 1; animation: sv-nudge 1.6s ease-in-out infinite; }
+      @keyframes sv-nudge { 0%,100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
+      .sv-build__menus {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 87%;
+        align-items: start;
+        gap: 14px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 10px;
+        scrollbar-width: none;
+      }
+      .sv-build__menus::-webkit-scrollbar { display: none; }
+      .sv-menu-card { scroll-snap-align: center; }
+      .sv-build__cta .sv-btn { min-width: 0; width: 100%; max-width: 340px; }
     }
     @media (max-width: 560px) {
       .sv-tier { grid-template-columns: 1fr; }
@@ -421,71 +452,92 @@
             </div>
           </div>
 
-          <!-- Right: à la carte menu -->
-          <div class="sv-menu">
-            <div class="sv-menu__group">
-              <p class="sv-menu__group-title">Bases <em>Start here</em></p>
-              <ul class="sv-menu__list">
-                <li class="sv-menu__row">
-                  <div class="sv-menu__info"><div class="sv-menu__name">Interior</div><div class="sv-menu__desc">Full vacuum &amp; wipe-down of every surface</div></div>
-                  <span class="sv-menu__price">$X</span>
-                </li>
-                <li class="sv-menu__row">
-                  <div class="sv-menu__info"><div class="sv-menu__name">Exterior</div><div class="sv-menu__desc">Hand wash, wheels, tires &amp; spray wax</div></div>
-                  <span class="sv-menu__price">$X</span>
-                </li>
-                <li class="sv-menu__row">
-                  <div class="sv-menu__info"><div class="sv-menu__name">Full Detail</div><div class="sv-menu__desc">Complete inside-and-out reset</div></div>
-                  <span class="sv-menu__price">$X</span>
-                </li>
-              </ul>
-            </div>
+          <!-- Right: two menu cards (swipeable carousel on mobile) -->
+          <div class="sv-build__right">
+            <p class="sv-swipe-hint">Bases &amp; Upgrades — swipe <span aria-hidden="true">→</span></p>
+            <div class="sv-build__menus">
 
-            <div class="sv-menu__group">
-              <p class="sv-menu__group-title">Upgrades &amp; Add-ons <em>Mix &amp; match</em></p>
-              <ul class="sv-menu__list">
-                <li class="sv-menu__row">
-                  <div class="sv-menu__info"><div class="sv-menu__name">Steam Cleaning</div><div class="sv-menu__desc">Vents, crevices &amp; tight spots</div></div>
-                  <span class="sv-menu__price">$X</span>
-                </li>
-                <li class="sv-menu__row">
-                  <div class="sv-menu__info"><div class="sv-menu__name">Carpet &amp; Seat Shampoo</div><div class="sv-menu__desc">Lifts stains &amp; embedded dirt</div></div>
-                  <span class="sv-menu__price">$X</span>
-                </li>
-                <li class="sv-menu__row">
-                  <div class="sv-menu__info"><div class="sv-menu__name">Clay Bar Treatment</div><div class="sv-menu__desc">Glass-smooth paint prep</div></div>
-                  <span class="sv-menu__price">$X</span>
-                </li>
-                <li class="sv-menu__row">
-                  <div class="sv-menu__info"><div class="sv-menu__name">Headlight Restoration</div><div class="sv-menu__desc">Clears cloudy, yellowed lenses</div></div>
-                  <span class="sv-menu__price">$X</span>
-                </li>
-                <li class="sv-menu__row">
-                  <div class="sv-menu__info"><div class="sv-menu__name">Paint Enhancement Polish</div><div class="sv-menu__desc">Boosts gloss &amp; depth</div></div>
-                  <span class="sv-menu__price">$X</span>
-                </li>
-                <li class="sv-menu__row">
-                  <div class="sv-menu__info"><div class="sv-menu__name">One-Step Paint Correction</div><div class="sv-menu__desc">Removes light scratches &amp; swirls</div></div>
-                  <span class="sv-menu__price">$X</span>
-                </li>
-                <li class="sv-menu__row">
-                  <div class="sv-menu__info"><div class="sv-menu__name">Engine Bay Cleaning</div><div class="sv-menu__desc">Degreased, finished under-hood</div></div>
-                  <span class="sv-menu__price">$X</span>
-                </li>
-                <li class="sv-menu__row">
-                  <div class="sv-menu__info"><div class="sv-menu__name">Car Seat Cleaning</div><div class="sv-menu__desc">Fresh, sanitized child seats</div></div>
-                  <span class="sv-menu__price">$X</span>
-                </li>
-              </ul>
-            </div>
+              <div class="sv-menu-card">
+                <div class="sv-menu-card__head">
+                  <p class="sv-menu-card__title">Bases</p>
+                  <span class="sv-menu-card__hint">Start here</span>
+                </div>
+                <ul class="sv-menu-list">
+                  <li class="sv-menu-row">
+                    <span class="sv-menu-thumb"><img src="images/gallery-2.jpg" alt="" loading="lazy" /></span>
+                    <div class="sv-menu-info"><div class="sv-menu-name">Interior</div><div class="sv-menu-desc">Full vacuum &amp; wipe-down of every surface</div></div>
+                    <span class="sv-menu-price">$X</span>
+                  </li>
+                  <li class="sv-menu-row">
+                    <span class="sv-menu-thumb"><img src="images/hero.jpg" alt="" loading="lazy" /></span>
+                    <div class="sv-menu-info"><div class="sv-menu-name">Exterior</div><div class="sv-menu-desc">Hand wash, wheels, tires &amp; spray wax</div></div>
+                    <span class="sv-menu-price">$X</span>
+                  </li>
+                  <li class="sv-menu-row">
+                    <span class="sv-menu-thumb"><img src="images/about.jpg" alt="" loading="lazy" /></span>
+                    <div class="sv-menu-info"><div class="sv-menu-name">Full Detail</div><div class="sv-menu-desc">Complete inside-and-out reset</div></div>
+                    <span class="sv-menu-price">$X</span>
+                  </li>
+                </ul>
+              </div>
 
-            <div class="sv-menu__cta">
-              <a class="sv-btn sv-btn--solid" href="contact.html">Build My Detail &amp; Get a Quote</a>
+              <div class="sv-menu-card">
+                <div class="sv-menu-card__head">
+                  <p class="sv-menu-card__title">Upgrades &amp; Add-ons</p>
+                  <span class="sv-menu-card__hint">Mix &amp; match</span>
+                </div>
+                <ul class="sv-menu-list">
+                  <li class="sv-menu-row">
+                    <span class="sv-menu-thumb"><img src="images/gallery-5.jpg" alt="" loading="lazy" /></span>
+                    <div class="sv-menu-info"><div class="sv-menu-name">Steam Cleaning</div><div class="sv-menu-desc">Vents, crevices &amp; tight spots</div></div>
+                    <span class="sv-menu-price">$X</span>
+                  </li>
+                  <li class="sv-menu-row">
+                    <span class="sv-menu-thumb"><img src="images/lexus-red-interior.jpg" alt="" loading="lazy" /></span>
+                    <div class="sv-menu-info"><div class="sv-menu-name">Carpet &amp; Seat Shampoo</div><div class="sv-menu-desc">Lifts stains &amp; embedded dirt</div></div>
+                    <span class="sv-menu-price">$X</span>
+                  </li>
+                  <li class="sv-menu-row">
+                    <span class="sv-menu-thumb"><img src="images/gallery-4.jpg" alt="" loading="lazy" /></span>
+                    <div class="sv-menu-info"><div class="sv-menu-name">Clay Bar Treatment</div><div class="sv-menu-desc">Glass-smooth paint prep</div></div>
+                    <span class="sv-menu-price">$X</span>
+                  </li>
+                  <li class="sv-menu-row">
+                    <span class="sv-menu-thumb"><img src="images/gallery-6.jpg" alt="" loading="lazy" /></span>
+                    <div class="sv-menu-info"><div class="sv-menu-name">Headlight Restoration</div><div class="sv-menu-desc">Clears cloudy, yellowed lenses</div></div>
+                    <span class="sv-menu-price">$X</span>
+                  </li>
+                  <li class="sv-menu-row">
+                    <span class="sv-menu-thumb"><img src="images/exterior-after.jpg" alt="" loading="lazy" /></span>
+                    <div class="sv-menu-info"><div class="sv-menu-name">Paint Enhancement Polish</div><div class="sv-menu-desc">Boosts gloss &amp; depth</div></div>
+                    <span class="sv-menu-price">$X</span>
+                  </li>
+                  <li class="sv-menu-row">
+                    <span class="sv-menu-thumb"><img src="images/gallery-1.jpg" alt="" loading="lazy" /></span>
+                    <div class="sv-menu-info"><div class="sv-menu-name">One-Step Paint Correction</div><div class="sv-menu-desc">Removes light scratches &amp; swirls</div></div>
+                    <span class="sv-menu-price">$X</span>
+                  </li>
+                  <li class="sv-menu-row">
+                    <span class="sv-menu-thumb"><img src="images/gallery-3.jpg" alt="" loading="lazy" /></span>
+                    <div class="sv-menu-info"><div class="sv-menu-name">Engine Bay Cleaning</div><div class="sv-menu-desc">Degreased, finished under-hood</div></div>
+                    <span class="sv-menu-price">$X</span>
+                  </li>
+                  <li class="sv-menu-row">
+                    <span class="sv-menu-thumb"><img src="images/gallery-2.jpg" alt="" loading="lazy" /></span>
+                    <div class="sv-menu-info"><div class="sv-menu-name">Car Seat Cleaning</div><div class="sv-menu-desc">Fresh, sanitized child seats</div></div>
+                    <span class="sv-menu-price">$X</span>
+                  </li>
+                </ul>
+              </div>
+
             </div>
           </div>
 
         </div>
 
+        <div class="sv-build__cta">
+          <a class="sv-btn sv-btn--solid" href="contact.html">Build My Detail &amp; Get a Quote</a>
+        </div>
         <p class="sv-build__note">All prices are starting estimates. Final pricing varies with vehicle size, condition, and selected upgrades.</p>
       </div>
     </section>
