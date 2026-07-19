@@ -3701,13 +3701,46 @@ input, select, textarea {
 }
 
 /* ---------- Before/After comparison slider (drag to reveal) ---------- */
+/* Two-column layout: text left, comparison right */
+.ba-section {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: clamp(32px, 5vw, 68px);
+  align-items: center;
+}
+.ba-section__text .section__title { text-align: left; margin: 12px 0 16px; }
+.ba-section__text .section__lede { text-align: left; }
+.ba-section__points {
+  list-style: none;
+  margin: 24px 0 30px;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.ba-section__points li {
+  position: relative;
+  padding-left: 30px;
+  color: var(--text-body);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.ba-section__points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 13l4 4L19 7'/%3E%3C/svg%3E") center / 12px no-repeat;
+  box-shadow: inset 0 0 0 1px rgba(37,99,235,0.18);
+}
+
 .ba-compare {
   position: relative;
   --pos: 50%;
   width: 100%;
-  max-width: 860px;
-  margin: 0 auto;
-  aspect-ratio: 5 / 2;
+  aspect-ratio: 4 / 3;
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--border);
@@ -3722,7 +3755,7 @@ input, select, textarea {
   position: absolute;
   inset: 0;
   background-repeat: no-repeat;
-  background-size: 100% 200%;
+  background-size: auto 200%;
 }
 .ba-compare__img--after { background-position: center bottom; }
 .ba-compare__img--before {
@@ -3775,16 +3808,12 @@ input, select, textarea {
 .ba-compare:hover .ba-compare__grip { transform: translate(-50%, -50%) scale(1.06); }
 .ba-compare__grip svg { width: 22px; height: 22px; }
 .ba-compare:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.ba-compare__caption {
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 14px;
-  margin: 22px auto 0;
-  max-width: 560px;
+@media (max-width: 860px) {
+  .ba-section { grid-template-columns: 1fr; gap: 30px; }
+  .ba-compare { max-width: 620px; }
 }
 @media (max-width: 600px) {
   .ba-compare__grip { width: 40px; height: 40px; }
-  .ba-compare__caption { font-size: 13px; }
 }
 
 /* Trust strip (Contact page) — quick reassurance row */
