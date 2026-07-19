@@ -101,6 +101,10 @@
     /* Hero CTA row sits on the dark photo hero — white outline for the ghost button */
     .page-hero .sv-btn--line { color: #fff; border-color: rgba(255,255,255,0.4); }
     .page-hero .sv-btn--line:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+    /* Mobile: hide the hero CTA buttons (nav CTA + sticky call bar already cover it) */
+    @media (max-width: 720px) {
+      .page-hero .sv-hero__cta { display: none; }
+    }
 
     /* ── HERO (photo background) ───────────────────────── */
     .sv-hero {
