@@ -3632,12 +3632,12 @@ input, select, textarea {
 /* Mobile: tighter, better-proportioned sub-page hero (Services / Gallery / About) */
 @media (max-width: 640px) {
   .page-hero {
-    min-height: clamp(400px, 58vh, 480px);
-    padding-top: calc(var(--nav-h) + clamp(44px, 13vw, 76px));
-    padding-bottom: clamp(40px, 10vw, 62px);
+    min-height: clamp(376px, 55vh, 450px);
+    padding-top: calc(var(--nav-h) + clamp(40px, 12.5vw, 70px));
+    padding-bottom: clamp(38px, 9.5vw, 58px);
   }
-  .page-hero .eyebrow { margin-bottom: 13px; }
-  .page-hero__title { font-size: clamp(33px, 9vw, 44px); line-height: 1.05; margin: 0 0 15px; }
+  .page-hero .eyebrow { margin-bottom: 12px; }
+  .page-hero__title { font-size: clamp(32px, 8.7vw, 42px); line-height: 1.05; margin: 0 0 14px; }
   .page-hero__lede { font-size: 15.5px; line-height: 1.6; }
 }
 
