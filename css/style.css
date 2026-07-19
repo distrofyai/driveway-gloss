@@ -3900,3 +3900,11 @@ input, select, textarea {
   .stat-row__item { border-left: 0; border-top: 1px solid var(--border); padding: 16px 4px; }
   .stat-row__item:first-child { border-top: 0; }
 }
+
+/* Mobile (home): move the FAQ / "Common questions" section below the quote form,
+   and hide its Get-a-Quote button (redundant right after the form). */
+@media (max-width: 768px) {
+  #top { display: flex; flex-direction: column; }
+  #top > #about { order: 1; }
+  #about .why__content > .btn { display: none; }
+}
