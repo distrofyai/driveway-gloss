@@ -3756,11 +3756,13 @@ input, select, textarea {
   inset: 0;
   background-repeat: no-repeat;
   background-size: auto 200%;
+  transform: translateZ(0);
 }
 .ba-compare__img--after { background-position: center bottom; }
 .ba-compare__img--before {
   background-position: center top;
   clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+  will-change: clip-path;
 }
 .ba-compare__tag {
   position: absolute;
@@ -3772,9 +3774,7 @@ input, select, textarea {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #fff;
-  background: rgba(10,10,12,0.6);
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
+  background: rgba(10,10,12,0.72);
   border-radius: 999px;
   pointer-events: none;
 }

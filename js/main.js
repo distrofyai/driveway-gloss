@@ -336,12 +336,19 @@
 
   // ---------- Before/After comparison slider (drag to reveal) ----------
   document.querySelectorAll('[data-ba-compare]').forEach((el) => {
+    let raf = null;
+    let pending = 50;
+    const flush = () => {
+      raf = null;
+      el.style.setProperty('--pos', pending + '%');
+      el.setAttribute('aria-valuenow', Math.round(pending));
+    };
     const setPos = (clientX) => {
       const rect = el.getBoundingClientRect();
       let p = ((clientX - rect.left) / rect.width) * 100;
-      p = Math.max(0, Math.min(100, p));
-      el.style.setProperty('--pos', p + '%');
-      el.setAttribute('aria-valuenow', Math.round(p));
+      pending = Math.max(0, Math.min(100, p));
+      // Coalesce rapid pointer events into one update per animation frame.
+      if (raf === null) raf = requestAnimationFrame(flush);
     };
     let dragging = false;
     el.addEventListener('pointerdown', (e) => {
