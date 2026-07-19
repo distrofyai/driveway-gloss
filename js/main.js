@@ -334,6 +334,38 @@
 
   document.querySelectorAll('[data-base-carousel]').forEach(initCarousel);
 
+  // ---------- Before/After comparison slider (drag to reveal) ----------
+  document.querySelectorAll('[data-ba-compare]').forEach((el) => {
+    const setPos = (clientX) => {
+      const rect = el.getBoundingClientRect();
+      let p = ((clientX - rect.left) / rect.width) * 100;
+      p = Math.max(0, Math.min(100, p));
+      el.style.setProperty('--pos', p + '%');
+      el.setAttribute('aria-valuenow', Math.round(p));
+    };
+    let dragging = false;
+    el.addEventListener('pointerdown', (e) => {
+      dragging = true;
+      el.setPointerCapture(e.pointerId);
+      setPos(e.clientX);
+    });
+    el.addEventListener('pointermove', (e) => { if (dragging) setPos(e.clientX); });
+    const stop = () => { dragging = false; };
+    el.addEventListener('pointerup', stop);
+    el.addEventListener('pointercancel', stop);
+    // Keyboard support
+    el.addEventListener('keydown', (e) => {
+      const cur = parseFloat(el.getAttribute('aria-valuenow')) || 50;
+      let next = cur;
+      if (e.key === 'ArrowLeft') next = Math.max(0, cur - 4);
+      else if (e.key === 'ArrowRight') next = Math.min(100, cur + 4);
+      else return;
+      e.preventDefault();
+      el.style.setProperty('--pos', next + '%');
+      el.setAttribute('aria-valuenow', Math.round(next));
+    });
+  });
+
   // ---------- Smooth scroll polish ----------
   // CSS handles smooth-scroll for anchor jumps. We just need to compensate
   // for the sticky nav so anchors don't land underneath it.

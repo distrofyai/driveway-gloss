@@ -3700,6 +3700,93 @@ input, select, textarea {
   white-space: nowrap;
 }
 
+/* ---------- Before/After comparison slider (drag to reveal) ---------- */
+.ba-compare {
+  position: relative;
+  --pos: 50%;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  aspect-ratio: 5 / 2;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  cursor: ew-resize;
+  background: var(--bg-alt);
+}
+.ba-compare__img {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 200%;
+}
+.ba-compare__img--after { background-position: center bottom; }
+.ba-compare__img--before {
+  background-position: center top;
+  clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+}
+.ba-compare__tag {
+  position: absolute;
+  top: 14px;
+  padding: 5px 12px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(10,10,12,0.6);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  border-radius: 999px;
+  pointer-events: none;
+}
+.ba-compare__tag--before { left: 14px; }
+.ba-compare__tag--after { right: 14px; }
+.ba-compare__handle {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: var(--pos);
+  width: 3px;
+  margin-left: -1.5px;
+  background: #fff;
+  pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
+}
+.ba-compare__grip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--shadow-md), 0 0 0 1px rgba(0,0,0,0.05);
+  display: grid;
+  place-items: center;
+  color: var(--text);
+  transition: transform .15s var(--ease);
+}
+.ba-compare:hover .ba-compare__grip { transform: translate(-50%, -50%) scale(1.06); }
+.ba-compare__grip svg { width: 22px; height: 22px; }
+.ba-compare:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.ba-compare__caption {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 22px auto 0;
+  max-width: 560px;
+}
+@media (max-width: 600px) {
+  .ba-compare__grip { width: 40px; height: 40px; }
+  .ba-compare__caption { font-size: 13px; }
+}
+
 /* Trust strip (Contact page) — quick reassurance row */
 .trust-strip {
   background: var(--bg-alt);

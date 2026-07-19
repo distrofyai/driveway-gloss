@@ -605,60 +605,22 @@
       <div class="container">
         <header class="section__head reveal">
           <span class="eyebrow">Before &amp; After</span>
-          <h2 class="section__title">Real cars. Real transformations.</h2>
-          <p class="section__lede">A few recent jobs — top of each photo is the starting point, bottom is after a Driveway Gloss detail.</p>
+          <h2 class="section__title">Slide to see the difference.</h2>
+          <p class="section__lede">Drag across a real Driveway Gloss exterior detail — dull, water-spotted paint on one side, a true mirror finish on the other.</p>
         </header>
 
-        <div class="base-carousel base-carousel--ba reveal" data-base-carousel>
-          <button class="base-carousel__arrow base-carousel__arrow--prev" type="button" aria-label="Previous transformation">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <button class="base-carousel__arrow base-carousel__arrow--next" type="button" aria-label="Next transformation">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        <div class="ba-grid">
-          <figure class="ba-card">
-            <div class="ba-card__media">
-              <img src="images/before-after-exterior.jpg" alt="Black BMW 5 Series before and after an exterior detail — dusty, water-spotted hood on top; deep mirror-gloss finish on the bottom" loading="lazy" />
-              <span class="ba-card__label ba-card__label--top">Before</span>
-              <span class="ba-card__label ba-card__label--bottom">After</span>
+        <div class="ba-compare reveal" data-ba-compare tabindex="0" role="slider" aria-label="Before and after exterior detail — drag to compare" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <div class="ba-compare__img ba-compare__img--after" style="background-image:url('images/before-after-exterior.jpg')" role="img" aria-label="After — deep mirror-gloss finish"></div>
+          <div class="ba-compare__img ba-compare__img--before" style="background-image:url('images/before-after-exterior.jpg')" role="img" aria-label="Before — dusty, water-spotted paint"></div>
+          <span class="ba-compare__tag ba-compare__tag--before">Before</span>
+          <span class="ba-compare__tag ba-compare__tag--after">After</span>
+          <div class="ba-compare__handle">
+            <div class="ba-compare__grip" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7l-4 5 4 5M15 7l4 5-4 5"/></svg>
             </div>
-            <figcaption>
-              <strong>Exterior Restoration</strong>
-              <span>Paint correction + protective wax restored a true mirror finish.</span>
-            </figcaption>
-          </figure>
-
-          <figure class="ba-card">
-            <div class="ba-card__media">
-              <img src="images/before-after-truck-wheel.jpg" alt="RAM truck wheel before and after — caked-on dust and rust on top, clean polished chrome on the bottom" loading="lazy" />
-              <span class="ba-card__label ba-card__label--top">Before</span>
-              <span class="ba-card__label ba-card__label--bottom">After</span>
-            </div>
-            <figcaption>
-              <strong>Wheel Restoration</strong>
-              <span>Years of grime stripped — chrome brought back to its original shine.</span>
-            </figcaption>
-          </figure>
-
-          <figure class="ba-card">
-            <div class="ba-card__media">
-              <img src="images/before-after-interior-subaru.jpg" alt="Subaru interior before and after a deep clean — dusty dash and grimy seats on top; fresh, clean cabin on the bottom" loading="lazy" />
-              <span class="ba-card__label ba-card__label--top">Before</span>
-              <span class="ba-card__label ba-card__label--bottom">After</span>
-            </div>
-            <figcaption>
-              <strong>Interior Restoration</strong>
-              <span>Dust, grime, and everyday wear lifted — back to a fresh, clean cabin.</span>
-            </figcaption>
-          </figure>
-        </div>
-          <div class="base-carousel__dots" role="tablist" aria-label="Transformations navigation">
-            <button class="base-carousel__dot is-active" type="button" role="tab" aria-label="Show transformation 1" aria-selected="true"></button>
-            <button class="base-carousel__dot" type="button" role="tab" aria-label="Show transformation 2"></button>
-            <button class="base-carousel__dot" type="button" role="tab" aria-label="Show transformation 3"></button>
           </div>
         </div>
+        <p class="ba-compare__caption reveal">Exterior Restoration — paint correction and protective wax restored a true mirror finish.</p>
       </div>
     </section>
 
