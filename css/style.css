@@ -3758,7 +3758,7 @@ input, select, textarea {
   position: relative;
   --pos: 50%;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 8 / 5;
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--border);
@@ -3772,13 +3772,14 @@ input, select, textarea {
 .ba-compare__img {
   position: absolute;
   inset: 0;
-  background-repeat: no-repeat;
-  background-size: auto 200%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
   transform: translateZ(0);
+  pointer-events: none;
 }
-.ba-compare__img--after { background-position: center bottom; }
 .ba-compare__img--before {
-  background-position: center top;
   clip-path: inset(0 calc(100% - var(--pos)) 0 0);
   will-change: clip-path;
 }
