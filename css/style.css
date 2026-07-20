@@ -1156,6 +1156,51 @@ input, select, textarea {
   text-align: left;
   margin-top: 12px;
 }
+
+/* ---------- Why: text-left / media-right variant (About → family) ---------- */
+.why--reverse {
+  grid-template-columns: 1.1fr 1fr;
+}
+.why__lede {
+  font-size: clamp(16px, 1.8vw, 19px);
+  font-weight: 500;
+  color: var(--text-strong, var(--text));
+  line-height: 1.5;
+}
+
+/* Two photos side by side, staggered — both stay visible on every screen. */
+.family-media {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(12px, 2vw, 20px);
+  align-items: start;
+}
+.family-photo {
+  margin: 0;
+}
+.family-photo--offset {
+  margin-top: clamp(28px, 6vw, 64px);
+}
+.family-photo__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  background: var(--bg-alt);
+}
+
+@media (max-width: 960px) {
+  .why--reverse { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .family-media { gap: 10px; }
+  .family-photo--offset { margin-top: 22px; }
+  .family-photo__img { border-radius: 16px; }
+}
 /* ---------- Why FAQ (Q&A accordion, desktop + mobile) ---------- */
 .why__faq {
   display: grid;
