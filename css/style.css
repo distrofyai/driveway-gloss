@@ -4163,7 +4163,9 @@ input, select, textarea {
   box-shadow: var(--shadow-lg);
   user-select: none;
   -webkit-user-select: none;
-  touch-action: none;
+  /* pan-y, not none: the slider still gets horizontal drags, but a vertical
+     swipe that starts on it scrolls the page instead of being swallowed. */
+  touch-action: pan-y;
   cursor: ew-resize;
   background: var(--bg-alt);
 }
@@ -4174,12 +4176,16 @@ input, select, textarea {
   height: 100%;
   object-fit: cover;
   display: block;
-  transform: translateZ(0);
   pointer-events: none;
 }
+/* No translateZ and no will-change here on purpose. Promoting these images to
+   their own compositor layers made dragging WORSE, not better: clip-path is
+   not a compositor-animatable property, so each frame forced a full
+   re-rasterisation of the promoted layer instead of a cheap partial repaint of
+   a 1080x674 image. The initial clip is declared here; JS then writes
+   clip-path straight onto this element while dragging. */
 .ba-compare__img--before {
   clip-path: inset(0 calc(100% - var(--pos)) 0 0);
-  will-change: clip-path;
 }
 .ba-compare__tag {
   position: absolute;

@@ -343,10 +343,21 @@
 
   // ---------- Before/After comparison slider (drag to reveal) ----------
   document.querySelectorAll('[data-ba-compare]').forEach((el) => {
+    const beforeImg = el.querySelector('.ba-compare__img--before');
     let raf = null;
     let pending = 50;
     const flush = () => {
       raf = null;
+      // Write the clip straight onto the image. Setting --pos on the container
+      // instead means every drag frame invalidates style for the whole subtree
+      // (both images, handle, grip, both labels) because any of them might read
+      // the property. The handle and grip still use --pos, but they are cheap;
+      // the image is the expensive one to restyle.
+      if (beforeImg) {
+        const clip = 'inset(0 ' + (100 - pending) + '% 0 0)';
+        beforeImg.style.clipPath = clip;
+        beforeImg.style.webkitClipPath = clip;
+      }
       el.style.setProperty('--pos', pending + '%');
       el.setAttribute('aria-valuenow', Math.round(pending));
     };
@@ -360,7 +371,9 @@
     let dragging = false;
     el.addEventListener('pointerdown', (e) => {
       dragging = true;
-      el.setPointerCapture(e.pointerId);
+      // Guarded: an invalid pointerId throws, which would otherwise abort the
+      // handler before the first position is ever applied.
+      try { el.setPointerCapture(e.pointerId); } catch (err) {}
       setPos(e.clientX);
     });
     el.addEventListener('pointermove', (e) => { if (dragging) setPos(e.clientX); });
@@ -375,8 +388,11 @@
       else if (e.key === 'ArrowRight') next = Math.min(100, cur + 4);
       else return;
       e.preventDefault();
-      el.style.setProperty('--pos', next + '%');
-      el.setAttribute('aria-valuenow', Math.round(next));
+      // Routed through the same setter as dragging: the image now carries an
+      // inline clip-path, which would otherwise win over the stylesheet rule
+      // and leave keyboard users moving the handle but not the image.
+      pending = next;
+      flush();
     });
   });
 
