@@ -2272,7 +2272,15 @@ input, select, textarea {
     border-radius: 5px;
   }
 
-  /* Smaller price + tighter list on mobile cards (checkmark bullets inherited from base) */
+  /* Home page mobile: no figures on the package cards. The cards lead with the
+     photo and what is included; pricing lives on the services page and in the
+     quote form. .base-card__price appears only on index.html, so this needs no
+     page scoping. Hiding it leaves the h3 alone in a space-between flex row,
+     which simply left-aligns the name. */
+  .base-card__price { display: none; }
+
+  /* Kept for the desktop-width rule below 720px on the services section, in
+     case prices are ever shown here again. */
   #services .base-card__price { font-size: 13px; }
   #services .base-card__list { gap: 11px; }
   #services .base-card__list li { font-size: 14px; }
