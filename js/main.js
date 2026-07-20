@@ -342,58 +342,82 @@
   document.querySelectorAll('[data-base-carousel]').forEach(initCarousel);
 
   // ---------- Before/After comparison slider (drag to reveal) ----------
+  // Mechanics ported from the Benny's Pressure Washing slider, which is smooth:
+  // write the styles synchronously in the move handler, straight onto the two
+  // elements that change, and listen for mousemove on window so the drag keeps
+  // tracking when the cursor leaves the frame. No requestAnimationFrame: the
+  // browser already fires one move event per frame while dragging, so
+  // coalescing only added a frame of latency behind the cursor. No custom
+  // property either, since writing one on the container restyles every
+  // descendant that could read it.
   document.querySelectorAll('[data-ba-compare]').forEach((el) => {
     const beforeImg = el.querySelector('.ba-compare__img--before');
-    let raf = null;
-    let pending = 50;
-    const flush = () => {
-      raf = null;
-      // Write the clip straight onto the image. Setting --pos on the container
-      // instead means every drag frame invalidates style for the whole subtree
-      // (both images, handle, grip, both labels) because any of them might read
-      // the property. The handle and grip still use --pos, but they are cheap;
-      // the image is the expensive one to restyle.
-      if (beforeImg) {
-        const clip = 'inset(0 ' + (100 - pending) + '% 0 0)';
-        beforeImg.style.clipPath = clip;
-        beforeImg.style.webkitClipPath = clip;
-      }
-      el.style.setProperty('--pos', pending + '%');
-      el.setAttribute('aria-valuenow', Math.round(pending));
+    const handle = el.querySelector('.ba-compare__handle');
+    if (!beforeImg) return;
+
+    let pos = 50;
+
+    const apply = (p) => {
+      pos = p < 0 ? 0 : p > 100 ? 100 : p;
+      const clip = 'inset(0 ' + (100 - pos) + '% 0 0)';
+      beforeImg.style.clipPath = clip;
+      beforeImg.style.webkitClipPath = clip;
+      if (handle) handle.style.left = pos + '%';
+      el.setAttribute('aria-valuenow', Math.round(pos));
     };
-    const setPos = (clientX) => {
+
+    const fromClientX = (clientX) => {
       const rect = el.getBoundingClientRect();
-      let p = ((clientX - rect.left) / rect.width) * 100;
-      pending = Math.max(0, Math.min(100, p));
-      // Coalesce rapid pointer events into one update per animation frame.
-      if (raf === null) raf = requestAnimationFrame(flush);
+      if (!rect.width) return;
+      apply(((clientX - rect.left) / rect.width) * 100);
     };
+
+    // ----- Mouse -----
     let dragging = false;
-    el.addEventListener('pointerdown', (e) => {
-      dragging = true;
-      // Guarded: an invalid pointerId throws, which would otherwise abort the
-      // handler before the first position is ever applied.
-      try { el.setPointerCapture(e.pointerId); } catch (err) {}
-      setPos(e.clientX);
-    });
-    el.addEventListener('pointermove', (e) => { if (dragging) setPos(e.clientX); });
-    const stop = () => { dragging = false; };
-    el.addEventListener('pointerup', stop);
-    el.addEventListener('pointercancel', stop);
-    // Keyboard support
-    el.addEventListener('keydown', (e) => {
-      const cur = parseFloat(el.getAttribute('aria-valuenow')) || 50;
-      let next = cur;
-      if (e.key === 'ArrowLeft') next = Math.max(0, cur - 4);
-      else if (e.key === 'ArrowRight') next = Math.min(100, cur + 4);
-      else return;
+    el.addEventListener('mousedown', (e) => {
       e.preventDefault();
-      // Routed through the same setter as dragging: the image now carries an
-      // inline clip-path, which would otherwise win over the stylesheet rule
-      // and leave keyboard users moving the handle but not the image.
-      pending = next;
-      flush();
+      dragging = true;
+      fromClientX(e.clientX);
     });
+    window.addEventListener('mousemove', (e) => { if (dragging) fromClientX(e.clientX); });
+    window.addEventListener('mouseup', () => { dragging = false; });
+
+    // ----- Touch -----
+    // Page scrolling wins unless the gesture is clearly sideways, so a vertical
+    // swipe that happens to start on the slider still scrolls the page.
+    let startX = null;
+    let startY = null;
+    let touchDragging = false;
+    el.addEventListener('touchstart', (e) => {
+      const t = e.touches[0];
+      startX = t.clientX;
+      startY = t.clientY;
+      touchDragging = false;
+    }, { passive: true });
+    el.addEventListener('touchmove', (e) => {
+      if (startX === null) return;
+      const t = e.touches[0];
+      if (!touchDragging) {
+        const dx = Math.abs(t.clientX - startX);
+        const dy = Math.abs(t.clientY - startY);
+        if (dy > dx) { startX = null; return; }  // vertical intent: let it scroll
+        if (dx < 6) return;                      // not decisive yet
+        touchDragging = true;
+      }
+      if (e.cancelable) e.preventDefault();
+      fromClientX(t.clientX);
+    }, { passive: false });
+    const endTouch = () => { startX = null; touchDragging = false; };
+    el.addEventListener('touchend', endTouch);
+    el.addEventListener('touchcancel', endTouch);
+
+    // ----- Keyboard -----
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); apply(pos - 4); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); apply(pos + 4); }
+    });
+
+    apply(50);
   });
 
   // ---------- Smooth scroll polish ----------
