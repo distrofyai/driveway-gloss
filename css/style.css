@@ -3953,11 +3953,19 @@ input, select, textarea {
   position: absolute;
   inset: 0;
   z-index: -1;
+  /* Shade is overridable because the default was tuned for a white SUV. Over a
+     black car it swallows the photo entirely and the hero reads as a flat grey
+     panel, so darker subjects get a lighter scrim. */
   background-image:
-    linear-gradient(180deg, rgba(10,10,12,0.66) 0%, rgba(10,10,12,0.82) 100%),
+    linear-gradient(180deg,
+      var(--page-hero-shade-top, rgba(10,10,12,0.66)) 0%,
+      var(--page-hero-shade-bottom, rgba(10,10,12,0.82)) 100%),
     var(--page-hero-image);
   background-size: cover;
-  background-position: center 35%;
+  /* Overridable per page: the default 35% suits a wide three-quarter shot, but
+     tighter crops (an interior, a grille) need centring so the subject is not
+     pushed out of frame. */
+  background-position: var(--page-hero-pos, center 35%);
   background-repeat: no-repeat;
 }
 .page-hero__inner {
@@ -4475,4 +4483,121 @@ input, select, textarea {
      three different type sizes down the page. */
   #family .family__body p { font-size: 13.5px; line-height: 1.5; }
   #family .family__body p + p { margin-top: 10px; }
+}
+
+/* ==========================================================================
+   Gallery lightbox
+   Built and injected by main.js on first open, so the markup lives in one
+   place rather than being duplicated across every page with a gallery.
+   ========================================================================== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  place-items: center;
+  padding: clamp(16px, 4vw, 48px);
+  background: rgba(9, 9, 12, 0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.lightbox.is-open { display: grid; }
+
+.lightbox__stage {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  max-width: 100%;
+  max-height: 100%;
+}
+.lightbox__img {
+  display: block;
+  max-width: min(100%, 1100px);
+  /* Leaves room for the caption row underneath at short viewport heights. */
+  max-height: calc(100dvh - clamp(120px, 22vh, 190px));
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius);
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.7);
+  background: var(--bg-alt);
+}
+.lightbox__cap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  max-width: 760px;
+  text-align: center;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.82);
+}
+.lightbox__count {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.55);
+}
+.lightbox__cta {
+  flex-shrink: 0;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 600;
+  transition: background .25s var(--ease);
+}
+.lightbox__cta:hover,
+.lightbox__cta:focus-visible { background: var(--accent-hi); color: #fff; }
+
+.lightbox__close,
+.lightbox__nav {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  cursor: pointer;
+  transition: background .2s var(--ease), transform .2s var(--ease);
+}
+.lightbox__close:hover,
+.lightbox__nav:hover { background: rgba(255,255,255,0.24); }
+.lightbox__close:active,
+.lightbox__nav:active { transform: scale(0.94); }
+.lightbox__close {
+  top: clamp(12px, 3vw, 24px);
+  right: clamp(12px, 3vw, 24px);
+  width: 44px;
+  height: 44px;
+}
+.lightbox__close svg { width: 20px; height: 20px; }
+.lightbox__nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+}
+.lightbox__nav:active { transform: translateY(-50%) scale(0.94); }
+.lightbox__nav--prev { left: clamp(8px, 2.5vw, 26px); }
+.lightbox__nav--next { right: clamp(8px, 2.5vw, 26px); }
+.lightbox__nav svg { width: 24px; height: 24px; }
+.lightbox__nav[hidden] { display: none; }
+
+/* On a phone the side arrows would sit over the photo, so they move to the
+   bottom corners where the caption row already reserves space. */
+@media (max-width: 640px) {
+  .lightbox__nav { top: auto; bottom: 14px; transform: none; width: 42px; height: 42px; }
+  .lightbox__nav:active { transform: scale(0.94); }
+  .lightbox__cap { font-size: 12.5px; padding: 0 52px; }
 }

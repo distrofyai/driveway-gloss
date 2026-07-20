@@ -103,19 +103,13 @@
   }
 
   // ---------- Mobile quote accordions ----------
-  const quoteAccordions = document.querySelectorAll('.quote-form .form-accordion');
-  if (quoteAccordions.length) {
-    const accordionMq = window.matchMedia('(max-width: 768px)');
-    const syncQuoteAccordions = (e) => {
-      quoteAccordions.forEach((accordion) => {
-        accordion.open = !e.matches;
-      });
-    };
-
-    syncQuoteAccordions(accordionMq);
-    if (accordionMq.addEventListener) accordionMq.addEventListener('change', syncQuoteAccordions);
-    else if (accordionMq.addListener) accordionMq.addListener(syncQuoteAccordions);
-  }
+  // Upgrades starts collapsed at every width. It used to open automatically
+  // above 768px, which put a long optional list between the packages and the
+  // name/phone fields people actually came to fill in. No resize listener
+  // either: re-syncing on resize would snap it shut under someone mid-read.
+  document.querySelectorAll('.quote-form .form-accordion').forEach((accordion) => {
+    accordion.open = false;
+  });
 
   // ---------- Single-select button groups (Individual Services + Packages) ----------
   // Checkboxes (not radios) so a second click can clear the selection,
@@ -419,6 +413,122 @@
 
     apply(50);
   });
+
+  /* ---------- Gallery lightbox ----------
+     Gallery tiles are anchors to contact.html, which stays the no-JS fallback.
+     With JS we intercept the click and open a preview instead, and carry the
+     quote link into the preview so the original path to contact is not lost. */
+  (function () {
+    const tiles = Array.prototype.slice.call(document.querySelectorAll('.gallery__item'));
+    if (!tiles.length) return;
+
+    let box, imgEl, capEl, countEl, prevBtn, nextBtn;
+    let shown = [];          // tiles actually visible, resolved at open time
+    let index = 0;
+    let lastFocused = null;
+
+    const build = () => {
+      box = document.createElement('div');
+      box.className = 'lightbox';
+      box.setAttribute('role', 'dialog');
+      box.setAttribute('aria-modal', 'true');
+      box.setAttribute('aria-label', 'Photo preview');
+      box.innerHTML =
+        '<button class="lightbox__close" type="button" aria-label="Close preview">' +
+          '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>' +
+        '</button>' +
+        '<button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Previous photo">' +
+          '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '</button>' +
+        '<button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Next photo">' +
+          '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '</button>' +
+        '<figure class="lightbox__stage">' +
+          '<img class="lightbox__img" alt="" />' +
+          '<figcaption class="lightbox__cap">' +
+            '<span class="lightbox__count"></span>' +
+            '<span class="lightbox__text"></span>' +
+            '<a class="lightbox__cta" href="contact.html">Get a quote</a>' +
+          '</figcaption>' +
+        '</figure>';
+      document.body.appendChild(box);
+
+      imgEl = box.querySelector('.lightbox__img');
+      capEl = box.querySelector('.lightbox__text');
+      countEl = box.querySelector('.lightbox__count');
+      prevBtn = box.querySelector('.lightbox__nav--prev');
+      nextBtn = box.querySelector('.lightbox__nav--next');
+
+      box.querySelector('.lightbox__close').addEventListener('click', close);
+      prevBtn.addEventListener('click', () => step(-1));
+      nextBtn.addEventListener('click', () => step(1));
+      // Backdrop only: clicks on the image, caption or controls must not close.
+      box.addEventListener('click', (e) => { if (e.target === box) close(); });
+    };
+
+    const render = () => {
+      const src = shown[index].querySelector('img');
+      if (!src) return;
+      imgEl.src = src.currentSrc || src.src;
+      imgEl.alt = src.alt || '';
+      capEl.textContent = src.alt || '';
+      countEl.textContent = (index + 1) + ' / ' + shown.length;
+      const many = shown.length > 1;
+      prevBtn.hidden = !many;
+      nextBtn.hidden = !many;
+    };
+
+    const step = (delta) => {
+      index = (index + delta + shown.length) % shown.length;
+      render();
+    };
+
+    const onKey = (e) => {
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') step(-1);
+      else if (e.key === 'ArrowRight') step(1);
+    };
+
+    function close() {
+      box.classList.remove('is-open');
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+      document.removeEventListener('keydown', onKey);
+      if (lastFocused) lastFocused.focus();
+    }
+
+    const open = (tile) => {
+      if (!box) build();
+      // Resolved per open: the home page hides tiles past the third on mobile,
+      // and the gallery hides everything past the twelfth until expanded, so
+      // the preview should only step through what is actually on screen.
+      shown = tiles.filter((t) => t.offsetParent !== null);
+      index = shown.indexOf(tile);
+      if (index < 0) { shown = tiles; index = tiles.indexOf(tile); }
+      lastFocused = document.activeElement;
+      render();
+      box.classList.add('is-open');
+      // Hiding the scrollbar reclaims its width and shifts the centred layout
+      // sideways, which is visible the moment the overlay closes. Pad the body
+      // by exactly the width that disappeared.
+      const barWidth = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflow = 'hidden';
+      if (barWidth > 0) document.body.style.paddingRight = barWidth + 'px';
+      document.addEventListener('keydown', onKey);
+      box.querySelector('.lightbox__close').focus();
+    };
+
+    tiles.forEach((tile) => {
+      tile.addEventListener('click', (e) => {
+        if (!tile.querySelector('img')) return;
+        // Let modifier and middle clicks through: these are real anchors, and
+        // people expect ctrl/cmd-click on a photo grid to open a new tab.
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        e.preventDefault();
+        open(tile);
+      });
+    });
+  })();
 
   // ---------- Smooth scroll polish ----------
   // CSS handles smooth-scroll for anchor jumps. We just need to compensate
