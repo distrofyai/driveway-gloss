@@ -230,7 +230,7 @@
       padding-bottom: 14px; margin-bottom: 4px; border-bottom: 1px solid var(--sv-border);
     }
     .sv-menu-card__title { font-family: var(--sv-fd); font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sv-accent); margin: 0; }
-    .sv-menu-card__hint { font-size: 11px; color: var(--sv-faint); letter-spacing: 0.02em; white-space: nowrap; }
+    .sv-menu-card__hint { font-size: 11px; color: var(--sv-muted); letter-spacing: 0.02em; white-space: nowrap; }
     .sv-menu-list { list-style: none; margin: 0; padding: 0; }
     .sv-menu-row { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--sv-border); }
     .sv-menu-row:last-child { border-bottom: 0; padding-bottom: 0; }
@@ -251,13 +251,13 @@
     .sv-ceramic__title { font-family: var(--sv-fd); font-weight: 700; font-size: clamp(20px, 2.4vw, 27px); letter-spacing: -0.02em; color: var(--sv-ink); margin: 0 0 8px; }
     .sv-ceramic__desc { color: var(--sv-muted); font-size: 14px; line-height: 1.6; margin: 0; max-width: 54ch; }
     .sv-ceramic__price { flex-shrink: 0; align-self: center; text-align: right; padding: clamp(20px, 2.4vw, 32px); padding-left: 0; }
-    .sv-ceramic__from { display: block; font-family: var(--sv-fd); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sv-faint); margin-bottom: 2px; }
+    .sv-ceramic__from { display: block; font-family: var(--sv-fd); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sv-muted); margin-bottom: 2px; }
     .sv-ceramic__price .sv-menu-price { font-size: clamp(26px, 2.8vw, 32px); }
 
     .sv-swipe-hint { display: none; }
     .sv-build__cta { display: flex; justify-content: center; margin-top: clamp(24px, 3.4vw, 40px); }
     .sv-build__cta .sv-btn { min-width: 320px; }
-    .sv-build__note { margin: 20px 0 0; font-size: 12.5px; color: var(--sv-faint); line-height: 1.5; text-align: center; }
+    .sv-build__note { margin: 20px 0 0; font-size: 12.5px; color: var(--sv-muted); line-height: 1.5; text-align: center; }
 
     /* ── FINAL CTA ────────────────────────────────────── */
     .sv-final { position: relative; padding: clamp(48px, 6vw, 80px) 0; overflow: hidden; }
@@ -288,12 +288,12 @@
       .sv-tier__cta { justify-self: start; }
     }
     /* Mobile/tablet: single column stack — clean, no forced heights */
-    @media (max-width: 760px) {
+    @media (max-width: 860px) {
       .sv-build__menus { grid-template-columns: 1fr; }
       .sv-ceramic { flex-direction: column; }
       .sv-ceramic__media { flex: none; max-width: none; aspect-ratio: 16 / 9; min-height: 0; }
       .sv-ceramic__body { align-self: stretch; }
-      .sv-ceramic__price { align-self: stretch; text-align: left; padding: 0 clamp(18px,5vw,26px) clamp(18px,5vw,26px); }
+      .sv-ceramic__price { align-self: stretch; text-align: left; margin: 0 clamp(18px,5vw,26px); padding: clamp(14px,4vw,18px) 0 clamp(18px,5vw,26px); border-top: 1px solid var(--sv-border); }
       .sv-build__cta .sv-btn { min-width: 0; width: 100%; max-width: 340px; }
     }
     @media (max-width: 560px) {
@@ -436,7 +436,7 @@
 
             <div class="sv-menu-card">
               <div class="sv-menu-card__head">
-                <p class="sv-menu-card__title">Packages</p>
+                <h3 class="sv-menu-card__title">Packages</h3>
                 <span class="sv-menu-card__hint">Complete details</span>
               </div>
               <ul class="sv-menu-list">
@@ -460,7 +460,7 @@
 
             <div class="sv-menu-card">
               <div class="sv-menu-card__head">
-                <p class="sv-menu-card__title">Bases</p>
+                <h3 class="sv-menu-card__title">Bases</h3>
                 <span class="sv-menu-card__hint">Start here</span>
               </div>
               <ul class="sv-menu-list">
@@ -488,7 +488,7 @@
           <div class="sv-build__col">
             <div class="sv-menu-card">
               <div class="sv-menu-card__head">
-                <p class="sv-menu-card__title">Upgrades &amp; Add-ons</p>
+                <h3 class="sv-menu-card__title">Upgrades &amp; Add-ons</h3>
                 <span class="sv-menu-card__hint">Mix &amp; match</span>
               </div>
               <ul class="sv-menu-list">
