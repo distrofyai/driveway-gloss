@@ -2545,14 +2545,17 @@ input, select, textarea {
   .quote__stars-google { font-weight: 700; }
 }
 
+/* The card is white on a white page, so it needs a real drop shadow and a
+   slightly darker hairline to separate from the background; the default
+   --shadow-md left the two surfaces reading as one flat plane. */
 .quote-form {
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-hi);
   border-radius: var(--radius-lg);
   padding: clamp(28px, 4vw, 40px);
   display: grid;
   gap: 26px;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 24px 56px -22px rgba(15,23,42,0.30), 0 4px 14px rgba(15,23,42,0.07);
 }
 /* Brand mark at the top of the quote card. The source PNG is mostly the
    wordmark with little internal padding, so the divider below carries the
@@ -2701,6 +2704,39 @@ input, select, textarea {
 .checkbox-tile:hover {
   border-color: var(--accent);
   background: var(--accent-soft);
+}
+
+/* "Most Popular" flag on the Signature package, mirroring the badge on the
+   packages cards. The row gets top margin so the pill is not clipped, and the
+   badge hides once the tile is selected: the tile turns solid accent then, and
+   a blue pill on a blue tile would disappear. */
+.radio-group:has(.radio-tile--popular) { margin-top: 15px; }
+.radio-tile--popular {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-glow);
+}
+.radio-tile--popular::before {
+  content: 'Most Popular';
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 3px 9px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 2;
+}
+.radio-tile--popular:has(input:checked)::before {
+  background: #fff;
+  color: var(--accent);
 }
 .radio-tile:has(input:checked),
 .checkbox-tile:has(input:checked) {
