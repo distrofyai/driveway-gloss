@@ -4197,37 +4197,6 @@ input, select, textarea {
   .ba-compare__grip { width: 40px; height: 40px; }
 }
 
-/* Trust strip (Contact page): quick reassurance row */
-.trust-strip {
-  background: var(--bg-alt);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-.trust-strip__in {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 14px 34px;
-  padding: 22px 0;
-}
-.trust-strip__item {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 14px;
-  color: var(--text-body);
-}
-.trust-strip__item svg {
-  width: 20px; height: 20px;
-  stroke: var(--accent); fill: none; stroke-width: 1.7;
-  stroke-linecap: round; stroke-linejoin: round;
-  flex-shrink: 0;
-}
-.trust-strip__item b { color: var(--text); font-weight: 600; }
-@media (max-width: 620px) {
-  .trust-strip__in { flex-direction: column; gap: 14px; }
-}
-
 /* About page: quick stat row */
 .stat-row {
   display: grid;
@@ -4414,12 +4383,25 @@ input, select, textarea {
      column was ~160px on a 390px phone, which forced the first paragraph into
      eleven cramped lines beside its photo. The gutter comes from padding on
      the text, not column-gap, so twelve tracks do not eat the width. */
+  /* Photos stretch to their row instead of keeping a fixed 3:4 box, so each
+     photo always ends level with the paragraph beside it. Sizing the type to
+     fit a fixed photo is not solvable: at these column widths the copy runs
+     taller than a 3:4 photo at every phone size (measured 21px over at 430px
+     rising to 161px at 360px), and it gets worse the narrower the screen. The
+     crop stays gentle because the overflow is modest and both subjects are
+     centred in frame. */
   #family .why--reverse {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     column-gap: 0;
     row-gap: 18px;
-    align-items: start;
+    align-items: stretch;
+  }
+  #family .family-photo { height: 100%; }
+  #family .family-photo__img {
+    height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
   }
   #family .why__content,
   #family .family-media { display: contents; }
