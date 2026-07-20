@@ -4009,7 +4009,17 @@ input, select, textarea {
   margin: 0;
   max-width: 640px;
   line-height: 1.7;
-  text-shadow: 0 1px 12px rgba(0,0,0,0.2);
+  text-shadow: 0 1px 14px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.4);
+}
+/* The scrims are deliberately light so the photos read, which leaves the small
+   eyebrow sitting on whatever happens to be behind it: on About that is a
+   bright garage door, where it measured 3.7:1 against a 4.5:1 requirement.
+   A shadow holds the text legible without darkening the picture. */
+.page-hero .eyebrow {
+  text-shadow: 0 1px 10px rgba(0,0,0,0.75), 0 1px 3px rgba(0,0,0,0.5);
+}
+.page-hero__title {
+  text-shadow: 0 2px 26px rgba(0,0,0,0.42), 0 1px 4px rgba(0,0,0,0.3);
 }
 
 /* Hero CTA row. Mirrors the services page hero (same 28px offset and button
