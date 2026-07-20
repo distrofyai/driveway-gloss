@@ -50,7 +50,7 @@
       --sv-bg-2: #f5f5f7;
       --sv-ink: #18181b;
       --sv-body: #3f3f46;
-      --sv-muted: #71717a;
+      --sv-muted: #6b6b75;
       --sv-faint: #a1a1aa;
       --sv-border: #e4e4e7;
       --sv-border-hi: #d4d4d8;
@@ -74,33 +74,52 @@
     .sv-eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
       font-family: var(--sv-fd); font-size: 12px; font-weight: 600;
-      letter-spacing: 0.22em; text-transform: uppercase; color: var(--sv-accent);
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--sv-accent);
     }
-    .sv-eyebrow::before { content: ''; width: 26px; height: 1px; background: var(--sv-accent); opacity: .6; }
+    /* Eyebrow, heading and section head all matched to the global .eyebrow /
+       .section__title / .section__head. Previously this page ran a tighter
+       heading (40px vs 44px, weight 700 vs 600), a wider eyebrow letter-spacing
+       with an extra leading dash, and left-aligned section heads while every
+       other page centres them. The hero on this same page already used the
+       global .eyebrow, so the dash appeared halfway down the page. */
     .sv-h2 {
-      font-family: var(--sv-fd); font-weight: 700; letter-spacing: -0.03em;
-      font-size: clamp(26px, 3.6vw, 40px); line-height: 1.08; margin: 14px 0 0; color: var(--sv-ink);
+      font-family: var(--sv-fd); font-weight: 600; letter-spacing: -0.025em;
+      font-size: clamp(28px, 4.4vw, 44px); line-height: 1.15; margin: 12px 0 0; color: var(--sv-ink);
     }
-    .sv-sec-head { max-width: 640px; margin-bottom: clamp(34px, 5vw, 52px); }
+    .sv-sec-head { max-width: 720px; margin: 0 auto clamp(34px, 5vw, 52px); text-align: center; }
     .sv-sec-head p { margin: 14px 0 0; color: var(--sv-muted); font-size: clamp(15px,1.5vw,17px); line-height: 1.6; }
 
+    /* Matched to the global .btn / .btn--primary in css/style.css. This page
+       previously used Space Grotesk at 14.5px on an accent-blue fill, which put
+       a blue Space Grotesk hero CTA directly beneath a black Inter nav CTA with
+       the identical "Get a Quote" label. Font, size, min-height, fill and easing
+       now all match, so a primary button looks the same on every page. */
     .sv-btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
-      font-family: var(--sv-fd); font-weight: 600; font-size: 14.5px; letter-spacing: 0.01em;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: var(--sv-fb); font-weight: 600; font-size: 15px; letter-spacing: 0.005em;
       padding: 14px 26px; border-radius: 999px; border: 1px solid transparent;
-      transition: transform .25s cubic-bezier(.2,.7,.2,1), background .25s, border-color .25s, color .25s, box-shadow .25s;
+      min-height: 48px;
+      transition: transform .25s var(--ease), background .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease), box-shadow .25s var(--ease);
       cursor: pointer; white-space: nowrap;
     }
-    .sv-btn--solid { background: var(--sv-accent); color: #fff; box-shadow: 0 12px 30px -12px rgba(37,99,235,0.55); }
-    .sv-btn--solid:hover { transform: translateY(-2px); background: var(--sv-accent-hi); box-shadow: 0 18px 40px -14px rgba(37,99,235,0.6); }
+    .sv-btn--solid { background: var(--ink); color: #fff; box-shadow: 0 8px 22px -8px rgba(0,0,0,0.35); }
+    .sv-btn--solid:hover,
+    .sv-btn--solid:focus-visible { transform: translateY(-2px); background: var(--ink-hi); box-shadow: 0 14px 32px -10px rgba(0,0,0,0.45); }
     .sv-btn--line { background: transparent; color: var(--sv-ink); border-color: var(--sv-border-hi); }
-    .sv-btn--line:hover { transform: translateY(-2px); border-color: var(--sv-ink); background: rgba(0,0,0,0.03); }
-    /* white pill with blue label, used on the dark package cards */
-    .sv-btn--white { background: #fff; color: var(--sv-accent); border-color: #fff; box-shadow: 0 10px 26px -14px rgba(0,0,0,0.55); }
-    .sv-btn--white:hover { transform: translateY(-2px); background: #eaf1ff; color: var(--sv-accent-hi); }
-    /* Hero CTA row sits on the dark photo hero, white outline for the ghost button */
+    .sv-btn--line:hover,
+    .sv-btn--line:focus-visible { transform: translateY(-2px); border-color: var(--sv-ink); background: rgba(0,0,0,0.03); }
+    /* Hero CTA row sits on the dark photo hero, white outline for the ghost
+       button. :focus-visible is paired with :hover so keyboard users get the
+       same treatment instead of falling through to the light-background style. */
     .page-hero .sv-btn--line { color: #fff; border-color: rgba(255,255,255,0.4); }
-    .page-hero .sv-btn--line:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+    .page-hero .sv-btn--line:hover,
+    .page-hero .sv-btn--line:focus-visible { border-color: #fff; background: rgba(255,255,255,0.08); }
+    /* On the dark photo hero the primary inverts to a white pill, matching
+       .hero .btn--primary on index.html. The shared near-black fill would
+       otherwise sit almost invisibly against the dark hero image. */
+    .page-hero .sv-btn--solid { background: #fff; color: var(--ink); box-shadow: 0 10px 26px -14px rgba(0,0,0,0.55); }
+    .page-hero .sv-btn--solid:hover,
+    .page-hero .sv-btn--solid:focus-visible { background: #fff; color: var(--ink); box-shadow: 0 14px 32px -10px rgba(255,255,255,0.5); }
     /* Mobile: hide the hero CTA buttons (nav CTA + sticky call bar already cover it) */
     @media (max-width: 720px) {
       .page-hero .sv-hero__cta { display: none; }
@@ -163,9 +182,14 @@
       border: 1px solid var(--sv-border); border-radius: 999px; background: var(--sv-bg-2);
     }
     .sv-tier__price { text-align: right; display: grid; justify-items: end; gap: 4px; min-width: 168px; }
-    .sv-tier__from { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--sv-faint); font-family: var(--sv-fd); }
+    /* --sv-faint (#a1a1aa) was only 2.56:1 on white and made this label the odd
+       one out: the identical "Starting at" in the Ceramic banner already used
+       --sv-muted. Same label, same page, one grey now. */
+    .sv-tier__from { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--sv-muted); font-family: var(--sv-fd); }
     .sv-tier__amt { font-family: var(--sv-fd); font-weight: 700; font-size: clamp(30px, 3.6vw, 42px); color: var(--sv-ink); line-height: 1; letter-spacing: -0.02em; }
-    .sv-tier__cta { margin-top: 12px; padding: 11px 22px; font-size: 13.5px; }
+    /* min-height matches the global .btn--small; without it this computed to
+       ~43.6px, just under the 44px touch-target minimum. */
+    .sv-tier__cta { margin-top: 12px; padding: 11px 22px; font-size: 14px; min-height: 44px; }
     .sv-tier__badge {
       position: absolute; top: -11px; left: clamp(24px,3vw,38px);
       font-family: var(--sv-fd); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
@@ -280,7 +304,13 @@
     .sv-final p { margin: 13px auto 26px; color: rgba(255,255,255,0.78); font-size: clamp(15px,1.55vw,17px); line-height: 1.6; max-width: 680px; text-wrap: balance; }
     .sv-final .sv-hero__cta { justify-content: center; }
     .sv-final .sv-btn--line { color: #fff; border-color: rgba(255,255,255,0.4); }
-    .sv-final .sv-btn--line:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+    .sv-final .sv-btn--line:hover,
+    .sv-final .sv-btn--line:focus-visible { border-color: #fff; background: rgba(255,255,255,0.08); }
+    /* This band is the same pattern as .cta-band on the other four pages, which
+       locks its primary to accent blue over the dark photo. Matched here. */
+    .sv-final .sv-btn--solid { background: var(--accent); color: #fff; box-shadow: 0 8px 22px -8px var(--accent-glow); }
+    .sv-final .sv-btn--solid:hover,
+    .sv-final .sv-btn--solid:focus-visible { background: var(--accent-hi); color: #fff; }
 
     /* ── RESPONSIVE ───────────────────────────────────── */
     /* Desktop: stretch the Upgrades card so it bottoms out level with the
@@ -310,6 +340,19 @@
       .sv-ceramic__body { align-self: stretch; }
       .sv-ceramic__price { align-self: stretch; text-align: left; margin: 0 clamp(18px,5vw,26px); padding: clamp(14px,4vw,18px) 0 clamp(18px,5vw,26px); border-top: 1px solid var(--sv-border); }
       .sv-build__cta .sv-btn { min-width: 0; width: 100%; max-width: 340px; }
+    }
+    /* Section rhythm on phones. .sv-tiers/.sv-build/.sv-final are not .section,
+       so the global mobile collapse (44px at <=768, 38px at <=480 in
+       css/style.css) never reached them and this page kept full desktop padding
+       on a phone: 64/60/48px against 38px everywhere else. */
+    @media (max-width: 768px) {
+      .sv-tiers, .sv-build { padding: 44px 0; }
+      .sv-final { padding: 44px 0; }
+      .sv-sec-head { margin-bottom: 22px; }
+      .sv-h2 { font-size: clamp(25px, 7vw, 34px); line-height: 1.12; }
+    }
+    @media (max-width: 480px) {
+      .sv-tiers, .sv-build, .sv-final { padding: 38px 0; }
     }
     @media (max-width: 560px) {
       .sv-tier { grid-template-columns: 1fr; }

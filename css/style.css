@@ -18,7 +18,8 @@
   /* Text */
   --text: #18181b;            /* near-black, headlines */
   --text-body: #3f3f46;       /* body */
-  --text-muted: #71717a;      /* subtle */
+  --text-muted: #6b6b75;      /* subtle — darkened from #71717a, which was 4.44:1 on the --bg-alt grey and just missed AA */
+  --star: #d97706;            /* review stars — one gold for every star in the UI */
   --text-on-dark: #fafafa;    /* used over hero video */
   --text-on-dark-muted: rgba(255,255,255,0.78);
 
@@ -177,19 +178,6 @@ input, select, textarea {
   box-shadow: 0 14px 32px -10px rgba(0,0,0,0.45), var(--shadow-glow);
 }
 
-/* Secondary: blue accent */
-.btn--accent {
-  background: var(--accent);
-  color: #fff;
-  box-shadow: 0 8px 22px -8px var(--accent-glow);
-}
-.btn--accent:hover,
-.btn--accent:focus-visible {
-  background: var(--accent-hi);
-  transform: translateY(-2px);
-  box-shadow: 0 14px 32px -8px var(--accent-glow);
-}
-
 /* Ghost: transparent with border */
 .btn--ghost {
   background: transparent;
@@ -204,12 +192,17 @@ input, select, textarea {
   transform: translateY(-2px);
 }
 
-/* Ghost on dark hero */
+/* Ghost on dark hero.
+   :focus-visible must be paired with :hover here. Without it, the generic
+   .btn--ghost:focus-visible rule sets background to the near-white
+   --accent-soft while this block keeps color:#fff, leaving white text on a
+   near-white pill (~1.05:1) for keyboard users. */
 .hero .btn--ghost {
   color: #fff;
   border-color: rgba(255,255,255,0.4);
 }
-.hero .btn--ghost:hover {
+.hero .btn--ghost:hover,
+.hero .btn--ghost:focus-visible {
   border-color: #fff;
   background: rgba(255,255,255,0.08);
   color: #fff;
@@ -276,7 +269,10 @@ input, select, textarea {
   padding: 8px 0;
 }
 .nav__links a:hover { color: var(--accent); }
-.nav__links a.nav__cta { color: #fff; padding: 10px 18px; }
+/* font-weight is restated because .nav__links a (0,1,1) outranks .btn (0,1,0),
+   which otherwise renders the site's most-repeated CTA at 500 while every
+   in-page .btn--primary sits at 600. */
+.nav__links a.nav__cta { color: #fff; padding: 10px 18px; font-weight: 600; }
 .nav__links a.nav__cta:hover { color: #fff; }
 
 .nav__toggle {
@@ -864,7 +860,7 @@ input, select, textarea {
   box-shadow: var(--shadow-lg);
 }
 .testimonial__stars {
-  color: var(--accent);
+  color: var(--star);
   font-size: 14px;
   letter-spacing: 3px;
   margin-bottom: 10px;
@@ -1251,7 +1247,7 @@ input, select, textarea {
   letter-spacing: -0.01em;
 }
 .reviews-badge__stars {
-  color: #f59e0b;
+  color: var(--star);
   letter-spacing: 2px;
   font-size: 14px;
 }
@@ -2381,6 +2377,41 @@ input, select, textarea {
   .quote__map { margin-top: 16px; height: 260px; }
 }
 
+/* Tablet gap fix. The badge is display:none by default, revealed at >=961px
+   above and at <=768px further down, which left it missing entirely between
+   769px and 960px on both index.html and contact.html. */
+@media (min-width: 769px) and (max-width: 960px) {
+  .quote__stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.16);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    text-decoration: none;
+    transition: border-color .25s var(--ease), background .25s var(--ease), transform .25s var(--ease);
+  }
+  .quote__stars:hover,
+  .quote__stars:focus-visible {
+    border-color: rgba(147,197,253,0.6);
+    background: rgba(255,255,255,0.12);
+    transform: translateY(-2px);
+  }
+  .quote__stars-rating { display: inline-flex; gap: 3px; }
+  .quote__stars-rating svg { width: 21px; height: 21px; }
+  .quote__stars-text {
+    font-family: var(--font-display);
+    font-size: 15.5px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+  .quote__stars-google { font-weight: 700; }
+}
+
 .quote-form {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -2678,13 +2709,17 @@ input, select, textarea {
   .cta-band__actions {
     gap: 10px;
   }
+  /* Sized to content rather than locked to 120px. The hard 120px left only
+     ~90px of usable width, and .btn sets white-space:nowrap, so contact.html's
+     longer "Call 704-591-3265" label spilled outside its own pill. These now
+     share the row evenly and grow to fit whatever label they carry. */
   .cta-band__btn {
-    padding: 8px 14px;
-    font-size: 12.5px;
-    flex: 0 0 120px;
-    width: 120px;
+    padding: 10px 16px;
+    font-size: 13px;
+    flex: 0 1 auto;
     min-width: 0;
-    max-width: 120px;
+    min-height: 44px;
+    max-width: 100%;
     text-align: center;
   }
 
@@ -3667,20 +3702,24 @@ input, select, textarea {
 .contact-quote .quote__map-callout-text strong { color: var(--text); }
 .contact-quote .quote__map-callout-text span { color: var(--text-muted); }
 .contact-quote .quote__map-logo { border-color: var(--border); }
-@media (max-width: 720px) {
-  .contact-quote .quote__stars {
-    background: var(--surface-hi);
-    border-color: var(--border);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-  .contact-quote .quote__stars:hover,
-  .contact-quote .quote__stars:focus-visible {
-    border-color: var(--accent);
-    background: var(--accent-soft);
-  }
-  .contact-quote .quote__stars-text { color: var(--text); }
+/* The Google badge is styled for a dark photo background (white text on a
+   translucent white fill). On contact.html the quote section is plain white,
+   so those defaults render white-on-white and the badge vanishes. These
+   overrides used to be trapped inside a max-width:720px query, which left the
+   badge invisible on contact.html at every width above 720px. They apply at
+   all widths now. */
+.contact-quote .quote__stars {
+  background: var(--surface-hi);
+  border-color: var(--border);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
+.contact-quote .quote__stars:hover,
+.contact-quote .quote__stars:focus-visible {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.contact-quote .quote__stars-text { color: var(--text); }
 
 /* Services page: à la carte price list */
 .price-block {
