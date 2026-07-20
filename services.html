@@ -132,8 +132,21 @@
 
       /* Tier cards inside the carousel keep the page's own responsive layout,
          so their shape matches what it was before the carousel existed. The
-         only thing the carousel changes is that they sit in a sliding row. */
+         only thing the carousel changes is that they sit in a sliding row.
+         Vertical rhythm is tightened so a whole card fits comfortably on a
+         phone screen without shrinking the type. */
       .base-carousel--tiers .sv-tier__price { min-width: 0; }
+      .base-carousel--tiers .sv-tier {
+        padding: 20px 18px 22px;
+        gap: 12px;
+      }
+      .base-carousel--tiers .sv-tier__num { font-size: 26px; }
+      .base-carousel--tiers .sv-tier__desc { margin: 5px 0 10px; font-size: 13.5px; line-height: 1.45; }
+      .base-carousel--tiers .sv-tier__feats { gap: 6px; }
+      .base-carousel--tiers .sv-tier__feats li { padding: 4px 9px; font-size: 11.5px; }
+      .base-carousel--tiers .sv-tier__amt { font-size: 30px; }
+      .base-carousel--tiers .sv-tier__price { padding-top: 12px; margin-top: 0; }
+      .base-carousel--tiers .sv-tier__cta { margin-top: 10px; }
     }
 
     /* ── HERO (photo background) ───────────────────────── */

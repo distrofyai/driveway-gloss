@@ -2148,6 +2148,15 @@ input, select, textarea {
     will-change: transform;
   }
 
+  /* Cards hug their own content instead of stretching to match the tallest in
+     the row. Premium carries seven bullets to Signature's five, and with the
+     mobile price hidden nothing filled the difference, leaving ~70px of blank
+     card under the shorter ones. */
+  .base-carousel .base-services,
+  .base-carousel--tiers .sv-tier-list {
+    align-items: flex-start;
+  }
+
   /* Cards: side cards scaled down + dimmed; active card full-size */
   .base-carousel .base-services > .base-card,
   .base-carousel--ba .ba-grid > .ba-card,
@@ -2178,9 +2187,14 @@ input, select, textarea {
      shrunken neighbours read as fussy rather than polished, and the narrow
      72vw width forced the card's wide row layout into a tall column. */
   .base-carousel--tiers .sv-tier-list > .sv-tier {
-    flex: 0 0 86vw;
-    max-width: 460px;
+    flex: 0 0 80vw;
+    max-width: 440px;
   }
+  /* Arrows tucked to the very edge. At 86vw the card left no room and the
+     40px buttons sat on top of the feature pills; 80vw plus a 4px inset keeps
+     them clear of the card on a 390px phone and wider. */
+  .base-carousel--tiers .base-carousel__arrow--prev { left: 4px; }
+  .base-carousel--tiers .base-carousel__arrow--next { right: 4px; }
 
   /* Steps carousel: no down-arrow chevrons between cards (arrows are on the sides now) */
   #how-it-works .base-carousel--steps .step:not(:last-child)::after { display: none; }
