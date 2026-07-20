@@ -422,7 +422,7 @@
     const tiles = Array.prototype.slice.call(document.querySelectorAll('.gallery__item'));
     if (!tiles.length) return;
 
-    let box, imgEl, capEl, countEl, prevBtn, nextBtn;
+    let box, imgEl, capEl, countEl, prevBtn, nextBtn, ctaEl, closeBtn;
     let shown = [];          // tiles actually visible, resolved at open time
     let index = 0;
     let lastFocused = null;
@@ -458,8 +458,10 @@
       countEl = box.querySelector('.lightbox__count');
       prevBtn = box.querySelector('.lightbox__nav--prev');
       nextBtn = box.querySelector('.lightbox__nav--next');
+      ctaEl = box.querySelector('.lightbox__cta');
+      closeBtn = box.querySelector('.lightbox__close');
 
-      box.querySelector('.lightbox__close').addEventListener('click', close);
+      closeBtn.addEventListener('click', close);
       prevBtn.addEventListener('click', () => step(-1));
       nextBtn.addEventListener('click', () => step(1));
       // Backdrop only: clicks on the image, caption or controls must not close.
@@ -467,12 +469,21 @@
     };
 
     const render = () => {
-      const src = shown[index].querySelector('img');
+      const tile = shown[index];
+      const src = tile.querySelector('img');
       if (!src) return;
       imgEl.src = src.currentSrc || src.src;
       imgEl.alt = src.alt || '';
       capEl.textContent = src.alt || '';
       countEl.textContent = (index + 1) + ' / ' + shown.length;
+      // Follow the tile's own destination rather than assuming contact.html.
+      // On the home page these tiles point at gallery.html, so a hardcoded
+      // quote link offered something the tile never promised.
+      const dest = tile.getAttribute('href');
+      if (dest) {
+        ctaEl.setAttribute('href', dest);
+        ctaEl.textContent = /gallery/i.test(dest) ? 'View full gallery' : 'Get a quote';
+      }
       const many = shown.length > 1;
       prevBtn.hidden = !many;
       nextBtn.hidden = !many;
@@ -484,9 +495,24 @@
     };
 
     const onKey = (e) => {
-      if (e.key === 'Escape') close();
-      else if (e.key === 'ArrowLeft') step(-1);
-      else if (e.key === 'ArrowRight') step(1);
+      if (e.key === 'Escape') { close(); return; }
+      if (e.key === 'ArrowLeft') { step(-1); return; }
+      if (e.key === 'ArrowRight') { step(1); return; }
+      if (e.key !== 'Tab') return;
+      // The dialog declares aria-modal, so Tab has to stay inside it rather
+      // than walking the page behind the overlay.
+      const stops = [closeBtn, prevBtn, nextBtn, ctaEl].filter((n) => n && !n.hidden);
+      if (!stops.length) return;
+      const first = stops[0];
+      const last = stops[stops.length - 1];
+      const active = document.activeElement;
+      if (e.shiftKey && (active === first || !box.contains(active))) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && (active === last || !box.contains(active))) {
+        e.preventDefault();
+        first.focus();
+      }
     };
 
     function close() {

@@ -638,6 +638,15 @@ input, select, textarea {
   flex-wrap: wrap;
   gap: 16px;
 }
+/* A group of three cards wraps 2 + 1, and `flex-grow` then stretched the lone
+   third card across the full row, leaving a wide card with a single line of
+   text and a lot of empty space under it. Capping a lone last card to half the
+   row keeps it aligned with the column above. */
+@media (min-width: 961px) {
+  .services-grid > *:last-child:nth-child(odd) {
+    max-width: calc(50% - 8px);
+  }
+}
 .services-grid > * {
   flex: 1 1 280px;
   /* Cards stretch to fill leftover space in the row: no orphan empty columns */
@@ -2354,6 +2363,12 @@ input, select, textarea {
   .quote__intro { order: 1; }
   .quote-form { order: 2; }
   .quote__map-wrap { order: 3; }
+}
+/* Between the two-column breakpoint and the phone layout the intro spans the
+   full container, which stretched each contact row to ~790px and left roughly
+   400px of trailing white after every value. */
+@media (min-width: 721px) and (max-width: 960px) {
+  .quote__intro .contact__info { max-width: 520px; }
 }
 
 /* Mobile-only "Five Stars on Google" banner (between form and map) */
@@ -4597,7 +4612,17 @@ input, select, textarea {
 /* On a phone the side arrows would sit over the photo, so they move to the
    bottom corners where the caption row already reserves space. */
 @media (max-width: 640px) {
-  .lightbox__nav { top: auto; bottom: 14px; transform: none; width: 42px; height: 42px; }
+  /* Clear of the iOS home-indicator strip, which swallows taps within roughly
+     the bottom 20px. safe-area-inset adds the real value where the browser
+     reports one. */
+  .lightbox__nav {
+    top: auto;
+    bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+    transform: none;
+    width: 42px;
+    height: 42px;
+  }
   .lightbox__nav:active { transform: scale(0.94); }
   .lightbox__cap { font-size: 12.5px; padding: 0 52px; }
+  .lightbox { padding-bottom: calc(78px + env(safe-area-inset-bottom, 0px)); }
 }
