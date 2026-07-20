@@ -3845,6 +3845,44 @@ input, select, textarea {
   text-shadow: 0 1px 12px rgba(0,0,0,0.2);
 }
 
+/* Hero CTA row. Mirrors the services page hero (same 28px offset and button
+   pair) so About and Gallery match its height instead of sitting ~80px
+   shorter. Desktop only: services already hides its hero CTA below 720px
+   because the nav CTA and the sticky call bar cover the same action there. */
+.page-hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+/* Inverted against the dark photo, matching .hero .btn--primary on the home
+   page and .page-hero .sv-btn--solid on services. */
+.page-hero__cta .btn--primary {
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 10px 26px -14px rgba(0,0,0,0.55);
+}
+.page-hero__cta .btn--primary:hover,
+.page-hero__cta .btn--primary:focus-visible {
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 14px 32px -10px rgba(255,255,255,0.5);
+}
+.page-hero__cta .btn--ghost {
+  color: #fff;
+  border-color: rgba(255,255,255,0.4);
+  background: transparent;
+}
+.page-hero__cta .btn--ghost:hover,
+.page-hero__cta .btn--ghost:focus-visible {
+  border-color: #fff;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+@media (max-width: 720px) {
+  .page-hero__cta { display: none; }
+}
+
 /* Mobile: slightly smaller sub-page hero (Services / Gallery / About),
    with the title + subtext vertically centered between top and bottom. */
 @media (max-width: 640px) {
