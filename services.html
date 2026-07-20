@@ -276,6 +276,15 @@
     .sv-menu-desc { font-size: 13.5px; color: var(--sv-muted); line-height: 1.4; margin-top: 3px; }
     /* Black to match .sv-tier__amt in the Packages section above. */
     .sv-menu-price { flex-shrink: 0; font-family: var(--sv-fd); font-weight: 700; font-size: 16px; color: var(--sv-ink); }
+    /* Packages and Bases prices are the headline numbers, so they run much
+       larger than the Upgrades list. Size does the work rather than weight:
+       Space Grotesk is only loaded up to 700, so going heavier would trigger
+       faux-bold synthesis and look smeared. */
+    .sv-build__col:not(.sv-build__col--upgrades) .sv-menu-price {
+      font-size: 26px;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
 
     /* Ceramic Coating: full-width premium feature banner */
     .sv-ceramic { grid-column: 1 / -1; display: flex; align-items: stretch; gap: 0; padding: 0; overflow: hidden;
@@ -372,6 +381,9 @@
       .sv-menu-icon { width: 72px; height: 72px; }
       .sv-menu-icon svg { width: 62px; height: 62px; }
       .sv-menu-row { gap: 12px; }
+      /* Slightly smaller than desktop so the name and description keep enough
+         width alongside a 124px photo on a narrow phone. */
+      .sv-build__col:not(.sv-build__col--upgrades) .sv-menu-price { font-size: 23px; }
     }
   </style>
 </head>

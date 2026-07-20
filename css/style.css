@@ -3102,16 +3102,20 @@ input, select, textarea {
     grid-auto-rows: 148px;
     gap: 10px;
   }
+  /* Every tile is a single column on mobile, including the --wide ones.
+     Wide tiles occupy two cells, so with four of them the occupied-cell count
+     went odd in both the collapsed (12 photos -> 13 cells) and expanded
+     (20 -> 23) states, and a dense grid cannot backfill a hole that lands at
+     the very end. Uniform tiles make cells == photos, so the last row is
+     always full. */
+  #recent-work .gallery--full .gallery__item,
   #recent-work .gallery--full .gallery__item--wide {
-    grid-column: span 2;
-  }
-  /* The first photo is a --wide one, so on a phone the grid opened with a
-     single stretched banner before any rhythm was established. Dropping just
-     that one to a single column starts the grid as a clean 2-up; with dense
-     flow the next full-width photo then lands a couple of rows down, which
-     breaks up the top of the gallery instead of leading with one long image. */
-  #recent-work .gallery--full .gallery__item--wide:first-child {
     grid-column: span 1;
+  }
+  /* Fallback for an odd number of photos: the final tile widens to fill the
+     row instead of sitting next to a gap. */
+  #recent-work .gallery--full .gallery__item:last-child:nth-child(odd) {
+    grid-column: span 2;
   }
   #recent-work .gallery--full .gallery__item:nth-child(n+4) {
     display: block;
@@ -3337,7 +3341,7 @@ input, select, textarea {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding: 14px var(--pad) 22px;
+    padding: 14px var(--pad) 30px;
     border-radius: 0 0 22px 22px;
     box-shadow: 0 26px 50px -22px rgba(15,23,42,0.35);
     transform: translateX(100%);
@@ -4126,99 +4130,6 @@ input, select, textarea {
   .testimonials__more .btn { width: 100%; max-width: 320px; }
 }
 
-/* ==========================================================================
-   Gallery page: Before & After pairs
-   Two columns rather than the four-up .gallery grid, because these are stacked
-   before/after composites and at quarter width the actual difference stops
-   being readable. Items are ordered so each row holds two images of the same
-   aspect ratio (4:5 then ~3:4), which keeps the rows flush without cropping.
-   Namespaced .ba-pair* because .ba-grid / .ba-card / .ba-compare are already
-   taken by the home page comparison slider.
-   ========================================================================== */
-.ba-pairs {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: clamp(14px, 2vw, 22px);
-  align-items: start;
-}
-.ba-pair {
-  margin: 0;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  transition: border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
-}
-.ba-pair:hover {
-  border-color: var(--accent);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
-}
-.ba-pair img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-.ba-pair figcaption {
-  padding: 13px 16px;
-  font-size: 13px;
-  line-height: 1.4;
-  color: var(--text-muted);
-  border-top: 1px solid var(--border);
-  background: var(--surface);
-}
-
-/* Carousel position indicator. The active dot stretches into a pill so the
-   current slide is readable at a glance. */
-.ba-dots {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  margin-top: 16px;
-}
-.ba-dots button {
-  width: 8px;
-  height: 8px;
-  padding: 0;
-  border: 0;
-  border-radius: 999px;
-  background: var(--border-hi);
-  cursor: pointer;
-  transition: background .25s var(--ease), width .25s var(--ease);
-}
-.ba-dots button.is-active { width: 24px; background: var(--accent); }
-
-/* Mobile: a horizontal swipe carousel instead of a stack. Each pair is a
-   scroll-snap target. The negative inline margin lets slides bleed to the
-   screen edges while the padding keeps the first and last inset. */
-@media (max-width: 720px) {
-  .ba-pairs {
-    display: flex;
-    grid-template-columns: none;
-    gap: 12px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    margin-inline: calc(var(--pad) * -1);
-    padding-inline: var(--pad);
-    padding-bottom: 4px;
-  }
-  .ba-pairs::-webkit-scrollbar { display: none; }
-  .ba-pair {
-    flex: 0 0 86%;
-    scroll-snap-align: center;
-  }
-  /* The Lexus pair is first in the DOM so the desktop grid can pair matching
-     aspect ratios per row. In the carousel it belongs last, so it is reordered
-     visually rather than moved in the markup. */
-  .ba-pair:first-child { order: 1; }
-  .ba-pair figcaption { padding: 11px 14px; font-size: 12.5px; }
-  .ba-dots { display: flex; }
-}
-
 /* Mobile (home): move the FAQ / "Common questions" section below the quote form,
    and hide its Get-a-Quote button (redundant right after the form). */
 @media (max-width: 768px) {
@@ -4333,7 +4244,7 @@ input, select, textarea {
 @media (max-width: 760px) {
   #family .why--reverse {
     display: grid;
-    grid-template-columns: 1fr 0.72fr;
+    grid-template-columns: 1fr 1fr;
     column-gap: 14px;
     row-gap: 18px;
     align-items: start;
@@ -4346,16 +4257,23 @@ input, select, textarea {
   #family .family-photo:first-child { grid-column: 2; grid-row: 2; }
   #family .family-photo--offset { grid-column: 1; grid-row: 3; }
   #family .family__body--b { grid-column: 2; grid-row: 3; }
+  /* Closing paragraph runs full width beneath the pair. Keeping it in the
+     right-hand column made that column roughly twice the height of the photo
+     beside it; split out, the paragraph that remains ends near the photo's
+     bottom edge. */
+  #family .family__body--c { grid-column: 1 / -1; grid-row: 4; }
 
   #family .family-photo,
   #family .family-photo--offset {
     width: auto;
     margin: 0;
   }
+  #family .family-photo--offset { max-width: 90%; }
   #family .family-photo__img {
     border-radius: 14px;
     box-shadow: var(--shadow-md);
   }
   #family .family__body p { font-size: 13.5px; line-height: 1.5; }
+  #family .family__body--b p { font-size: 12.8px; line-height: 1.45; }
   #family .family__body p + p { margin-top: 10px; }
 }
