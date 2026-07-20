@@ -3926,7 +3926,7 @@ input, select, textarea {
 /* Media column is the wider one here: this is the lead section under the
    hero, so the photos carry it rather than the copy. */
 .why--reverse {
-  grid-template-columns: 1fr 1.34fr;
+  grid-template-columns: 1fr 1.06fr;
   gap: clamp(32px, 4vw, 64px);
 }
 .why__lede {
@@ -3959,10 +3959,10 @@ input, select, textarea {
   margin: 0;
 }
 .family-photo:first-child {
-  width: 61%;
+  width: 67.8%;
 }
 .family-photo--offset {
-  width: 43.5%;
+  width: 48.4%;
   margin-left: auto;
   margin-top: -13%;
 }
