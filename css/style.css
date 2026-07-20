@@ -3926,7 +3926,7 @@ input, select, textarea {
 /* Media column is the wider one here — this is the lead section under the
    hero, so the photos carry it rather than the copy. */
 .why--reverse {
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: 1fr 1.35fr;
   gap: clamp(32px, 4vw, 64px);
 }
 .why__lede {
@@ -3938,32 +3938,33 @@ input, select, textarea {
 
 /* Deliberately taller and larger-typed than the Our Story section below it. */
 .section.section--feature {
-  padding-top: clamp(80px, 10vw, 140px);
-  padding-bottom: clamp(80px, 10vw, 140px);
+  padding-top: clamp(88px, 11vw, 160px);
+  padding-bottom: clamp(88px, 11vw, 160px);
 }
 .section--feature .section__title {
   font-size: clamp(32px, 5vw, 56px);
 }
 
-/* Desktop: the two photos overlap on a 12-column track rather than sitting
-   side by side, so each one can be close to the full width of the media
-   column instead of half of it. The second photo is later in the DOM, so it
-   paints on top; its ring is the section background colour, which keeps the
-   overlap legible as two separate photos. */
+/* Desktop: the two photos overlap diagonally rather than sitting side by side,
+   so each one can be much wider than half the media column. Widths are
+   percentages of that column — the second is deliberately the smaller of the
+   two, right-aligned and pulled up so it sits bottom-right of the first. They
+   sum to just over 100%, which is what creates the small overlap. The second
+   photo is later in the DOM so it paints on top; its ring is the section
+   background colour, which keeps the overlap legible as two separate photos. */
 .family-media {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  align-items: start;
+  display: block;
 }
 .family-photo {
   margin: 0;
 }
 .family-photo:first-child {
-  grid-column: 1 / span 7;
+  width: 57%;
 }
 .family-photo--offset {
-  grid-column: 6 / span 7;
-  margin-top: -22%;
+  width: 47%;
+  margin-left: auto;
+  margin-top: -13%;
 }
 .family-photo__img {
   display: block;
@@ -3989,12 +3990,15 @@ input, select, textarea {
     padding-bottom: clamp(56px, 10vw, 96px);
   }
   .family-media {
+    display: grid;
     grid-template-columns: 1fr 1fr;
     gap: clamp(14px, 2.2vw, 24px);
+    align-items: start;
   }
-  .family-photo:first-child { grid-column: auto; }
+  .family-photo:first-child { width: auto; }
   .family-photo--offset {
-    grid-column: auto;
+    width: auto;
+    margin-left: 0;
     margin-top: clamp(26px, 6vw, 56px);
   }
   .family-photo--offset .family-photo__img { box-shadow: var(--shadow-md); }
