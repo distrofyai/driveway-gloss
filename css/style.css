@@ -2326,6 +2326,16 @@ input, select, textarea {
   margin-top: 8px;
 }
 
+/* Below the two-column breakpoint the wrapper dissolves, so intro, form and
+   map become direct grid items again and keep their original mobile order
+   (intro, form, map) even though the map now precedes the form in the markup. */
+@media (max-width: 960px) {
+  .quote__side { display: contents; }
+  .quote__intro { order: 1; }
+  .quote-form { order: 2; }
+  .quote__map-wrap { order: 3; }
+}
+
 /* Mobile-only "Five Stars on Google" banner (between form and map) */
 .quote__stars { display: none; }
 
@@ -4370,10 +4380,15 @@ input, select, textarea {
    Every selector is #family-scoped so the shared .why / .family-* rules used
    elsewhere are untouched. */
 @media (max-width: 760px) {
+  /* Twelve tracks rather than two equal ones, so the copy can hold the wider
+     column on BOTH rows (7/12 vs the photo's 5/12). With even halves the text
+     column was ~160px on a 390px phone, which forced the first paragraph into
+     eleven cramped lines beside its photo. The gutter comes from padding on
+     the text, not column-gap, so twelve tracks do not eat the width. */
   #family .why--reverse {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 14px;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 0;
     row-gap: 18px;
     align-items: start;
   }
@@ -4381,10 +4396,10 @@ input, select, textarea {
   #family .family-media { display: contents; }
 
   #family .family__head { grid-column: 1 / -1; grid-row: 1; }
-  #family .family__body--a { grid-column: 1; grid-row: 2; }
-  #family .family-photo:first-child { grid-column: 2; grid-row: 2; }
-  #family .family-photo--offset { grid-column: 1; grid-row: 3; }
-  #family .family__body--b { grid-column: 2; grid-row: 3; }
+  #family .family__body--a { grid-column: 1 / 8; grid-row: 2; padding-right: 14px; }
+  #family .family-photo:first-child { grid-column: 8 / -1; grid-row: 2; }
+  #family .family-photo--offset { grid-column: 1 / 6; grid-row: 3; }
+  #family .family__body--b { grid-column: 6 / -1; grid-row: 3; padding-left: 14px; }
   /* Closing paragraph runs full width beneath the pair. Keeping it in the
      right-hand column made that column roughly twice the height of the photo
      beside it; split out, the paragraph that remains ends near the photo's

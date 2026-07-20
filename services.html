@@ -374,6 +374,12 @@
     /* Mobile/tablet: single column stack, clean, no forced heights */
     @media (max-width: 860px) {
       .sv-build__menus { grid-template-columns: 1fr; }
+      /* Stacked order on mobile: Packages/Bases, then Ceramic Coating, then
+         Upgrades. In source order Ceramic comes last (it is the full-width
+         banner on desktop), so it is reordered rather than moved in markup. */
+      .sv-build__col:not(.sv-build__col--upgrades) { order: 1; }
+      .sv-ceramic { order: 2; }
+      .sv-build__col--upgrades { order: 3; }
       .sv-ceramic { flex-direction: column; }
       .sv-ceramic__media { flex: none; max-width: none; aspect-ratio: 16 / 9; min-height: 0; }
       .sv-ceramic__body { align-self: stretch; }
@@ -401,7 +407,8 @@
          the desktop 110px relative to the row. Sized against the narrowest real
          phone: 390px viewport leaves ~314px inside the card, so 124px still
          leaves ~178px for the name, description and price. */
-      .sv-menu-thumb { width: 124px; height: 124px; border-radius: 16px; }
+      .sv-menu-thumb { width: 112px; height: 112px; border-radius: 16px; }
+      .sv-menu-desc { font-size: 12.5px; }
       .sv-menu-icon { width: 72px; height: 72px; }
       .sv-menu-icon svg { width: 62px; height: 62px; }
       .sv-menu-row { gap: 12px; }
