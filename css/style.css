@@ -1159,6 +1159,12 @@ input, select, textarea {
 }
 .footer__contact a:hover { color: var(--accent); }
 .footer__divider { color: var(--border-hi); }
+/* Below ~380px the email wraps to its own line and the middle dot is left
+   dangling after the phone number, so the row stacks and drops the dot. */
+@media (max-width: 379px) {
+  .footer__contact { flex-direction: column; gap: 6px; }
+  .footer__divider { display: none; }
+}
 
 .footer__social {
   display: flex;
@@ -2114,7 +2120,21 @@ input, select, textarea {
   background: var(--accent);
   color: #fff;
   border-radius: 999px;
-  margin-top: auto;
+}
+/* Pinned to the top-left of the card at every width. The badge is the last
+   element inside .base-card__body, so left in flow it fell to the bottom of
+   the column and dangled under the feature list as a loose pill. It was only
+   being repositioned inside the mobile carousel query, which meant the one
+   cue pointing at the mid-tier package was misplaced on every desktop and
+   tablet width. */
+.base-card--featured { position: relative; }
+.base-card--featured .base-card__tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  margin: 0;
+  z-index: 3;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
 }
 
 /* ---------- Base Packages Carousel (mobile) ---------- */
@@ -2810,7 +2830,11 @@ input, select, textarea {
   }
   .gallery__item--wide { grid-column: span 2; }
 
-  .base-services { grid-template-columns: 1fr; }
+  /* .base-services deliberately stays 3-up here. Collapsing it to one column
+     between 721 and 960 turned the packages section into ~2400-2800px of
+     full-width cards, roughly one screen per package, on iPad portrait and
+     half-width laptop windows. Below 721 the carousel takes over anyway, so
+     the single-column rule only ever applied in that awkward band. */
   .step-cards { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
   .ba-grid { grid-template-columns: 1fr; }
