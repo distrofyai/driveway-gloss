@@ -419,4 +419,36 @@
       });
     }
   })();
+
+  /* ---------- Gallery "show more" (mobile) ----------
+     The collapse is applied here rather than in the stylesheet so that with
+     JavaScript disabled the full grid renders and the button never appears.
+     CSS only hides past the 12th photo while .is-collapsed is present, and
+     only inside the mobile media query, so this is a no-op on desktop. */
+  (function () {
+    const grid = document.getElementById('galleryGrid');
+    const btn = document.getElementById('galleryMore');
+    if (!grid || !btn) return;
+
+    const VISIBLE_WHEN_COLLAPSED = 12;
+    const total = grid.querySelectorAll('.gallery__item').length;
+    if (total <= VISIBLE_WHEN_COLLAPSED) return;
+
+    const hiddenCount = total - VISIBLE_WHEN_COLLAPSED;
+    grid.classList.add('is-collapsed');
+    btn.textContent = 'Show ' + hiddenCount + ' more photos';
+    btn.hidden = false;
+
+    btn.addEventListener('click', function () {
+      const collapsed = grid.classList.toggle('is-collapsed');
+      btn.setAttribute('aria-expanded', String(!collapsed));
+      btn.textContent = collapsed ? 'Show ' + hiddenCount + ' more photos' : 'Show fewer photos';
+      if (collapsed) {
+        // Collapsing from far down the list would strand the viewport below
+        // the grid, so bring the section header back into view.
+        const head = document.getElementById('recent-work');
+        if (head) head.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  })();
 })();
