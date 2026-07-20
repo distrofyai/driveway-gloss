@@ -130,29 +130,10 @@
     @media (max-width: 720px) {
       .page-hero .sv-hero__cta { display: none; }
 
-      /* Tier cards inside the swipe carousel. They are normally a wide
-         three-column row; at ~72vw that has to collapse to a single column. */
-      .base-carousel--tiers .sv-tier {
-        grid-template-columns: 1fr;
-        gap: 14px;
-        padding: 24px 20px 26px;
-        align-items: start;
-      }
-      .base-carousel--tiers .sv-tier__price {
-        grid-column: auto;
-        justify-items: start;
-        text-align: left;
-        border-top: 1px solid var(--sv-border);
-        padding-top: 16px;
-        margin-top: 2px;
-        min-width: 0;
-      }
-      .base-carousel--tiers .sv-tier__cta { justify-self: stretch; text-align: center; }
-      .base-carousel--tiers .sv-tier__desc { max-width: none; }
-      /* The carousel scales side cards down; the card's own hover lift would
-         overwrite that transform, so restate it per carousel state. */
-      .base-carousel--tiers .sv-tier:hover { transform: scale(0.82); }
-      .base-carousel--tiers .sv-tier.is-active:hover { transform: scale(1); }
+      /* Tier cards inside the carousel keep the page's own responsive layout,
+         so their shape matches what it was before the carousel existed. The
+         only thing the carousel changes is that they sit in a sliding row. */
+      .base-carousel--tiers .sv-tier__price { min-width: 0; }
     }
 
     /* ── HERO (photo background) ───────────────────────── */
