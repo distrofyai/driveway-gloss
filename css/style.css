@@ -4195,6 +4195,9 @@ input, select, textarea {
   touch-action: pan-y;
   cursor: ew-resize;
   background: var(--bg-alt);
+  /* Keep the changing image clip from invalidating paint outside the slider. */
+  contain: paint;
+  isolation: isolate;
 }
 .ba-compare__img {
   position: absolute;
@@ -4239,6 +4242,7 @@ input, select, textarea {
   background: #fff;
   pointer-events: none;
   box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
+  will-change: transform;
 }
 .ba-compare__grip {
   position: absolute;

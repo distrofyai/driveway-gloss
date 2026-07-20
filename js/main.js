@@ -336,82 +336,79 @@
   document.querySelectorAll('[data-base-carousel]').forEach(initCarousel);
 
   // ---------- Before/After comparison slider (drag to reveal) ----------
-  // Mechanics ported from the Benny's Pressure Washing slider, which is smooth:
-  // write the styles synchronously in the move handler, straight onto the two
-  // elements that change, and listen for mousemove on window so the drag keeps
-  // tracking when the cursor leaves the frame. No requestAnimationFrame: the
-  // browser already fires one move event per frame while dragging, so
-  // coalescing only added a frame of latency behind the cursor. No custom
-  // property either, since writing one on the container restyles every
-  // descendant that could read it.
+  // Pointer capture keeps the image directly under the finger without a
+  // cancelable touchmove listener. Geometry is read once at drag start; every
+  // move after that is only a clip update plus a compositor transform.
   document.querySelectorAll('[data-ba-compare]').forEach((el) => {
     const beforeImg = el.querySelector('.ba-compare__img--before');
     const handle = el.querySelector('.ba-compare__handle');
     if (!beforeImg) return;
 
     let pos = 50;
+    let rect = null;
+    let activePointer = null;
+
+    const announce = () => el.setAttribute('aria-valuenow', Math.round(pos));
 
     const apply = (p) => {
       pos = p < 0 ? 0 : p > 100 ? 100 : p;
       const clip = 'inset(0 ' + (100 - pos) + '% 0 0)';
       beforeImg.style.clipPath = clip;
       beforeImg.style.webkitClipPath = clip;
-      if (handle) handle.style.left = pos + '%';
-      el.setAttribute('aria-valuenow', Math.round(pos));
+      if (handle && rect) {
+        handle.style.left = '0';
+        handle.style.transform = 'translate3d(' + (rect.width * pos / 100) + 'px,0,0)';
+      }
     };
 
     const fromClientX = (clientX) => {
-      const rect = el.getBoundingClientRect();
+      if (!rect) rect = el.getBoundingClientRect();
       if (!rect.width) return;
       apply(((clientX - rect.left) / rect.width) * 100);
     };
 
-    // ----- Mouse -----
-    let dragging = false;
-    el.addEventListener('mousedown', (e) => {
-      e.preventDefault();
-      dragging = true;
+    const finishDrag = (e) => {
+      if (activePointer === null || (e && e.pointerId !== activePointer)) return;
+      if (e && e.type === 'pointerup') fromClientX(e.clientX);
+      announce();
+      if (e && el.hasPointerCapture && el.hasPointerCapture(e.pointerId)) {
+        el.releasePointerCapture(e.pointerId);
+      }
+      activePointer = null;
+    };
+
+    el.addEventListener('pointerdown', (e) => {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      rect = el.getBoundingClientRect();
+      activePointer = e.pointerId;
+      if (el.setPointerCapture) el.setPointerCapture(e.pointerId);
       fromClientX(e.clientX);
     });
-    window.addEventListener('mousemove', (e) => { if (dragging) fromClientX(e.clientX); });
-    window.addEventListener('mouseup', () => { dragging = false; });
-
-    // ----- Touch -----
-    // Page scrolling wins unless the gesture is clearly sideways, so a vertical
-    // swipe that happens to start on the slider still scrolls the page.
-    let startX = null;
-    let startY = null;
-    let touchDragging = false;
-    el.addEventListener('touchstart', (e) => {
-      const t = e.touches[0];
-      startX = t.clientX;
-      startY = t.clientY;
-      touchDragging = false;
-    }, { passive: true });
-    el.addEventListener('touchmove', (e) => {
-      if (startX === null) return;
-      const t = e.touches[0];
-      if (!touchDragging) {
-        const dx = Math.abs(t.clientX - startX);
-        const dy = Math.abs(t.clientY - startY);
-        if (dy > dx) { startX = null; return; }  // vertical intent: let it scroll
-        if (dx < 6) return;                      // not decisive yet
-        touchDragging = true;
-      }
-      if (e.cancelable) e.preventDefault();
-      fromClientX(t.clientX);
-    }, { passive: false });
-    const endTouch = () => { startX = null; touchDragging = false; };
-    el.addEventListener('touchend', endTouch);
-    el.addEventListener('touchcancel', endTouch);
+    el.addEventListener('pointermove', (e) => {
+      if (e.pointerId === activePointer) fromClientX(e.clientX);
+    });
+    el.addEventListener('pointerup', finishDrag);
+    el.addEventListener('pointercancel', finishDrag);
+    el.addEventListener('lostpointercapture', () => {
+      if (activePointer !== null) { announce(); activePointer = null; }
+    });
 
     // ----- Keyboard -----
     el.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') { e.preventDefault(); apply(pos - 4); }
-      else if (e.key === 'ArrowRight') { e.preventDefault(); apply(pos + 4); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); apply(pos - 4); announce(); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); apply(pos + 4); announce(); }
     });
 
+    const refreshGeometry = () => {
+      rect = el.getBoundingClientRect();
+      apply(pos);
+    };
+    if ('ResizeObserver' in window) new ResizeObserver(refreshGeometry).observe(el);
+    else window.addEventListener('resize', refreshGeometry);
+
+    refreshGeometry();
     apply(50);
+    announce();
   });
 
   /* ---------- Gallery lightbox ----------
