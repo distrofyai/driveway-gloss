@@ -69,6 +69,7 @@
         <a href="about.html">About</a>
         <a href="gallery.html">Gallery</a>
         <a href="contact.html" class="btn btn--small btn--primary nav__cta">Get a Quote</a>
+        <a href="tel:+17045913265" class="nav__call">Call 704-591-3265</a>
       </nav>
 
       <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
@@ -740,7 +741,7 @@
           </a>
         </header>
 
-        <div class="testimonials reveal">
+        <div class="testimonials reveal" id="testimonialGrid">
           <figure class="testimonial">
             <div class="testimonial__head">
               <span class="testimonial__avatar" style="background: #1d4ed8;" aria-hidden="true">AG</span>
@@ -818,6 +819,11 @@
             <div class="testimonial__stars" aria-label="5 out of 5 stars">★★★★★</div>
             <blockquote>"Thank you Tyler for your quick response to get my car clean. You did awesome work and the car looks fabulous. Love the smell now."</blockquote>
           </figure>
+        </div>
+
+        <!-- Mobile only. Revealed by main.js, so a no-JS visitor sees every review. -->
+        <div class="testimonials__more">
+          <button id="testimonialsMore" class="btn btn--ghost" type="button" aria-expanded="false" aria-controls="testimonialGrid" hidden>Show more reviews</button>
         </div>
       </div>
     </section>

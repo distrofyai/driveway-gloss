@@ -420,35 +420,102 @@
     }
   })();
 
-  /* ---------- Gallery "show more" (mobile) ----------
+  /* ---------- "Show more" collapsers (mobile) ----------
      The collapse is applied here rather than in the stylesheet so that with
-     JavaScript disabled the full grid renders and the button never appears.
-     CSS only hides past the 12th photo while .is-collapsed is present, and
-     only inside the mobile media query, so this is a no-op on desktop. */
-  (function () {
-    const grid = document.getElementById('galleryGrid');
-    const btn = document.getElementById('galleryMore');
-    if (!grid || !btn) return;
+     JavaScript disabled the full list renders and the button never appears.
+     CSS only hides the overflow while .is-collapsed is present, and only
+     inside the mobile media query, so this is a no-op on desktop. */
+  function setupCollapser(opts) {
+    const list = document.getElementById(opts.listId);
+    const btn = document.getElementById(opts.btnId);
+    if (!list || !btn) return;
 
-    const VISIBLE_WHEN_COLLAPSED = 12;
-    const total = grid.querySelectorAll('.gallery__item').length;
-    if (total <= VISIBLE_WHEN_COLLAPSED) return;
+    const total = list.querySelectorAll(opts.itemSelector).length;
+    if (total <= opts.visible) return;
 
-    const hiddenCount = total - VISIBLE_WHEN_COLLAPSED;
-    grid.classList.add('is-collapsed');
-    btn.textContent = 'Show ' + hiddenCount + ' more photos';
+    const hiddenCount = total - opts.visible;
+    const moreLabel = 'Show ' + hiddenCount + ' more ' + opts.noun;
+    list.classList.add('is-collapsed');
+    btn.textContent = moreLabel;
     btn.hidden = false;
 
     btn.addEventListener('click', function () {
-      const collapsed = grid.classList.toggle('is-collapsed');
+      const collapsed = list.classList.toggle('is-collapsed');
       btn.setAttribute('aria-expanded', String(!collapsed));
-      btn.textContent = collapsed ? 'Show ' + hiddenCount + ' more photos' : 'Show fewer photos';
+      btn.textContent = collapsed ? moreLabel : 'Show fewer ' + opts.noun;
       if (collapsed) {
         // Collapsing from far down the list would strand the viewport below
-        // the grid, so bring the section header back into view.
-        const head = document.getElementById('recent-work');
-        if (head) head.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // it, so bring the section heading back into view.
+        const anchor = document.getElementById(opts.anchorId);
+        if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
+  }
+
+  setupCollapser({
+    listId: 'galleryGrid', btnId: 'galleryMore', itemSelector: '.gallery__item',
+    visible: 12, noun: 'photos', anchorId: 'recent-work'
+  });
+  setupCollapser({
+    listId: 'testimonialGrid', btnId: 'testimonialsMore', itemSelector: '.testimonial',
+    visible: 4, noun: 'reviews', anchorId: 'testimonials'
+  });
+
+  /* ---------- Before & After carousel dots (mobile) ----------
+     Positions are measured from bounding rects rather than offsetLeft because
+     the slides are reordered with flex `order` on mobile, so DOM order and
+     visual order differ. */
+  (function () {
+    const track = document.getElementById('baPairs');
+    const dotWrap = document.getElementById('baDots');
+    if (!track || !dotWrap) return;
+
+    const slides = Array.prototype.slice.call(track.querySelectorAll('.ba-pair'));
+    if (slides.length < 2) return;
+
+    function visualOrder() {
+      return slides.slice().sort(function (a, b) {
+        return a.getBoundingClientRect().left - b.getBoundingClientRect().left;
+      });
+    }
+
+    slides.forEach(function (_, i) {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', 'Show before and after ' + (i + 1) + ' of ' + slides.length);
+      dot.addEventListener('click', function () {
+        const target = visualOrder()[i];
+        if (!target) return;
+        const t = track.getBoundingClientRect();
+        const s = target.getBoundingClientRect();
+        track.scrollBy({ left: (s.left + s.width / 2) - (t.left + t.width / 2), behavior: 'smooth' });
+      });
+      dotWrap.appendChild(dot);
+    });
+
+    const dots = Array.prototype.slice.call(dotWrap.children);
+
+    function sync() {
+      const t = track.getBoundingClientRect();
+      const mid = t.left + t.width / 2;
+      let best = 0;
+      let bestDist = Infinity;
+      visualOrder().forEach(function (slide, i) {
+        const s = slide.getBoundingClientRect();
+        const dist = Math.abs((s.left + s.width / 2) - mid);
+        if (dist < bestDist) { bestDist = dist; best = i; }
+      });
+      dots.forEach(function (d, i) { d.classList.toggle('is-active', i === best); });
+    }
+
+    let ticking = false;
+    track.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function () { sync(); ticking = false; });
+    }, { passive: true });
+
+    window.addEventListener('resize', sync);
+    sync();
   })();
 })();

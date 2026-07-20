@@ -259,8 +259,8 @@
       display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
       padding-bottom: 14px; margin-bottom: 4px; border-bottom: 1px solid var(--sv-border);
     }
-    .sv-menu-card__title { font-family: var(--sv-fd); font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sv-accent); margin: 0; }
-    .sv-menu-card__hint { font-size: 11px; color: var(--sv-muted); letter-spacing: 0.02em; white-space: nowrap; }
+    .sv-menu-card__title { font-family: var(--sv-fd); font-size: 14px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--sv-accent); margin: 0; }
+    .sv-menu-card__hint { font-size: 12px; color: var(--sv-muted); letter-spacing: 0.02em; white-space: nowrap; }
     .sv-menu-list { list-style: none; margin: 0; padding: 0; }
     .sv-menu-row { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--sv-border); }
     .sv-menu-row:last-child { border-bottom: 0; padding-bottom: 0; }
@@ -272,8 +272,8 @@
     .sv-menu-icon { flex-shrink: 0; width: 86px; height: 86px; display: grid; place-items: center; }
     .sv-menu-icon svg { width: 74px; height: 74px; display: block; }
     .sv-menu-info { flex: 1; min-width: 0; }
-    .sv-menu-name { font-family: var(--sv-fd); font-weight: 600; font-size: 15px; color: var(--sv-ink); line-height: 1.25; letter-spacing: -0.01em; }
-    .sv-menu-desc { font-size: 12.5px; color: var(--sv-muted); line-height: 1.4; margin-top: 2px; }
+    .sv-menu-name { font-family: var(--sv-fd); font-weight: 600; font-size: 18px; color: var(--sv-ink); line-height: 1.25; letter-spacing: -0.015em; }
+    .sv-menu-desc { font-size: 13.5px; color: var(--sv-muted); line-height: 1.4; margin-top: 3px; }
     /* Black to match .sv-tier__amt in the Packages section above. */
     .sv-menu-price { flex-shrink: 0; font-family: var(--sv-fd); font-weight: 700; font-size: 16px; color: var(--sv-ink); }
 
@@ -364,9 +364,11 @@
       .sv-tier { grid-template-columns: 1fr; }
       .sv-tier__num { font-size: 30px; }
       .sv-hero__meta { grid-template-columns: 1fr; gap: 14px; }
-      /* Still larger than the original 74px, but leaves room for the name,
-         description and price on a narrow phone. */
-      .sv-menu-thumb { width: 96px; height: 96px; }
+      /* Packages/Bases photos carry the card on mobile, so they run larger than
+         the desktop 110px relative to the row. Sized against the narrowest real
+         phone: 390px viewport leaves ~314px inside the card, so 124px still
+         leaves ~178px for the name, description and price. */
+      .sv-menu-thumb { width: 124px; height: 124px; border-radius: 16px; }
       .sv-menu-icon { width: 72px; height: 72px; }
       .sv-menu-icon svg { width: 62px; height: 62px; }
       .sv-menu-row { gap: 12px; }
@@ -389,6 +391,7 @@
         <a href="about.html">About</a>
         <a href="gallery.html">Gallery</a>
         <a href="contact.html" class="btn btn--small btn--primary nav__cta">Get a Quote</a>
+        <a href="tel:+17045913265" class="nav__call">Call 704-591-3265</a>
       </nav>
 
       <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">

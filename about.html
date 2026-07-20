@@ -56,6 +56,7 @@
         <a href="about.html" aria-current="page">About</a>
         <a href="gallery.html">Gallery</a>
         <a href="contact.html" class="btn btn--small btn--primary nav__cta">Get a Quote</a>
+        <a href="tel:+17045913265" class="nav__call">Call 704-591-3265</a>
       </nav>
 
       <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
@@ -78,13 +79,22 @@
     <!-- ==================== FAMILY ==================== -->
     <section class="section section--alt section--feature" id="family">
       <div class="container why why--reverse">
+        <!-- Copy is split into three blocks so the mobile layout can slot a
+             photo between them. On desktop they simply stack inside
+             .why__content and render exactly as one continuous column. -->
         <div class="why__content reveal">
-          <span class="eyebrow">Behind the Business</span>
-          <h2 class="section__title">The people behind every detail.</h2>
-          <p class="why__lede">Driveway Gloss isn't a franchise or a side hustle. It's how Tyler takes care of his family.</p>
-          <p>Every car that gets booked, every early morning and every late finish, goes toward the two people who matter most to him. That's why the standard never slips. When the work is personal, cutting corners isn't an option, because the name on the truck is the same one his family carries.</p>
-          <p>It shapes how he treats your time, too. Tyler shows up when he says he will, tells you what your car actually needs instead of padding the ticket, and would rather turn a job down than rush it and hand it back half done. The people who trust him with their cars are the reason he can provide for his own, and he has never taken that lightly.</p>
-          <p>So when Tyler pulls into your driveway, you're not getting a rotating crew or a rushed schedule. You're getting someone with a real reason to leave your car better than he found it, every single time.</p>
+          <div class="family__head">
+            <span class="eyebrow">Behind the Business</span>
+            <h2 class="section__title">The people behind every detail.</h2>
+            <p class="why__lede">Driveway Gloss isn't a franchise or a side hustle. It's how Tyler takes care of his family.</p>
+          </div>
+          <div class="family__body family__body--a">
+            <p>Every car that gets booked, every early morning and every late finish, goes toward the two people who matter most to him. That's why the standard never slips. When the work is personal, cutting corners isn't an option, because the name on the truck is the same one his family carries.</p>
+          </div>
+          <div class="family__body family__body--b">
+            <p>It shapes how he treats your time, too. Tyler shows up when he says he will, tells you what your car actually needs instead of padding the ticket, and would rather turn a job down than rush it and hand it back half done. The people who trust him with their cars are the reason he can provide for his own, and he has never taken that lightly.</p>
+            <p>So when Tyler pulls into your driveway, you're not getting a rotating crew or a rushed schedule. You're getting someone with a real reason to leave your car better than he found it, every single time.</p>
+          </div>
         </div>
 
         <div class="family-media reveal">
@@ -208,7 +218,7 @@
           </a>
         </header>
 
-        <div class="testimonials reveal">
+        <div class="testimonials reveal" id="testimonialGrid">
           <figure class="testimonial">
             <div class="testimonial__head">
               <span class="testimonial__avatar" style="background: #1d4ed8;" aria-hidden="true">AG</span>
@@ -286,6 +296,11 @@
             <div class="testimonial__stars" aria-label="5 out of 5 stars">★★★★★</div>
             <blockquote>"Thank you Tyler for your quick response to get my car clean. You did awesome work and the car looks fabulous. Love the smell now."</blockquote>
           </figure>
+        </div>
+
+        <!-- Mobile only. Revealed by main.js, so a no-JS visitor sees every review. -->
+        <div class="testimonials__more">
+          <button id="testimonialsMore" class="btn btn--ghost" type="button" aria-expanded="false" aria-controls="testimonialGrid" hidden>Show more reviews</button>
         </div>
       </div>
     </section>
