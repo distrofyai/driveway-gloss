@@ -120,6 +120,13 @@
         </div>
 
         <form class="quote-form reveal" id="quote-form">
+          <!-- Sits inside the card rather than above it: .quote is a two-column
+               grid, so a sibling here would be placed in the next grid cell
+               instead of stacking over the form. -->
+          <div class="quote-form__brand">
+            <img src="images/logo-wordmark.png" alt="Driveway Gloss Mobile Detailing" width="900" height="365" />
+          </div>
+
           <fieldset class="quote-form__group">
             <legend>Individual Services</legend>
             <p class="quote-form__hint">Pick one, or choose a full package below.</p>

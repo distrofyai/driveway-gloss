@@ -2492,6 +2492,27 @@ input, select, textarea {
   gap: 26px;
   box-shadow: var(--shadow-md);
 }
+/* Brand mark at the top of the quote card. The source PNG is mostly the
+   wordmark with little internal padding, so the divider below carries the
+   separation rather than extra margin. */
+.quote-form__brand {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: -4px;
+}
+.quote-form__brand img {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  display: block;
+}
+@media (max-width: 768px) {
+  .quote-form__brand { padding-bottom: 18px; }
+  .quote-form__brand img { max-width: 230px; }
+}
+
 .quote-form__group {
   border: 0;
   margin: 0;
