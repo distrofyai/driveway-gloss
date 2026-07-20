@@ -216,29 +216,32 @@
     .sv-mini-steps__t b { display: block; font-family: var(--sv-fd); font-weight: 600; font-size: 15px; color: var(--sv-ink); letter-spacing: -0.01em; }
     .sv-mini-steps__t span { display: block; font-size: 13px; color: var(--sv-muted); margin-top: 2px; line-height: 1.45; }
 
-    /* Right side: two stacked menu cards (Bases / Upgrades) */
-    .sv-build__right { min-width: 0; }
-    .sv-build__menus { display: grid; gap: 16px; }
+    /* Build-your-own: four equal-height cards (Packages / Bases / Upgrades / Ceramic).
+       Cards stretch to the same height; each row grows to fill, so thumbnails are
+       bigger in cards with fewer items and smaller in cards with more. */
+    .sv-build__menus { display: grid; grid-template-columns: repeat(4, 1fr); align-items: stretch; gap: 16px; }
     .sv-menu-card {
       background: #fff; border: 1px solid var(--sv-border); border-radius: 20px;
-      padding: clamp(18px, 2.2vw, 26px); box-shadow: 0 20px 44px -30px rgba(15,23,42,0.16);
+      padding: clamp(15px, 1.5vw, 22px); box-shadow: 0 20px 44px -30px rgba(15,23,42,0.16);
       display: flex; flex-direction: column;
     }
+    .sv-menu-card--feature { border-color: rgba(37,99,235,0.4); background: linear-gradient(180deg, var(--sv-accent-soft) 0%, #fff 55%); }
     .sv-menu-card__head {
-      display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
-      padding-bottom: 14px; margin-bottom: 4px; border-bottom: 1px solid var(--sv-border);
+      display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+      padding-bottom: 12px; margin-bottom: 2px; border-bottom: 1px solid var(--sv-border);
     }
-    .sv-menu-card__title { font-family: var(--sv-fd); font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sv-accent); margin: 0; }
-    .sv-menu-card__hint { font-size: 11px; color: var(--sv-faint); letter-spacing: 0.02em; }
-    .sv-menu-list { list-style: none; margin: 0; padding: 0; }
-    .sv-menu-row { display: flex; align-items: center; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--sv-border); transition: transform .2s var(--ease, ease); }
-    .sv-menu-row:last-child { border-bottom: 0; padding-bottom: 2px; }
-    .sv-menu-thumb { flex-shrink: 0; width: 54px; height: 54px; border-radius: 12px; overflow: hidden; background: var(--sv-bg-2); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05); }
+    .sv-menu-card__title { font-family: var(--sv-fd); font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sv-accent); margin: 0; }
+    .sv-menu-card__hint { font-size: 10.5px; color: var(--sv-faint); letter-spacing: 0.02em; white-space: nowrap; }
+    .sv-menu-list { list-style: none; margin: 0; padding: 0; flex: 1; display: flex; flex-direction: column; }
+    .sv-menu-row { display: flex; align-items: center; gap: 12px; flex: 1; min-height: 0; padding: 10px 0; border-bottom: 1px solid var(--sv-border); }
+    .sv-menu-row:last-child { border-bottom: 0; }
+    .sv-menu-thumb { flex-shrink: 0; height: 100%; max-height: 96px; min-height: 46px; aspect-ratio: 1; width: auto; border-radius: 11px; overflow: hidden; background: var(--sv-bg-2); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05); }
     .sv-menu-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .sv-menu-card--feature .sv-menu-thumb { max-height: 190px; }
     .sv-menu-info { flex: 1; min-width: 0; }
-    .sv-menu-name { font-family: var(--sv-fd); font-weight: 600; font-size: 15px; color: var(--sv-ink); line-height: 1.25; letter-spacing: -0.01em; }
-    .sv-menu-desc { font-size: 12.5px; color: var(--sv-muted); line-height: 1.4; margin-top: 2px; }
-    .sv-menu-price { flex-shrink: 0; font-family: var(--sv-fd); font-weight: 700; font-size: 16px; color: var(--sv-accent); }
+    .sv-menu-name { font-family: var(--sv-fd); font-weight: 600; font-size: 14.5px; color: var(--sv-ink); line-height: 1.25; letter-spacing: -0.01em; }
+    .sv-menu-desc { font-size: 12px; color: var(--sv-muted); line-height: 1.4; margin-top: 2px; }
+    .sv-menu-price { flex-shrink: 0; font-family: var(--sv-fd); font-weight: 700; font-size: 15px; color: var(--sv-accent); }
     .sv-swipe-hint { display: none; }
     .sv-build__cta { display: flex; justify-content: center; margin-top: clamp(24px, 3.4vw, 40px); }
     .sv-build__cta .sv-btn { min-width: 320px; }
@@ -266,14 +269,17 @@
     @media (hover: hover) and (min-width: 721px) {
       .sv-menu-row:hover { transform: translateX(4px); }
     }
+    /* Tablet / small desktop: four cards wrap to a 2x2 grid */
+    @media (max-width: 1040px) {
+      .sv-build__menus { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 880px) {
       .sv-hero__grid { grid-template-columns: 1fr; align-items: start; gap: 34px; }
       .sv-tier { grid-template-columns: auto 1fr; }
       .sv-tier__price { grid-column: 1 / -1; justify-items: start; text-align: left; border-top: 1px solid var(--sv-border); padding-top: 18px; margin-top: 4px; }
       .sv-tier__cta { justify-self: start; }
-      .sv-build__layout { grid-template-columns: 1fr; align-items: stretch; }
     }
-    /* Mobile: Bases / Upgrades become a swipeable, snap-scrolling carousel */
+    /* Mobile: the cards become a swipeable, snap-scrolling carousel — all equal height */
     @media (max-width: 720px) {
       .sv-swipe-hint {
         display: flex; align-items: center; justify-content: center; gap: 8px;
@@ -285,8 +291,9 @@
       .sv-build__menus {
         display: grid;
         grid-auto-flow: column;
-        grid-auto-columns: 87%;
-        align-items: start;
+        grid-auto-columns: 86%;
+        grid-template-columns: none;
+        align-items: stretch;
         gap: 14px;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
@@ -296,6 +303,8 @@
       }
       .sv-build__menus::-webkit-scrollbar { display: none; }
       .sv-menu-card { scroll-snap-align: center; }
+      .sv-menu-thumb { max-height: 84px; }
+      .sv-menu-card--feature .sv-menu-thumb { max-height: 220px; }
       .sv-build__cta .sv-btn { min-width: 0; width: 100%; max-width: 340px; }
     }
     @media (max-width: 560px) {
@@ -431,106 +440,122 @@
           <p>Not every car needs the works. Start from a base detail, then add individual upgrades à la carte — a fully custom detail, priced to match.</p>
         </div>
 
-        <div class="sv-build__layout">
+        <p class="sv-swipe-hint">Swipe through packages, bases &amp; upgrades <span aria-hidden="true">→</span></p>
+        <div class="sv-build__menus">
 
-          <!-- Left: photo collage + how it works -->
-          <div class="sv-build__aside">
-            <div class="sv-build__gallery">
-              <img class="g-wide" src="images/detail-tundra-gray.jpg" alt="Gray Toyota Tundra TRD Pro with a glossy finish after a detail" loading="lazy" />
-              <img class="g-sq" src="images/detail-tesla-white.jpg" alt="White Tesla Model Y with a deep gloss finish" loading="lazy" />
-              <img class="g-sq" src="images/detail-mercedes-gle.jpg" alt="Black Mercedes-Benz GLE after a full wash and detail" loading="lazy" />
+          <!-- Card 1: Packages -->
+          <div class="sv-menu-card">
+            <div class="sv-menu-card__head">
+              <p class="sv-menu-card__title">Packages</p>
+              <span class="sv-menu-card__hint">Full details</span>
             </div>
-            <div class="sv-build__how">
-              <span class="sv-how__eyebrow">How it works</span>
-              <h3>A detail that's built to fit.</h3>
-              <p class="sv-how__lead">Three quick steps to a detail made for your car — and nothing it doesn't need.</p>
-              <ol class="sv-mini-steps">
-                <li><i>1</i><div class="sv-mini-steps__t"><b>Pick a base</b><span>Interior, Exterior, or Full Detail</span></div></li>
-                <li><i>2</i><div class="sv-mini-steps__t"><b>Add your upgrades</b><span>Only what your car actually needs</span></div></li>
-                <li><i>3</i><div class="sv-mini-steps__t"><b>Get your quote</b><span>One simple, honest price — no upsell</span></div></li>
-              </ol>
-            </div>
+            <ul class="sv-menu-list">
+              <li class="sv-menu-row">
+                <span class="sv-menu-thumb"><img src="images/detail-tundra-gray.jpg" alt="" loading="lazy" /></span>
+                <div class="sv-menu-info"><div class="sv-menu-name">Basic</div><div class="sv-menu-desc">Interior + exterior reset, spray wax</div></div>
+                <span class="sv-menu-price">$100</span>
+              </li>
+              <li class="sv-menu-row">
+                <span class="sv-menu-thumb"><img src="images/detail-tesla-white.jpg" alt="" loading="lazy" /></span>
+                <div class="sv-menu-info"><div class="sv-menu-name">Signature</div><div class="sv-menu-desc">Deeper clean, 4–6 mo ceramic sealant</div></div>
+                <span class="sv-menu-price">$140</span>
+              </li>
+              <li class="sv-menu-row">
+                <span class="sv-menu-thumb"><img src="images/detail-mercedes-gle.jpg" alt="" loading="lazy" /></span>
+                <div class="sv-menu-info"><div class="sv-menu-name">Premium</div><div class="sv-menu-desc">Paint correction, 12 mo ceramic sealant</div></div>
+                <span class="sv-menu-price">$260</span>
+              </li>
+            </ul>
           </div>
 
-          <!-- Right: two menu cards (swipeable carousel on mobile) -->
-          <div class="sv-build__right">
-            <p class="sv-swipe-hint">Bases &amp; Upgrades — swipe <span aria-hidden="true">→</span></p>
-            <div class="sv-build__menus">
-
-              <div class="sv-menu-card">
-                <div class="sv-menu-card__head">
-                  <p class="sv-menu-card__title">Bases</p>
-                  <span class="sv-menu-card__hint">Start here</span>
-                </div>
-                <ul class="sv-menu-list">
-                  <li class="sv-menu-row">
-                    <span class="sv-menu-thumb"><img src="images/detail-jeep-interior.jpg" alt="" loading="lazy" /></span>
-                    <div class="sv-menu-info"><div class="sv-menu-name">Interior</div><div class="sv-menu-desc">Full vacuum &amp; wipe-down of every surface</div></div>
-                    <span class="sv-menu-price">$X</span>
-                  </li>
-                  <li class="sv-menu-row">
-                    <span class="sv-menu-thumb"><img src="images/detail-durango-white.jpg" alt="" loading="lazy" /></span>
-                    <div class="sv-menu-info"><div class="sv-menu-name">Exterior</div><div class="sv-menu-desc">Hand wash, wheels, tires &amp; spray wax</div></div>
-                    <span class="sv-menu-price">$X</span>
-                  </li>
-                  <li class="sv-menu-row">
-                    <span class="sv-menu-thumb"><img src="images/detail-lexus-es-white.jpg" alt="" loading="lazy" /></span>
-                    <div class="sv-menu-info"><div class="sv-menu-name">Full Detail</div><div class="sv-menu-desc">Complete inside-and-out reset</div></div>
-                    <span class="sv-menu-price">$X</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="sv-menu-card">
-                <div class="sv-menu-card__head">
-                  <p class="sv-menu-card__title">Upgrades &amp; Add-ons</p>
-                  <span class="sv-menu-card__hint">Mix &amp; match</span>
-                </div>
-                <ul class="sv-menu-list">
-                  <li class="sv-menu-row">
-                    <span class="sv-menu-thumb"><img src="images/detail-mercedes-interior.jpg" alt="" loading="lazy" /></span>
-                    <div class="sv-menu-info"><div class="sv-menu-name">Steam Cleaning</div><div class="sv-menu-desc">Vents, crevices &amp; tight spots</div></div>
-                    <span class="sv-menu-price">$X</span>
-                  </li>
-                  <li class="sv-menu-row">
-                    <span class="sv-menu-thumb"><img src="images/detail-red-interior.jpg" alt="" loading="lazy" /></span>
-                    <div class="sv-menu-info"><div class="sv-menu-name">Carpet &amp; Seat Shampoo</div><div class="sv-menu-desc">Lifts stains &amp; embedded dirt</div></div>
-                    <span class="sv-menu-price">$X</span>
-                  </li>
-                  <li class="sv-menu-row">
-                    <span class="sv-menu-thumb"><img src="images/detail-infiniti-q50.jpg" alt="" loading="lazy" /></span>
-                    <div class="sv-menu-info"><div class="sv-menu-name">Clay Bar Treatment</div><div class="sv-menu-desc">Glass-smooth paint prep</div></div>
-                    <span class="sv-menu-price">$X</span>
-                  </li>
-                  <li class="sv-menu-row">
-                    <span class="sv-menu-thumb"><img src="images/detail-lexus-is-silver.jpg" alt="" loading="lazy" /></span>
-                    <div class="sv-menu-info"><div class="sv-menu-name">Headlight Restoration</div><div class="sv-menu-desc">Clears cloudy, yellowed lenses</div></div>
-                    <span class="sv-menu-price">$X</span>
-                  </li>
-                  <li class="sv-menu-row">
-                    <span class="sv-menu-thumb"><img src="images/detail-jaguar-xf.jpg" alt="" loading="lazy" /></span>
-                    <div class="sv-menu-info"><div class="sv-menu-name">Paint Enhancement Polish</div><div class="sv-menu-desc">Boosts gloss &amp; depth</div></div>
-                    <span class="sv-menu-price">$X</span>
-                  </li>
-                  <li class="sv-menu-row">
-                    <span class="sv-menu-thumb"><img src="images/detail-durango-interior.jpg" alt="" loading="lazy" /></span>
-                    <div class="sv-menu-info"><div class="sv-menu-name">One-Step Paint Correction</div><div class="sv-menu-desc">Removes light scratches &amp; swirls</div></div>
-                    <span class="sv-menu-price">$X</span>
-                  </li>
-                  <li class="sv-menu-row">
-                    <span class="sv-menu-thumb"><img src="images/detail-ram-1500.jpg" alt="" loading="lazy" /></span>
-                    <div class="sv-menu-info"><div class="sv-menu-name">Engine Bay Cleaning</div><div class="sv-menu-desc">Degreased, finished under-hood</div></div>
-                    <span class="sv-menu-price">$X</span>
-                  </li>
-                  <li class="sv-menu-row">
-                    <span class="sv-menu-thumb"><img src="images/gallery-2.jpg" alt="" loading="lazy" /></span>
-                    <div class="sv-menu-info"><div class="sv-menu-name">Car Seat Cleaning</div><div class="sv-menu-desc">Fresh, sanitized child seats</div></div>
-                    <span class="sv-menu-price">$X</span>
-                  </li>
-                </ul>
-              </div>
-
+          <!-- Card 2: Bases -->
+          <div class="sv-menu-card">
+            <div class="sv-menu-card__head">
+              <p class="sv-menu-card__title">Bases</p>
+              <span class="sv-menu-card__hint">Start here</span>
             </div>
+            <ul class="sv-menu-list">
+              <li class="sv-menu-row">
+                <span class="sv-menu-thumb"><img src="images/detail-jeep-interior.jpg" alt="" loading="lazy" /></span>
+                <div class="sv-menu-info"><div class="sv-menu-name">Interior</div><div class="sv-menu-desc">Full vacuum &amp; wipe-down of every surface</div></div>
+                <span class="sv-menu-price">$X</span>
+              </li>
+              <li class="sv-menu-row">
+                <span class="sv-menu-thumb"><img src="images/detail-durango-white.jpg" alt="" loading="lazy" /></span>
+                <div class="sv-menu-info"><div class="sv-menu-name">Exterior</div><div class="sv-menu-desc">Hand wash, wheels, tires &amp; spray wax</div></div>
+                <span class="sv-menu-price">$X</span>
+              </li>
+              <li class="sv-menu-row">
+                <span class="sv-menu-thumb"><img src="images/detail-lexus-es-white.jpg" alt="" loading="lazy" /></span>
+                <div class="sv-menu-info"><div class="sv-menu-name">Full Detail</div><div class="sv-menu-desc">Complete inside-and-out reset</div></div>
+                <span class="sv-menu-price">$X</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Card 3: Upgrades & Add-ons -->
+          <div class="sv-menu-card">
+            <div class="sv-menu-card__head">
+              <p class="sv-menu-card__title">Upgrades &amp; Add-ons</p>
+              <span class="sv-menu-card__hint">Mix &amp; match</span>
+            </div>
+            <ul class="sv-menu-list">
+              <li class="sv-menu-row">
+                <span class="sv-menu-thumb"><img src="images/detail-mercedes-interior.jpg" alt="" loading="lazy" /></span>
+                <div class="sv-menu-info"><div class="sv-menu-name">Steam Cleaning</div><div class="sv-menu-desc">Vents, crevices &amp; tight spots</div></div>
+                <span class="sv-menu-price">$X</span>
+              </li>
+              <li class="sv-menu-row">
+                <span class="sv-menu-thumb"><img src="images/detail-red-interior.jpg" alt="" loading="lazy" /></span>
+                <div class="sv-menu-info"><div class="sv-menu-name">Carpet &amp; Seat Shampoo</div><div class="sv-menu-desc">Lifts stains &amp; embedded dirt</div></div>
+                <span class="sv-menu-price">$X</span>
+              </li>
+              <li class="sv-menu-row">
+                <span class="sv-menu-thumb"><img src="images/detail-infiniti-q50.jpg" alt="" loading="lazy" /></span>
+                <div class="sv-menu-info"><div class="sv-menu-name">Clay Bar Treatment</div><div class="sv-menu-desc">Glass-smooth paint prep</div></div>
+                <span class="sv-menu-price">$X</span>
+              </li>
+              <li class="sv-menu-row">
+                <span class="sv-menu-thumb"><img src="images/detail-lexus-is-silver.jpg" alt="" loading="lazy" /></span>
+                <div class="sv-menu-info"><div class="sv-menu-name">Headlight Restoration</div><div class="sv-menu-desc">Clears cloudy, yellowed lenses</div></div>
+                <span class="sv-menu-price">$X</span>
+              </li>
+              <li class="sv-menu-row">
+                <span class="sv-menu-thumb"><img src="images/detail-jaguar-xf.jpg" alt="" loading="lazy" /></span>
+                <div class="sv-menu-info"><div class="sv-menu-name">Paint Enhancement Polish</div><div class="sv-menu-desc">Boosts gloss &amp; depth</div></div>
+                <span class="sv-menu-price">$X</span>
+              </li>
+              <li class="sv-menu-row">
+                <span class="sv-menu-thumb"><img src="images/detail-durango-interior.jpg" alt="" loading="lazy" /></span>
+                <div class="sv-menu-info"><div class="sv-menu-name">One-Step Paint Correction</div><div class="sv-menu-desc">Removes light scratches &amp; swirls</div></div>
+                <span class="sv-menu-price">$X</span>
+              </li>
+              <li class="sv-menu-row">
+                <span class="sv-menu-thumb"><img src="images/detail-ram-1500.jpg" alt="" loading="lazy" /></span>
+                <div class="sv-menu-info"><div class="sv-menu-name">Engine Bay Cleaning</div><div class="sv-menu-desc">Degreased, finished under-hood</div></div>
+                <span class="sv-menu-price">$X</span>
+              </li>
+              <li class="sv-menu-row">
+                <span class="sv-menu-thumb"><img src="images/gallery-2.jpg" alt="" loading="lazy" /></span>
+                <div class="sv-menu-info"><div class="sv-menu-name">Car Seat Cleaning</div><div class="sv-menu-desc">Fresh, sanitized child seats</div></div>
+                <span class="sv-menu-price">$X</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Card 4: Ceramic Coating (premium) -->
+          <div class="sv-menu-card sv-menu-card--feature">
+            <div class="sv-menu-card__head">
+              <p class="sv-menu-card__title">Ceramic Coating</p>
+              <span class="sv-menu-card__hint">Premium</span>
+            </div>
+            <ul class="sv-menu-list">
+              <li class="sv-menu-row">
+                <span class="sv-menu-thumb"><img src="images/gallery-4.jpg" alt="" loading="lazy" /></span>
+                <div class="sv-menu-info"><div class="sv-menu-name">Ceramic Coating</div><div class="sv-menu-desc">Our top-tier protection — multi-year gloss, extreme water beading, and a hard, self-cleaning shield for your paint.</div></div>
+                <span class="sv-menu-price">$X</span>
+              </li>
+            </ul>
           </div>
 
         </div>
