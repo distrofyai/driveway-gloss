@@ -20,6 +20,23 @@ sitemap.xml      — sitemap for Google
 
 That's it. No build step, no framework, no npm. Plain HTML/CSS/JS.
 
+## Cache busting (important)
+
+`css/style.css` and `js/main.js` are linked with a version query, e.g.
+`css/style.css?v=2`. Vercel's edge caches these filenames aggressively and will
+keep serving an old copy after a deploy, so a CSS or JS change can go live in
+Git and still not appear in the browser.
+
+**After changing style.css or main.js, bump the number in all five HTML files:**
+
+```bash
+# from ?v=2 to ?v=3, across every page
+perl -0pi -e 's{style\.css\?v=\d+}{style.css?v=3}g; s{main\.js\?v=\d+}{main.js?v=3}g' *.html
+```
+
+Changing the number makes it a new URL, so every browser and every edge node
+fetches it fresh. Image and HTML changes do not need this.
+
 ## How to make a change
 
 1. Edit the file (`index.html` for text/structure, `css/style.css` for styling).
