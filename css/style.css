@@ -3777,14 +3777,19 @@ input, select, textarea {
     line-height: 1.2;
     color: #fff;
   }
+  /* Wraps to a second line instead of truncating. The text column is ~163px
+     on a 390px phone while this string needs ~228px, so nowrap + ellipsis was
+     cutting it mid-word ("Mobile deta…") on every page. */
   .sticky-call__tag {
     font-family: var(--font-body, sans-serif);
-    font-size: 12px;
-    line-height: 1.25;
+    font-size: 11.5px;
+    line-height: 1.3;
     color: rgba(255, 255, 255, 0.66);
-    white-space: nowrap;
+    white-space: normal;
     overflow: hidden;
-    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 
   /* Call Now pill (right) */
@@ -4411,12 +4416,15 @@ input, select, textarea {
     width: auto;
     margin: 0;
   }
-  #family .family-photo--offset { max-width: 90%; }
+  /* Both photos share one width. The offset one previously kept a 90% cap from
+     the desktop overlap, which made the pair visibly mismatched (146px vs
+     131px) side by side in the same section. */
   #family .family-photo__img {
     border-radius: 14px;
     box-shadow: var(--shadow-md);
   }
+  /* One measure for both blocks; --b was a step smaller, so the section ran
+     three different type sizes down the page. */
   #family .family__body p { font-size: 13.5px; line-height: 1.5; }
-  #family .family__body--b p { font-size: 12.8px; line-height: 1.45; }
   #family .family__body p + p { margin-top: 10px; }
 }
