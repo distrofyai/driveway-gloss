@@ -2134,6 +2134,7 @@ input, select, textarea {
   /* Track: a centered flex row that we translate via --offset */
   .base-carousel .base-services,
   .base-carousel--ba .ba-grid,
+  .base-carousel--tiers .sv-tier-list,
   #how-it-works .base-carousel--steps .steps {
     display: flex;
     grid-template-columns: none;
@@ -2150,6 +2151,7 @@ input, select, textarea {
   /* Cards: side cards scaled down + dimmed; active card full-size */
   .base-carousel .base-services > .base-card,
   .base-carousel--ba .ba-grid > .ba-card,
+  .base-carousel--tiers .sv-tier-list > .sv-tier,
   #how-it-works .base-carousel--steps .steps > .step {
     flex: 0 0 72vw;
     max-width: 320px;
@@ -2160,6 +2162,7 @@ input, select, textarea {
   }
   .base-carousel .base-services > .base-card.is-active,
   .base-carousel--ba .ba-grid > .ba-card.is-active,
+  .base-carousel--tiers .sv-tier-list > .sv-tier.is-active,
   #how-it-works .base-carousel--steps .steps > .step.is-active {
     transform: scale(1);
     opacity: 1;

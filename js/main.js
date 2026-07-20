@@ -249,7 +249,7 @@
 
   // ---------- Mobile carousels (base packages + before/after) ----------
   const initCarousel = (root) => {
-    const track = root.querySelector('.base-services, .ba-grid, .steps');
+    const track = root.querySelector('.base-services, .ba-grid, .steps, .sv-tier-list');
     const noWrap = root.hasAttribute('data-no-wrap');
     const prevBtn = root.querySelector('.base-carousel__arrow--prev');
     const nextBtn = root.querySelector('.base-carousel__arrow--next');
@@ -259,7 +259,7 @@
     if (!cards.length) return;
 
     const carouselMq = window.matchMedia('(max-width: 720px)');
-    let index = cards.findIndex((c) => c.classList.contains('base-card--featured') || c.classList.contains('ba-card--featured'));
+    let index = cards.findIndex((c) => c.classList.contains('base-card--featured') || c.classList.contains('ba-card--featured') || c.classList.contains('sv-tier--featured'));
     if (index < 0) index = 0;
 
     const layout = () => {

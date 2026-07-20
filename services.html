@@ -129,6 +129,30 @@
     /* Mobile: hide the hero CTA buttons (nav CTA + sticky call bar already cover it) */
     @media (max-width: 720px) {
       .page-hero .sv-hero__cta { display: none; }
+
+      /* Tier cards inside the swipe carousel. They are normally a wide
+         three-column row; at ~72vw that has to collapse to a single column. */
+      .base-carousel--tiers .sv-tier {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 24px 20px 26px;
+        align-items: start;
+      }
+      .base-carousel--tiers .sv-tier__price {
+        grid-column: auto;
+        justify-items: start;
+        text-align: left;
+        border-top: 1px solid var(--sv-border);
+        padding-top: 16px;
+        margin-top: 2px;
+        min-width: 0;
+      }
+      .base-carousel--tiers .sv-tier__cta { justify-self: stretch; text-align: center; }
+      .base-carousel--tiers .sv-tier__desc { max-width: none; }
+      /* The carousel scales side cards down; the card's own hover lift would
+         overwrite that transform, so restate it per carousel state. */
+      .base-carousel--tiers .sv-tier:hover { transform: scale(0.82); }
+      .base-carousel--tiers .sv-tier.is-active:hover { transform: scale(1); }
     }
 
     /* ── HERO (photo background) ───────────────────────── */
@@ -442,7 +466,19 @@
           <p>Each package is a complete inside-and-out detail. Move up a tier for deeper correction and longer-lasting protection.</p>
         </div>
 
-        <div class="sv-tier-list reveal">
+        <!-- Reuses the same [data-base-carousel] component the home page
+             packages use, so swipe + pill behave identically across the site.
+             Arrows and dots are hidden above 720px, where the list is a plain
+             stack again. -->
+        <div class="base-carousel base-carousel--tiers reveal" data-base-carousel>
+          <button class="base-carousel__arrow base-carousel__arrow--prev" type="button" aria-label="Previous package">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="base-carousel__arrow base-carousel__arrow--next" type="button" aria-label="Next package">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+
+        <div class="sv-tier-list">
 
           <article class="sv-tier">
             <div class="sv-tier__num">01</div>
@@ -507,6 +543,13 @@
             </div>
           </article>
 
+        </div>
+
+          <div class="base-carousel__dots" role="tablist" aria-label="Package navigation">
+            <button class="base-carousel__dot" type="button" role="tab" aria-label="Show Basic package"></button>
+            <button class="base-carousel__dot is-active" type="button" role="tab" aria-label="Show Signature package" aria-selected="true"></button>
+            <button class="base-carousel__dot" type="button" role="tab" aria-label="Show Premium package"></button>
+          </div>
         </div>
       </div>
     </section>
