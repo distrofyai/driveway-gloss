@@ -638,15 +638,9 @@ input, select, textarea {
   flex-wrap: wrap;
   gap: 16px;
 }
-/* A group of three cards wraps 2 + 1, and `flex-grow` then stretched the lone
-   third card across the full row, leaving a wide card with a single line of
-   text and a lot of empty space under it. Capping a lone last card to half the
-   row keeps it aligned with the column above. */
-@media (min-width: 961px) {
-  .services-grid > *:last-child:nth-child(odd) {
-    max-width: calc(50% - 8px);
-  }
-}
+/* A lone last card deliberately stretches to fill its row. Capping it to half
+   width was tried and reverted: it swapped a wide card for a half card with an
+   equally wide hole beside it, which reads worse. */
 .services-grid > * {
   flex: 1 1 280px;
   /* Cards stretch to fill leftover space in the row: no orphan empty columns */
