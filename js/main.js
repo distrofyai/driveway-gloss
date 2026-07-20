@@ -1,5 +1,5 @@
 /* =====================================================
-   Driveway Gloss — main.js
+   Driveway Gloss main.js
    - Sticky nav scroll state
    - Mobile nav toggle
    - Hero video: desktop autoplay, mobile tap-to-play (data-aware)
@@ -35,7 +35,7 @@
       nav.classList.remove('is-scrolled');
     }
 
-    // Direction-based show/hide — mobile only, and never while the menu is open
+    // Direction-based show/hide, mobile only, and never while the menu is open
     const navLinks = document.getElementById('nav-links');
     const menuOpen = navLinks && navLinks.classList.contains('is-open');
     if (hideNavMq.matches && !menuOpen) {

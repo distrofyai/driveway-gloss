@@ -1,5 +1,5 @@
 /* =====================================================
-   Driveway Gloss — custom stylesheet
+   Driveway Gloss: custom stylesheet
    Light, premium automotive theme. Mobile-first.
    ===================================================== */
 
@@ -22,13 +22,13 @@
   --text-on-dark: #fafafa;    /* used over hero video */
   --text-on-dark-muted: rgba(255,255,255,0.78);
 
-  /* Accent — metallic blue from logo */
+  /* Accent: metallic blue from logo */
   --accent: #2563eb;
   --accent-hi: #1d4ed8;
   --accent-soft: #eff6ff;
   --accent-glow: rgba(37, 99, 235, 0.18);
 
-  /* Ink — primary CTA buttons */
+  /* Ink: primary CTA buttons */
   --ink: #0a0a0a;
   --ink-hi: #18181b;
 
@@ -164,7 +164,7 @@ input, select, textarea {
   will-change: transform;
 }
 
-/* Primary — solid dark/black with white text */
+/* Primary: solid dark/black with white text */
 .btn--primary {
   background: var(--ink);
   color: #fff;
@@ -177,7 +177,7 @@ input, select, textarea {
   box-shadow: 0 14px 32px -10px rgba(0,0,0,0.45), var(--shadow-glow);
 }
 
-/* Secondary — blue accent */
+/* Secondary: blue accent */
 .btn--accent {
   background: var(--accent);
   color: #fff;
@@ -190,7 +190,7 @@ input, select, textarea {
   box-shadow: 0 14px 32px -8px var(--accent-glow);
 }
 
-/* Ghost — transparent with border */
+/* Ghost: transparent with border */
 .btn--ghost {
   background: transparent;
   color: var(--text);
@@ -480,7 +480,7 @@ input, select, textarea {
   .hero__meta-text strong { font-size: 18px; }
 }
 
-/* Duplicate trust strip rendered under the pricing carousel — mobile only */
+/* Duplicate trust strip rendered under the pricing carousel: mobile only */
 .hero__meta--inline { display: none; }
 
 /* Hero video play overlay (mobile) */
@@ -616,7 +616,7 @@ input, select, textarea {
 }
 .services-grid > * {
   flex: 1 1 280px;
-  /* Cards stretch to fill leftover space in the row — no orphan empty columns */
+  /* Cards stretch to fill leftover space in the row: no orphan empty columns */
 }
 
 .service-card {
@@ -844,7 +844,7 @@ input, select, textarea {
   box-shadow: 0 0 0 4px var(--accent-glow);
 }
 
-/* ---------- Testimonials (compact) — 3 columns × 2 rows on desktop ---------- */
+/* ---------- Testimonials (compact): 3 columns × 2 rows on desktop ---------- */
 .testimonials {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1320,7 +1320,7 @@ input, select, textarea {
   object-fit: cover;
   display: block;
 }
-/* Wheel restoration (2nd card) — image was cropping the clean wheel
+/* Wheel restoration (2nd card): image was cropping the clean wheel
    off the bottom, so anchor focus lower to keep it fully visible. */
 .ba-card:nth-child(2) .ba-card__media img {
   object-position: center 72%;
@@ -1413,7 +1413,7 @@ input, select, textarea {
   will-change: backdrop-filter;
   isolation: isolate;
 }
-/* Don't translateY the steps carousel on reveal — a transformed ancestor
+/* Don't translateY the steps carousel on reveal: a transformed ancestor
    clips backdrop-filter on the .step cards, so the blur visibly snaps in
    after the slide-up settles. Keep the opacity fade only. */
 .base-carousel--steps.reveal { transform: none; }
@@ -1449,7 +1449,7 @@ input, select, textarea {
   box-shadow: 0 6px 18px -6px rgba(0,0,0,0.45);
 }
 
-/* Quote Form section — wide BMW X5 hero shot behind, darkened for contrast with the form */
+/* Quote Form section: wide BMW X5 hero shot behind, darkened for contrast with the form */
 #contact.section--photo-bg::before {
   background-image:
     linear-gradient(180deg, rgba(5,8,18,0.7) 0%, rgba(5,8,18,0.85) 100%),
@@ -1457,7 +1457,7 @@ input, select, textarea {
   background-position: center center;
 }
 
-/* Book-a-call CTA band — small filler section between pricing and upgrades */
+/* Book-a-call CTA band: small filler section between pricing and upgrades */
 #book-cta.section--photo-bg::before {
   background-image:
     linear-gradient(180deg, rgba(8,8,12,0.6) 0%, rgba(8,8,12,0.78) 100%),
@@ -1537,7 +1537,7 @@ input, select, textarea {
 #contact.section--photo-bg .contact__info a:hover { color: #93c5fd; }
 #contact.section--photo-bg .contact__info span { color: rgba(255,255,255,0.85); }
 
-/* "Our Promise" — graph/process-flow style: 3 icon nodes joined by a connector line.
+/* "Our Promise": graph/process-flow style: 3 icon nodes joined by a connector line.
    Compact section with a photo background, visible through a soft dark overlay. */
 #our-promise.section--tight {
   padding-top: clamp(20px, 2.8vw, 32px);
@@ -1590,7 +1590,7 @@ input, select, textarea {
   z-index: 0;
 }
 
-/* Strip card styling — each step becomes a centered stack */
+/* Strip card styling: each step becomes a centered stack */
 #our-promise .step {
   background: transparent;
   border: 0;
@@ -1614,7 +1614,7 @@ input, select, textarea {
   box-shadow: none;
 }
 
-/* Icon node — small white circle ON the line */
+/* Icon node: small white circle ON the line */
 #our-promise .step__icon {
   width: 48px;
   height: 48px;
@@ -1814,7 +1814,7 @@ input, select, textarea {
   line-height: 1.45;
 }
 
-/* ---------- Simple Pricing — 3 Steps (matches Upgrades visual style) ---------- */
+/* ---------- Simple Pricing: 3 Steps (matches Upgrades visual style) ---------- */
 .step-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2325,7 +2325,7 @@ input, select, textarea {
 }
 
 /* Desktop-only: Google review stars + map live in the left column,
-   directly under the contact info — and the intro text reads a touch bigger. */
+   directly under the contact info: and the intro text reads a touch bigger. */
 @media (min-width: 961px) {
   .quote {
     column-gap: clamp(40px, 6vw, 72px);
@@ -2424,7 +2424,7 @@ input, select, textarea {
   display: contents;
 }
 
-/* Services dropdown — always a true dropdown, every breakpoint */
+/* Services dropdown: always a true dropdown, every breakpoint */
 .form-accordion--services {
   display: block;
   border: 1px solid var(--border);
@@ -3054,7 +3054,7 @@ input, select, textarea {
     line-height: 1.35;
   }
 
-  /* Every Detail promise: tag + title only on mobile — subtext hidden for a tight, scannable section */
+  /* Every Detail promise: tag + title only on mobile: subtext hidden for a tight, scannable section */
   #our-promise.section--tight {
     padding-top: 18px;
     padding-bottom: 18px;
@@ -3100,7 +3100,7 @@ input, select, textarea {
     display: none;
   }
 
-  /* Three-step pricing: centered mobile flow with down-arrow connectors — tightened */
+  /* Three-step pricing: centered mobile flow with down-arrow connectors: tightened */
   #how-it-works.section--tight {
     padding-top: 16px;
     padding-bottom: 16px;
@@ -3214,7 +3214,7 @@ input, select, textarea {
     font-size: 16px;
   }
 
-  /* Hero shrinks to fit content on mobile — video stops at the divider line.
+  /* Hero shrinks to fit content on mobile: video stops at the divider line.
      Extra bottom padding restores the height the badge strip used to occupy. */
   .hero {
     min-height: 0;
@@ -3318,7 +3318,7 @@ input, select, textarea {
   }
   .hero__video-play svg { width: 22px; height: 22px; }
 
-  /* Hide the centered scroll indicator — would land in the meta strip */
+  /* Hide the centered scroll indicator: would land in the meta strip */
   .hero__scroll { display: none; }
 
   .form__row { grid-template-columns: 1fr; }
@@ -3441,7 +3441,7 @@ input, select, textarea {
 }
 
 /* =====================================================
-   Sticky "Free Quote" call bar — mobile only (<= 768px)
+   Sticky "Free Quote" call bar: mobile only (<= 768px)
    ===================================================== */
 
 /* Desktop / default: hidden entirely. */
@@ -3543,7 +3543,7 @@ input, select, textarea {
     color: #fff;
   }
 
-  /* Close (X) — small circle floating just outside the top-right corner */
+  /* Close (X): small circle floating just outside the top-right corner */
   .sticky-call__close {
     position: absolute;
     top: -10px;
@@ -3838,7 +3838,7 @@ input, select, textarea {
   .ba-compare__grip { width: 40px; height: 40px; }
 }
 
-/* Trust strip (Contact page) — quick reassurance row */
+/* Trust strip (Contact page): quick reassurance row */
 .trust-strip {
   background: var(--bg-alt);
   border-top: 1px solid var(--border);
@@ -3923,7 +3923,7 @@ input, select, textarea {
    specificity, later in the cascade) rather than a bare class.
    ========================================================================== */
 
-/* Media column is the wider one here — this is the lead section under the
+/* Media column is the wider one here: this is the lead section under the
    hero, so the photos carry it rather than the copy. */
 .why--reverse {
   grid-template-columns: 1fr 1.35fr;
@@ -3947,7 +3947,7 @@ input, select, textarea {
 
 /* Desktop: the two photos overlap diagonally rather than sitting side by side,
    so each one can be much wider than half the media column. Widths are
-   percentages of that column — the second is deliberately the smaller of the
+   percentages of that column: the second is deliberately the smaller of the
    two, right-aligned and pulled up so it sits bottom-right of the first. They
    sum to just over 100%, which is what creates the small overlap. The second
    photo is later in the DOM so it paints on top; its ring is the section

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services &amp; Pricing — Driveway Gloss Mobile Auto Detailing, Mooresville NC</title>
-  <meta name="description" content="Driveway Gloss detailing services in Mooresville, NC — full-detail packages (Basic, Signature, Premium), build-your-own interior and exterior details, paint correction, ceramic sealants, and add-on upgrades." />
+  <title>Services &amp; Pricing | Driveway Gloss Mobile Auto Detailing, Mooresville NC</title>
+  <meta name="description" content="Driveway Gloss detailing services in Mooresville, NC. Full-detail packages (Basic, Signature, Premium), build-your-own interior and exterior details, paint correction, ceramic sealants, and add-on upgrades." />
   <meta name="theme-color" content="#ffffff" />
 
   <!-- Sticky call bar: pre-paint dismissed-state check (runs before first paint to prevent a flash). -->
@@ -29,7 +29,7 @@
   <link rel="apple-touch-icon" href="images/logo-dark.jpg" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Services &amp; Pricing — Driveway Gloss Premium Mobile Auto Detailing" />
+  <meta property="og:title" content="Services &amp; Pricing | Driveway Gloss Premium Mobile Auto Detailing" />
   <meta property="og:description" content="Full-detail packages, build-your-own details, paint correction, ceramic sealants, and upgrades. Mooresville, NC." />
   <meta property="og:image" content="images/gallery-4.jpg" />
   <meta property="og:url" content="https://www.drivewaygloss.net/services.html" />
@@ -41,7 +41,7 @@
   <link rel="stylesheet" href="css/style.css" />
 
   <!-- ============================================================
-       Services page — self-contained design (scoped under .sv)
+       Services page: self-contained design (scoped under .sv)
        Photo hero, light content, dark package cards.
        ============================================================ -->
   <style>
@@ -95,10 +95,10 @@
     .sv-btn--solid:hover { transform: translateY(-2px); background: var(--sv-accent-hi); box-shadow: 0 18px 40px -14px rgba(37,99,235,0.6); }
     .sv-btn--line { background: transparent; color: var(--sv-ink); border-color: var(--sv-border-hi); }
     .sv-btn--line:hover { transform: translateY(-2px); border-color: var(--sv-ink); background: rgba(0,0,0,0.03); }
-    /* white pill with blue label — used on the dark package cards */
+    /* white pill with blue label, used on the dark package cards */
     .sv-btn--white { background: #fff; color: var(--sv-accent); border-color: #fff; box-shadow: 0 10px 26px -14px rgba(0,0,0,0.55); }
     .sv-btn--white:hover { transform: translateY(-2px); background: #eaf1ff; color: var(--sv-accent-hi); }
-    /* Hero CTA row sits on the dark photo hero — white outline for the ghost button */
+    /* Hero CTA row sits on the dark photo hero, white outline for the ghost button */
     .page-hero .sv-btn--line { color: #fff; border-color: rgba(255,255,255,0.4); }
     .page-hero .sv-btn--line:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
     /* Mobile: hide the hero CTA buttons (nav CTA + sticky call bar already cover it) */
@@ -216,7 +216,7 @@
     .sv-mini-steps__t b { display: block; font-family: var(--sv-fd); font-weight: 600; font-size: 15px; color: var(--sv-ink); letter-spacing: -0.01em; }
     .sv-mini-steps__t span { display: block; font-size: 13px; color: var(--sv-muted); margin-top: 2px; line-height: 1.45; }
 
-    /* Build-your-own: clean à-la-carte menu — two balanced columns
+    /* Build-your-own: clean à-la-carte menu, two balanced columns
        (Packages + Bases | Upgrades) with a full-width Ceramic feature banner below.
        Natural card heights, uniform thumbnails. */
     .sv-build__menus { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
@@ -242,9 +242,10 @@
     .sv-menu-info { flex: 1; min-width: 0; }
     .sv-menu-name { font-family: var(--sv-fd); font-weight: 600; font-size: 15px; color: var(--sv-ink); line-height: 1.25; letter-spacing: -0.01em; }
     .sv-menu-desc { font-size: 12.5px; color: var(--sv-muted); line-height: 1.4; margin-top: 2px; }
-    .sv-menu-price { flex-shrink: 0; font-family: var(--sv-fd); font-weight: 700; font-size: 16px; color: var(--sv-accent); }
+    /* Black to match .sv-tier__amt in the Packages section above. */
+    .sv-menu-price { flex-shrink: 0; font-family: var(--sv-fd); font-weight: 700; font-size: 16px; color: var(--sv-ink); }
 
-    /* Ceramic Coating — full-width premium feature banner */
+    /* Ceramic Coating: full-width premium feature banner */
     .sv-ceramic { grid-column: 1 / -1; display: flex; align-items: stretch; gap: 0; padding: 0; overflow: hidden;
       border-color: rgba(37,99,235,0.35); background: linear-gradient(120deg, var(--sv-accent-soft) 0%, #fff 62%); }
     .sv-ceramic__media { flex: 0 0 32%; max-width: 340px; min-height: 190px; overflow: hidden; }
@@ -280,6 +281,15 @@
     .sv-final .sv-btn--line:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
 
     /* ── RESPONSIVE ───────────────────────────────────── */
+    /* Desktop: stretch the Upgrades card so it bottoms out level with the
+       Bases card in the left column (Packages + Bases run taller than the
+       eight Upgrades rows). The extra height is spread across the row gaps
+       rather than dumped as dead space under the last row. */
+    @media (min-width: 861px) {
+      .sv-build__menus { align-items: stretch; }
+      .sv-build__col--upgrades > .sv-menu-card { flex: 1; display: flex; flex-direction: column; }
+      .sv-build__col--upgrades .sv-menu-list { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    }
     /* Desktop hover polish on menu rows */
     @media (hover: hover) and (min-width: 861px) {
       .sv-menu-row:hover { transform: translateX(3px); transition: transform .2s var(--ease, ease); }
@@ -290,7 +300,7 @@
       .sv-tier__price { grid-column: 1 / -1; justify-items: start; text-align: left; border-top: 1px solid var(--sv-border); padding-top: 18px; margin-top: 4px; }
       .sv-tier__cta { justify-self: start; }
     }
-    /* Mobile/tablet: single column stack — clean, no forced heights */
+    /* Mobile/tablet: single column stack, clean, no forced heights */
     @media (max-width: 860px) {
       .sv-build__menus { grid-template-columns: 1fr; }
       .sv-ceramic { flex-direction: column; }
@@ -312,7 +322,7 @@
   <header class="nav" id="nav">
     <div class="container nav__inner">
       <a href="index.html#top" class="nav__brand" aria-label="Driveway Gloss home">
-        <img src="images/logo-dark.jpg" alt="Driveway Gloss — mobile detailing logo" class="nav__brand-mark" width="44" height="44" />
+        <img src="images/logo-dark.jpg" alt="Driveway Gloss mobile detailing logo" class="nav__brand-mark" width="44" height="44" />
         <span class="nav__brand-name">Driveway Gloss</span>
       </a>
 
@@ -337,7 +347,7 @@
       <div class="page-hero__inner">
         <span class="eyebrow">Services &amp; Pricing</span>
         <h1 class="page-hero__title">Detailing, built <span class="accent">around your car.</span></h1>
-        <p class="page-hero__lede">Pick a complete package, or build your own from an interior or exterior base — and add only what your car actually needs.</p>
+        <p class="page-hero__lede">Pick a complete package, or build your own from an interior or exterior base, and add only what your car actually needs.</p>
         <div class="sv-hero__cta" style="margin-top: 28px;">
           <a class="sv-btn sv-btn--solid" href="contact.html">Get a Quote</a>
           <a class="sv-btn sv-btn--line" href="#tiers">View Packages</a>
@@ -360,7 +370,7 @@
             <div class="sv-tier__num">01</div>
             <div class="sv-tier__main">
               <h3 class="sv-tier__name">Basic</h3>
-              <p class="sv-tier__desc">A clean, refreshed car inside and out — ideal for well-maintained vehicles that just need a reset.</p>
+              <p class="sv-tier__desc">A clean, refreshed car inside and out, ideal for well-maintained vehicles that just need a reset.</p>
               <ul class="sv-tier__feats">
                 <li>Interior vacuum &amp; wipe down</li>
                 <li>Exterior hand wash</li>
@@ -381,13 +391,13 @@
             <div class="sv-tier__num">02</div>
             <div class="sv-tier__main">
               <h3 class="sv-tier__name">Signature</h3>
-              <p class="sv-tier__desc">Our most-booked detail — a deeper interior clean plus real, lasting paint protection.</p>
+              <p class="sv-tier__desc">Our most-booked detail, with a deeper interior clean plus real, lasting paint protection.</p>
               <ul class="sv-tier__feats">
                 <li>Deep interior cleaning</li>
                 <li>Exterior hand wash</li>
                 <li>Wheels &amp; tires</li>
                 <li>Windows</li>
-                <li>4–6 month ceramic sealant</li>
+                <li>4 to 6 month ceramic sealant</li>
               </ul>
             </div>
             <div class="sv-tier__price">
@@ -401,7 +411,7 @@
             <div class="sv-tier__num">03</div>
             <div class="sv-tier__main">
               <h3 class="sv-tier__name">Premium</h3>
-              <p class="sv-tier__desc">The full transformation — paint correction, clay bar, and a full year of ceramic protection.</p>
+              <p class="sv-tier__desc">The full transformation: paint correction, clay bar, and a full year of ceramic protection.</p>
               <ul class="sv-tier__feats">
                 <li>Deep interior cleaning</li>
                 <li>Exterior hand wash</li>
@@ -429,7 +439,7 @@
         <div class="sv-sec-head">
           <span class="sv-eyebrow">Build Your Own</span>
           <h2 class="sv-h2">Only pay for what your car needs.</h2>
-          <p>Not every car needs the works. Start from a base detail, then add individual upgrades à la carte — a fully custom detail, priced to match.</p>
+          <p>Not every car needs the works. Start from a base detail, then add individual upgrades à la carte. A fully custom detail, priced to match.</p>
         </div>
 
         <div class="sv-build__menus">
@@ -450,7 +460,7 @@
                 </li>
                 <li class="sv-menu-row">
                   <span class="sv-menu-thumb"><img src="images/detail-tesla-white.jpg" alt="" loading="lazy" /></span>
-                  <div class="sv-menu-info"><div class="sv-menu-name">Signature</div><div class="sv-menu-desc">Deeper clean, 4–6 mo ceramic sealant</div></div>
+                  <div class="sv-menu-info"><div class="sv-menu-name">Signature</div><div class="sv-menu-desc">Deeper clean, 4 to 6 mo ceramic sealant</div></div>
                   <span class="sv-menu-price">$140</span>
                 </li>
                 <li class="sv-menu-row">
@@ -488,7 +498,7 @@
           </div>
 
           <!-- Right column: Upgrades & Add-ons -->
-          <div class="sv-build__col">
+          <div class="sv-build__col sv-build__col--upgrades">
             <div class="sv-menu-card">
               <div class="sv-menu-card__head">
                 <h3 class="sv-menu-card__title">Upgrades &amp; Add-ons</h3>
@@ -563,7 +573,7 @@
             <div class="sv-ceramic__body">
               <span class="sv-ceramic__badge">Premium</span>
               <h3 class="sv-ceramic__title">Ceramic Coating</h3>
-              <p class="sv-ceramic__desc">Our top-tier protection — multi-year gloss, extreme water beading, and a hard, self-cleaning shield that keeps your paint looking new far longer than a wax or sealant.</p>
+              <p class="sv-ceramic__desc">Our top-tier protection: multi-year gloss, extreme water beading, and a hard, self-cleaning shield that keeps your paint looking new far longer than a wax or sealant.</p>
             </div>
             <div class="sv-ceramic__price">
               <span class="sv-ceramic__from">Starting at</span>
@@ -585,7 +595,7 @@
       <div class="sv-wrap sv-final__in">
         <span class="sv-eyebrow">Free, No-obligation Quote</span>
         <h2>Not sure which service you need?</h2>
-        <p>Tell Tyler about your car and he'll recommend the right package — no upsell, just an honest quote for interior, exterior, or the full works.</p>
+        <p>Tell Tyler about your car and he'll recommend the right package. No upsell, just an honest quote for interior, exterior, or the full works.</p>
         <div class="sv-hero__cta">
           <a class="sv-btn sv-btn--solid" href="tel:+17045913265">Call 704-591-3265</a>
           <a class="sv-btn sv-btn--line" href="contact.html">Get a Quote</a>
@@ -599,10 +609,10 @@
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__brand">
-        <img src="images/logo-dark.jpg" alt="Driveway Gloss — mobile detailing logo" class="nav__brand-mark" width="48" height="48" />
+        <img src="images/logo-dark.jpg" alt="Driveway Gloss mobile detailing logo" class="nav__brand-mark" width="48" height="48" />
         <span>Driveway Gloss</span>
       </div>
-      <p class="footer__tag">Premium mobile detailing — Mooresville, NC.</p>
+      <p class="footer__tag">Premium mobile detailing in Mooresville, NC.</p>
 
       <div class="footer__contact">
         <a href="tel:+17045913265">704-591-3265</a>
