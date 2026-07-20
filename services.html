@@ -40,6 +40,12 @@
 
   <link rel="stylesheet" href="css/style.css" />
 
+  <!-- Scroll-reveal elements start at opacity:0 and are switched on by main.js.
+       With JavaScript off nothing would ever become visible, so show it all. -->
+  <noscript>
+    <style>.reveal, .reveal > * { opacity: 1 !important; transform: none !important; }</style>
+  </noscript>
+
   <!-- ============================================================
        Services page: self-contained design (scoped under .sv)
        Photo hero, light content, dark package cards.
@@ -430,13 +436,13 @@
     <!-- ── PACKAGES ── -->
     <section class="sv-tiers" id="tiers">
       <div class="sv-wrap">
-        <div class="sv-sec-head">
+        <div class="sv-sec-head reveal">
           <span class="sv-eyebrow">Full-detail Packages</span>
           <h2 class="sv-h2">Three tiers. One standard.</h2>
           <p>Each package is a complete inside-and-out detail. Move up a tier for deeper correction and longer-lasting protection.</p>
         </div>
 
-        <div class="sv-tier-list">
+        <div class="sv-tier-list reveal">
 
           <article class="sv-tier">
             <div class="sv-tier__num">01</div>
@@ -508,13 +514,13 @@
     <!-- ── BUILD YOUR OWN ── -->
     <section class="sv-build" id="build">
       <div class="sv-wrap">
-        <div class="sv-sec-head">
+        <div class="sv-sec-head reveal">
           <span class="sv-eyebrow">Build Your Own</span>
           <h2 class="sv-h2">Only pay for what your car needs.</h2>
           <p>Not every car needs the works. Start from a base detail, then add individual upgrades à la carte. A fully custom detail, priced to match.</p>
         </div>
 
-        <div class="sv-build__menus">
+        <div class="sv-build__menus reveal">
 
           <!-- Left column: Packages + Bases -->
           <div class="sv-build__col">
@@ -764,7 +770,7 @@
 
     <!-- ── FINAL CTA ── -->
     <section class="sv-final">
-      <div class="sv-wrap sv-final__in">
+      <div class="sv-wrap sv-final__in reveal">
         <span class="sv-eyebrow">Free, No-obligation Quote</span>
         <h2>Not sure which service you need?</h2>
         <p>Tell Tyler about your car and he'll recommend the right package. No upsell, just an honest quote for interior, exterior, or the full works.</p>

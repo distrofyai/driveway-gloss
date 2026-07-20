@@ -169,8 +169,15 @@
         }
       });
     }, {
-      threshold: 0.12,
-      rootMargin: '0px 0px -8% 0px',
+      // threshold:0 fires as soon as any part of the element crosses the
+      // boundary. The previous 0.12 required 12% of the element to be visible
+      // at once, which an element taller than the viewport can never satisfy:
+      // a 4000px-tall grid in a 900px viewport peaks at an intersection ratio
+      // of about 0.22 only if fully spanning, and long containers sat well
+      // under 0.12 and never revealed at all. The negative bottom margin keeps
+      // the reveal from firing until the element is properly on screen.
+      threshold: 0,
+      rootMargin: '0px 0px -10% 0px',
     });
 
     revealEls.forEach((el) => io.observe(el));

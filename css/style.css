@@ -2690,27 +2690,64 @@ input, select, textarea {
   transform: none;
 }
 
+/* Children of these containers cascade in one after another. sv-tier-list and
+   sv-build__menus are the services page equivalents, added so that page moves
+   like the rest of the site instead of snapping in with no motion at all. */
 .reveal.services-grid > *,
 .reveal.testimonials > *,
-.reveal.gallery > * {
+.reveal.gallery > *,
+.reveal.sv-tier-list > *,
+.reveal.sv-build__menus > * {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity .6s var(--ease), transform .6s var(--ease);
 }
 .reveal.services-grid.is-visible > *,
 .reveal.testimonials.is-visible > *,
-.reveal.gallery.is-visible > * {
+.reveal.gallery.is-visible > *,
+.reveal.sv-tier-list.is-visible > *,
+.reveal.sv-build__menus.is-visible > * {
   opacity: 1;
   transform: none;
 }
-.reveal.is-visible > *:nth-child(2) { transition-delay: .08s; }
-.reveal.is-visible > *:nth-child(3) { transition-delay: .16s; }
-.reveal.is-visible > *:nth-child(4) { transition-delay: .24s; }
-.reveal.is-visible > *:nth-child(5) { transition-delay: .32s; }
-.reveal.is-visible > *:nth-child(6) { transition-delay: .40s; }
+/* 50ms steps rather than 80ms: the gallery runs to 20 tiles, and the old
+   6-child ladder left everything past the sixth arriving in one lump. The
+   ninth onward share a delay so a long grid never feels like it is waiting. */
+.reveal.is-visible > *:nth-child(2) { transition-delay: .05s; }
+.reveal.is-visible > *:nth-child(3) { transition-delay: .10s; }
+.reveal.is-visible > *:nth-child(4) { transition-delay: .15s; }
+.reveal.is-visible > *:nth-child(5) { transition-delay: .20s; }
+.reveal.is-visible > *:nth-child(6) { transition-delay: .25s; }
+.reveal.is-visible > *:nth-child(7) { transition-delay: .30s; }
+.reveal.is-visible > *:nth-child(8) { transition-delay: .35s; }
+.reveal.is-visible > *:nth-child(n+9) { transition-delay: .40s; }
+
+/* Page hero entrance. Runs once on load, no observer and no scroll listener,
+   so every page opens the same way. transform/opacity only, which the
+   compositor handles without layout or paint work. */
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+.page-hero__inner > * {
+  animation: hero-rise .7s var(--ease) both;
+}
+.page-hero__inner > *:nth-child(2) { animation-delay: .09s; }
+.page-hero__inner > *:nth-child(3) { animation-delay: .18s; }
+.page-hero__inner > *:nth-child(4) { animation-delay: .27s; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
+  /* The staggered children need resetting too: their opacity:0 lives on a
+     two-class selector that outranks the .reveal reset above. */
+  .reveal > *,
+  .reveal.is-visible > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    transition-delay: 0s;
+  }
+  .page-hero__inner > * { animation: none; opacity: 1; transform: none; }
   html { scroll-behavior: auto; }
   .hero__scroll span { animation: none; }
 }
