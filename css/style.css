@@ -646,6 +646,14 @@ input, select, textarea {
   /* Cards stretch to fill leftover space in the row: no orphan empty columns */
 }
 
+@media (min-width: 961px) {
+  /* The third service fills the row beneath the first two cards. */
+  #upgrades .services-grid > .service-card:last-child:nth-child(odd) {
+    flex-basis: 100%;
+    max-width: none;
+  }
+}
+
 .service-card {
   position: relative;
   padding: 18px 20px;
