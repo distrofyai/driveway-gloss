@@ -256,6 +256,47 @@
     let index = cards.findIndex((c) => c.classList.contains('base-card--featured') || c.classList.contains('ba-card--featured') || c.classList.contains('sv-tier--featured'));
     if (index < 0) index = 0;
 
+    // Service tiers use native touch scrolling instead of the translated track.
+    // Keep dots in sync with swipes, keyboard focus, and viewport changes.
+    if (root.classList.contains('base-carousel--tiers')) {
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const cardOffset = (card) => card.offsetLeft + card.offsetWidth / 2 - track.clientWidth / 2;
+      const syncDots = () => {
+        cards.forEach((card, i) => card.classList.toggle('is-active', carouselMq.matches && i === index));
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('is-active', i === index);
+          dot.setAttribute('aria-pressed', String(i === index));
+        });
+      };
+      const scrollToCard = (behavior = 'auto') => {
+        if (carouselMq.matches) track.scrollTo({ left: cardOffset(cards[index]), behavior });
+        else track.scrollLeft = 0;
+        syncDots();
+      };
+      track.addEventListener('scroll', () => {
+        if (!carouselMq.matches) return;
+        index = cards.reduce((nearest, card, i) =>
+          Math.abs(cardOffset(card) - track.scrollLeft) < Math.abs(cardOffset(cards[nearest]) - track.scrollLeft) ? i : nearest, 0);
+        syncDots();
+      }, { passive: true });
+      dots.forEach((dot, i) => dot.addEventListener('click', () => {
+        index = i;
+        scrollToCard(reducedMotion.matches ? 'auto' : 'smooth');
+      }));
+      track.addEventListener('focusin', (event) => {
+        const focusedIndex = cards.findIndex((card) => card.contains(event.target));
+        if (focusedIndex < 0) return;
+        index = focusedIndex;
+        scrollToCard();
+      });
+      const onResize = () => scrollToCard();
+      window.addEventListener('resize', onResize);
+      if (carouselMq.addEventListener) carouselMq.addEventListener('change', onResize);
+      if (document.readyState !== 'complete') window.addEventListener('load', onResize, { once: true });
+      scrollToCard();
+      return;
+    }
+
     const layout = () => {
       if (!carouselMq.matches) {
         // Desktop: clear inline state

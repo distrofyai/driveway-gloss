@@ -38,7 +38,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/style.css?v=3" />
+  <link rel="stylesheet" href="css/style.css?v=4" />
 
   <!-- Scroll-reveal elements start at opacity:0 and are switched on by main.js.
        With JavaScript off nothing would ever become visible, so show it all. -->
@@ -130,15 +130,15 @@
     @media (max-width: 720px) {
       .page-hero .sv-hero__cta { display: none; }
 
-      /* Tier cards inside the carousel keep the page's own responsive layout,
-         so their shape matches what it was before the carousel existed. The
-         only thing the carousel changes is that they sit in a sliding row.
-         Vertical rhythm is tightened so a whole card fits comfortably on a
-         phone screen without shrinking the type. */
+      /* Equal-height mobile cards keep their content at the top and their
+         prices and booking buttons aligned along the bottom. */
       .base-carousel--tiers .sv-tier__price { min-width: 0; }
       .base-carousel--tiers .sv-tier {
         padding: 20px 18px 22px;
         gap: 12px;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+        align-items: start;
       }
       .base-carousel--tiers .sv-tier__num { font-size: 26px; }
       .base-carousel--tiers .sv-tier__desc { margin: 5px 0 10px; font-size: 13.5px; line-height: 1.45; }
@@ -483,17 +483,9 @@
           <p>Each package is a complete inside-and-out detail. Move up a tier for deeper correction and longer-lasting protection.</p>
         </div>
 
-        <!-- Reuses the same [data-base-carousel] component the home page
-             packages use, so swipe + pill behave identically across the site.
-             Arrows and dots are hidden above 720px, where the list is a plain
-             stack again. -->
+        <!-- Native swipe and navigation dots on mobile; plain stacked rows
+             above 720px. -->
         <div class="base-carousel base-carousel--tiers reveal" data-base-carousel>
-          <button class="base-carousel__arrow base-carousel__arrow--prev" type="button" aria-label="Previous package">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <button class="base-carousel__arrow base-carousel__arrow--next" type="button" aria-label="Next package">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
 
         <div class="sv-tier-list">
 
@@ -562,10 +554,10 @@
 
         </div>
 
-          <div class="base-carousel__dots" role="tablist" aria-label="Package navigation">
-            <button class="base-carousel__dot" type="button" role="tab" aria-label="Show Basic package"></button>
-            <button class="base-carousel__dot is-active" type="button" role="tab" aria-label="Show Signature package" aria-selected="true"></button>
-            <button class="base-carousel__dot" type="button" role="tab" aria-label="Show Premium package"></button>
+          <div class="base-carousel__dots" role="group" aria-label="Package navigation">
+            <button class="base-carousel__dot" type="button" aria-label="Show Basic package" aria-pressed="false"></button>
+            <button class="base-carousel__dot is-active" type="button" aria-label="Show Signature package" aria-pressed="true"></button>
+            <button class="base-carousel__dot" type="button" aria-label="Show Premium package" aria-pressed="false"></button>
           </div>
         </div>
       </div>
@@ -866,6 +858,6 @@
     </a>
   </aside>
 
-  <script src="js/main.js?v=3" defer></script>
+  <script src="js/main.js?v=4" defer></script>
 </body>
 </html>

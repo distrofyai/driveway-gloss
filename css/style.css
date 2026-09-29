@@ -2175,8 +2175,7 @@ input, select, textarea {
      the row. Premium carries seven bullets to Signature's five, and with the
      mobile price hidden nothing filled the difference, leaving ~70px of blank
      card under the shorter ones. */
-  .base-carousel .base-services,
-  .base-carousel--tiers .sv-tier-list {
+  .base-carousel .base-services {
     align-items: flex-start;
   }
 
@@ -2205,19 +2204,30 @@ input, select, textarea {
     flex-basis: 68vw;
   }
 
-  /* Tier cards keep their normal full-width shape and simply slide. They opt
-     out of the shared scale-down/dim treatment above: at this card size the
-     shrunken neighbours read as fussy rather than polished, and the narrow
-     72vw width forced the card's wide row layout into a tall column. */
+  /* Service tiers follow the finger with native scrolling. Symmetric gutters
+     let the first and last card snap to the same centered position. */
+  .base-carousel--tiers { touch-action: auto; }
+  .base-carousel--tiers .sv-tier-list {
+    position: relative;
+    width: 100%;
+    align-items: stretch;
+    padding-inline: max(0px, calc((100% - min(80vw, 440px)) / 2));
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+  .base-carousel--tiers .sv-tier-list::-webkit-scrollbar { display: none; }
   .base-carousel--tiers .sv-tier-list > .sv-tier {
     flex: 0 0 80vw;
     max-width: 440px;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
   }
-  /* Arrows tucked to the very edge. At 86vw the card left no room and the
-     40px buttons sat on top of the feature pills; 80vw plus a 4px inset keeps
-     them clear of the card on a 390px phone and wider. */
-  .base-carousel--tiers .base-carousel__arrow--prev { left: 4px; }
-  .base-carousel--tiers .base-carousel__arrow--next { right: 4px; }
+  .base-carousel--tiers .sv-tier:hover { transform: none; }
 
   /* Steps carousel: no down-arrow chevrons between cards (arrows are on the sides now) */
   #how-it-works .base-carousel--steps .step:not(:last-child)::after { display: none; }

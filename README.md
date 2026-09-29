@@ -23,15 +23,15 @@ That's it. No build step, no framework, no npm. Plain HTML/CSS/JS.
 ## Cache busting (important)
 
 `css/style.css` and `js/main.js` are linked with a version query, e.g.
-`css/style.css?v=3`. Vercel's edge caches these filenames aggressively and will
+`css/style.css?v=4`. Vercel's edge caches these filenames aggressively and will
 keep serving an old copy after a deploy, so a CSS or JS change can go live in
 Git and still not appear in the browser.
 
 **After changing style.css or main.js, bump the number in all five HTML files.**
-Set `N` to the next number (currently 3, so use 4):
+Set `N` to the next number (currently 4, so use 5):
 
 ```bash
-N=4
+N=5
 perl -0pi -e "s{style\.css\?v=\d+}{style.css?v=$N}g; s{main\.js\?v=\d+}{main.js?v=$N}g" *.html
 ```
 
