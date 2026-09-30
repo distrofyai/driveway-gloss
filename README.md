@@ -10,10 +10,15 @@ Marketing site for **Driveway Gloss**, a mobile auto-detailing service in Moores
 ## What's where
 
 ```
-index.html       — the entire page (text, sections, contact form)
-css/style.css    — all styling (colors, layout, mobile rules)
+index.html       — home page (services, gallery, reviews, quote form)
+services.html    — packages, pricing, and upgrade artwork (includes page-specific styles)
+about.html       — business background and family photos
+gallery.html     — photo gallery with lightbox previews
+contact.html     — contact details and quote form
+css/style.css    — shared styling (colors, layout, mobile rules)
 js/main.js       — nav menu, hero video autoplay, form submission, scroll animations
 images/          — every photo and the hero video on the site
+images/service-icons/ — eight updated upgrade illustrations
 robots.txt       — search engine permissions
 sitemap.xml      — sitemap for Google
 ```
@@ -23,15 +28,15 @@ That's it. No build step, no framework, no npm. Plain HTML/CSS/JS.
 ## Cache busting (important)
 
 `css/style.css` and `js/main.js` are linked with a version query, e.g.
-`css/style.css?v=5`. Vercel's edge caches these filenames aggressively and will
+`css/style.css?v=6`. Vercel's edge caches these filenames aggressively and will
 keep serving an old copy after a deploy, so a CSS or JS change can go live in
 Git and still not appear in the browser.
 
 **After changing style.css or main.js, bump the number in all five HTML files.**
-Set `N` to the next number (currently 5, so use 6):
+Set `N` to the next number (currently 6, so use 7):
 
 ```bash
-N=6
+N=7
 perl -0pi -e "s{style\.css\?v=\d+}{style.css?v=$N}g; s{main\.js\?v=\d+}{main.js?v=$N}g" *.html
 ```
 
@@ -40,14 +45,18 @@ fetches it fresh. Image and HTML changes do not need this.
 
 ## How to make a change
 
-1. Edit the file (`index.html` for text/structure, `css/style.css` for styling).
-2. Commit and push to GitHub:
+1. Start from the latest `main` branch and check open pull requests for related changes.
+2. Edit the relevant page and shared CSS/JavaScript. Keep the eight artwork files
+   in `images/service-icons/` and their `.sv-menu-art` references in `services.html`.
+   The completed artwork branch was merged into `main` on September 30, 2026.
+3. Commit and push to GitHub:
    ```bash
    git add -A
    git commit -m "describe the change"
    git push
    ```
-3. Vercel auto-deploys within ~1 minute. Refresh `drivewaygloss.net`.
+4. Verify Vercel's production deployment succeeds, then check the live pages,
+   including the eight artwork images, mobile swipe cards, and desktop service rows.
 
 ## How to swap a photo
 
@@ -71,8 +80,8 @@ If form submissions stop working, the most likely cause is the Apps Script deplo
 
 If you want to preview changes before pushing:
 ```bash
-node .preview-server.js
-# opens http://localhost:8123
+python3 -m http.server 8123 --bind 127.0.0.1
+# visit http://127.0.0.1:8123
 ```
 
 ## Account access for handoff

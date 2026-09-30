@@ -2,7 +2,7 @@
    Driveway Gloss main.js
    - Sticky nav scroll state
    - Mobile nav toggle
-   - Hero video: desktop autoplay, mobile tap-to-play (data-aware)
+   - Hero video: muted autoplay with a play-button fallback
    - Reveal-on-scroll via IntersectionObserver
    - Footer year
    ===================================================== */
@@ -181,8 +181,7 @@
   }
 
   // ---------- Quote form: post to Google Apps Script ----------
-  // Replace the placeholder below with the Web App URL from your Apps Script deployment.
-  // It looks like: https://script.google.com/macros/s/AKfyc.../exec
+  // Deployed Google Apps Script endpoint for quote requests.
   const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbw-Pu41dKIKoZVqfXkESTixVQfUuve4qBUCBCfNl8DSiVE5FQiqIe-sCYJVC-lG6xBD/exec';
 
   const quoteForm = document.getElementById('quote-form');
@@ -341,13 +340,6 @@
       if (!carouselMq.matches) return;
       const t = e.touches[0];
       startX = t.clientX; startY = t.clientY; dragging = true;
-    }, { passive: true });
-    track.addEventListener('touchmove', (e) => {
-      if (!dragging) return;
-      const t = e.touches[0];
-      if (Math.abs(t.clientX - startX) > Math.abs(t.clientY - startY) + 4) {
-        // horizontal intent
-      }
     }, { passive: true });
     track.addEventListener('touchend', (e) => {
       if (!dragging) return;

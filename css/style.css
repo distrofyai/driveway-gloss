@@ -347,8 +347,7 @@ input, select, textarea {
   z-index: -1;
   background: #0a0a0a;
 }
-.hero__video,
-.hero__image {
+.hero__video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -358,14 +357,7 @@ input, select, textarea {
   transform-origin: center center;
   background-color: #0a0a0a;
 }
-.hero__image {
-  background-image:
-    linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.85) 100%),
-    url('../images/hero.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
+
 .hero__overlay {
   position: absolute;
   inset: 0;
@@ -727,13 +719,7 @@ input, select, textarea {
   color: var(--text);
   margin: 0;
 }
-.service-card__price {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 13.5px;
-  color: var(--accent);
-  white-space: nowrap;
-}
+
 .service-card p {
   margin: 0;
   color: var(--text-muted);
@@ -790,93 +776,6 @@ input, select, textarea {
   grid-template-columns: 1fr 1.1fr;
   gap: clamp(40px, 6vw, 80px);
   align-items: center;
-}
-
-.about__media { position: relative; }
-.about__image {
-  position: relative;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
-  aspect-ratio: 4 / 5;
-  box-shadow: var(--shadow-md);
-}
-.about__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.about__badge {
-  position: absolute;
-  bottom: -16px;
-  right: -16px;
-  background: var(--accent);
-  color: #fff;
-  padding: 18px 22px;
-  border-radius: var(--radius);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  box-shadow: 0 18px 40px -12px var(--accent-glow);
-  max-width: 240px;
-}
-.about__badge strong {
-  font-family: var(--font-display);
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-.about__badge span {
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.3;
-  opacity: 0.95;
-}
-
-.about__content .section__title { margin-top: 12px; }
-.about__content p {
-  color: var(--text-body);
-  margin: 0 0 16px;
-}
-
-.about__points {
-  list-style: none;
-  margin: 28px 0 32px;
-  padding: 0;
-  display: grid;
-  gap: 14px;
-}
-.about__points li {
-  position: relative;
-  padding: 16px 18px 16px 48px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  font-size: 15px;
-  color: var(--text-muted);
-  transition: border-color .25s var(--ease), background .25s var(--ease);
-}
-.about__points li:hover {
-  border-color: var(--accent);
-  background: var(--accent-soft);
-}
-.about__points li strong {
-  display: block;
-  color: var(--text);
-  margin-bottom: 2px;
-  font-weight: 600;
-}
-.about__points li::before {
-  content: '';
-  position: absolute;
-  left: 18px;
-  top: 21px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 4px var(--accent-glow);
 }
 
 /* ---------- Testimonials (compact): 3 columns × 2 rows on desktop ---------- */
@@ -979,9 +878,6 @@ input, select, textarea {
   align-items: start;
 }
 
-.contact__intro .section__title { text-align: left; margin-top: 12px; }
-.contact__intro .section__lede { text-align: left; }
-
 .contact__info {
   list-style: none;
   margin: 36px 0 28px;
@@ -1013,42 +909,6 @@ input, select, textarea {
   transition: color .2s var(--ease);
 }
 .contact__info a:hover { color: var(--accent); }
-
-.contact__social {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.contact__social a {
-  padding: 10px 18px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-body);
-  background: var(--surface);
-  transition: all .25s var(--ease);
-  min-height: 40px;
-  display: inline-flex;
-  align-items: center;
-}
-.contact__social a:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-  background: var(--accent-soft);
-  transform: translateY(-2px);
-}
-
-/* Form */
-.contact__form {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: clamp(28px, 4vw, 40px);
-  display: grid;
-  gap: 18px;
-  box-shadow: var(--shadow-md);
-}
 
 .form__row {
   display: grid;
@@ -1133,20 +993,7 @@ input, select, textarea {
 }
 .footer__brand .nav__brand-mark { width: 48px; height: 48px; }
 .footer__tag { color: var(--text-muted); margin: 0; font-size: 14px; }
-.footer__links {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  flex-wrap: wrap;
-  margin: 8px 0;
-}
-.footer__links a {
-  font-size: 14px;
-  color: var(--text-body);
-  transition: color .2s var(--ease);
-  padding: 6px 0;
-}
-.footer__links a:hover { color: var(--accent); }
+
 .footer__legal {
   margin: 12px 0 0;
   font-size: 13px;
@@ -1391,55 +1238,7 @@ input, select, textarea {
 }
 .ba-card:nth-child(2):hover { transform: translateY(-6px) rotate(0.6deg); }
 .ba-card:hover::after { opacity: 1; }
-.ba-card__media {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  background: var(--bg-alt);
-  border-radius: 14px;
-}
-.ba-card__media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-/* Wheel restoration (2nd card): image was cropping the clean wheel
-   off the bottom, so anchor focus lower to keep it fully visible. */
-.ba-card:nth-child(2) .ba-card__media img {
-  object-position: center 72%;
-}
-.ba-card__media::after {
-  /* thin divider line at midpoint to match the visual before/after split */
-  content: '';
-  position: absolute;
-  left: 0; right: 0;
-  top: 50%;
-  height: 2px;
-  background: rgba(255,255,255,0.55);
-  transform: translateY(-1px);
-  pointer-events: none;
-  z-index: 1;
-}
 
-.ba-card__label {
-  position: absolute;
-  left: 12px;
-  padding: 4px 10px;
-  font-family: var(--font-display);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #fff;
-  background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border-radius: 999px;
-  z-index: 1;
-}
-.ba-card__label--top { top: 12px; }
-.ba-card__label--bottom { bottom: 12px; }
 .ba-card figcaption {
   padding: 16px 6px 22px;
   display: grid;
@@ -1838,10 +1637,6 @@ input, select, textarea {
   100%      { stroke-dashoffset: 22; }
 }
 
-.step-svg__rays {
-  transform-origin: 12px 12px;
-  animation: step-rays-spin 8s linear infinite;
-}
 @keyframes step-rays-spin {
   to { transform: rotate(360deg); }
 }
@@ -1867,10 +1662,9 @@ input, select, textarea {
 
 @media (prefers-reduced-motion: reduce) {
   .step__icon::before,
-  .step-svg__check,
-  .step-svg__rays,
-  .step-svg__plane,
-  .step-svg__slider { animation: none; }
+.step-svg__check,
+.step-svg__plane,
+.step-svg__slider { animation: none; }
 }
 
 /* Step text block */
@@ -1897,78 +1691,6 @@ input, select, textarea {
   color: var(--text-muted);
   line-height: 1.45;
 }
-
-/* ---------- Simple Pricing: 3 Steps (matches Upgrades visual style) ---------- */
-.step-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-.step-card {
-  position: relative;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px 24px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  overflow: hidden;
-  transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
-}
-.step-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent);
-  box-shadow: var(--shadow-lg), 0 0 0 1px var(--accent-glow);
-}
-.step-card__num {
-  display: grid;
-  place-items: center;
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1;
-  margin-bottom: 4px;
-  transition: background .3s var(--ease), color .3s var(--ease), transform .3s var(--ease);
-}
-.step-card:hover .step-card__num {
-  background: var(--accent);
-  color: #fff;
-  transform: scale(1.06) rotate(-3deg);
-}
-.step-card__title {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 19px;
-  letter-spacing: -0.015em;
-  color: var(--text);
-  margin: 0;
-}
-.step-card__desc {
-  margin: 0 0 4px;
-  color: var(--text-muted);
-  font-size: 14px;
-  line-height: 1.5;
-}
-.step-card__media {
-  margin: 8px -24px 0 -24px;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  background: var(--bg-alt);
-}
-.step-card__media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .6s var(--ease);
-}
-.step-card:hover .step-card__media img { transform: scale(1.04); }
 
 /* ---------- Base Services (cards with photos at top) ---------- */
 .base-services {
@@ -2046,15 +1768,7 @@ input, select, textarea {
   color: var(--accent);
   white-space: nowrap;
 }
-.base-card__includes-label {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
+
 .base-card__list {
   list-style: none;
   margin: 0;
@@ -2062,11 +1776,7 @@ input, select, textarea {
   display: grid;
   gap: 8px;
 }
-.base-card__list-note {
-  font-size: 12px;
-  color: var(--text-muted);
-  font-weight: 400;
-}
+
 .base-card__list li {
   position: relative;
   padding-left: 30px;
@@ -2091,31 +1801,7 @@ input, select, textarea {
   font-style: italic;
   color: var(--text-muted);
 }
-.service-card__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 6px;
-}
-.service-card__list li {
-  position: relative;
-  padding-left: 20px;
-  font-size: 13.5px;
-  color: var(--text-body);
-  line-height: 1.5;
-}
-.service-card__list li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 6px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1.5px solid var(--accent);
-  background: var(--accent-soft);
-}
+
 .base-card--featured {
   border-color: var(--accent);
   box-shadow: var(--shadow-md), 0 0 0 1px var(--accent-glow);
@@ -2164,9 +1850,8 @@ input, select, textarea {
 
   /* Track: a centered flex row that we translate via --offset */
   .base-carousel .base-services,
-  .base-carousel--ba .ba-grid,
-  .base-carousel--tiers .sv-tier-list,
-  #how-it-works .base-carousel--steps .steps {
+.base-carousel--tiers .sv-tier-list,
+#how-it-works .base-carousel--steps .steps {
     display: flex;
     grid-template-columns: none;
     gap: 18px;
@@ -2189,8 +1874,7 @@ input, select, textarea {
 
   /* Cards: side cards scaled down + dimmed; active card full-size */
   .base-carousel .base-services > .base-card,
-  .base-carousel--ba .ba-grid > .ba-card,
-  #how-it-works .base-carousel--steps .steps > .step {
+#how-it-works .base-carousel--steps .steps > .step {
     flex: 0 0 72vw;
     max-width: 320px;
     transform: scale(0.82);
@@ -2199,8 +1883,7 @@ input, select, textarea {
     transform-origin: center center;
   }
   .base-carousel .base-services > .base-card.is-active,
-  .base-carousel--ba .ba-grid > .ba-card.is-active,
-  #how-it-works .base-carousel--steps .steps > .step.is-active {
+#how-it-works .base-carousel--steps .steps > .step.is-active {
     transform: scale(1);
     opacity: 1;
     z-index: 2;
@@ -2263,19 +1946,6 @@ input, select, textarea {
   }
   #how-it-works .mobile-copy { display: inline; }
   #how-it-works .desktop-copy { display: none; }
-
-  /* Before/After cards are taller than the packages cards (stacked
-     before/after image), so at the same 72vw width the active card
-     visually dominates and the side cards feel cropped. Narrow the BA
-     cards so the side columns peek out as clearly as in the packages
-     carousel. */
-  .base-carousel--ba .ba-grid > .ba-card {
-    flex-basis: 64vw;
-    transform: scale(0.84);
-  }
-  .base-carousel--ba .ba-grid > .ba-card.is-active {
-    transform: scale(1);
-  }
 
   /* Featured ribbon: top-left red pill like the screenshot */
   .base-card--featured { position: relative; }
@@ -2778,32 +2448,6 @@ input, select, textarea {
   outline-offset: 2px;
 }
 
-/* ---------- Section Divider (decorative) ---------- */
-.section-divider {
-  display: flex;
-  align-items: center;
-  gap: clamp(16px, 3vw, 32px);
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: clamp(28px, 5vw, 48px) var(--pad);
-}
-.section-divider::before,
-.section-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border-hi), transparent);
-}
-.section-divider img {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid var(--border);
-  box-shadow: 0 4px 14px -6px rgba(15,23,42,0.18);
-  flex-shrink: 0;
-}
-
 /* ---------- Reveal animations ---------- */
 .reveal {
   opacity: 0;
@@ -2886,19 +2530,13 @@ input, select, textarea {
     grid-template-columns: 1fr;
   }
   .why__image { aspect-ratio: 16 / 10; max-height: 420px; }
-  .about__badge { right: 16px; bottom: -20px; }
+
   .gallery {
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: 200px;
   }
   .gallery__item--wide { grid-column: span 2; }
 
-  /* .base-services deliberately stays 3-up here. Collapsing it to one column
-     between 721 and 960 turned the packages section into ~2400-2800px of
-     full-width cards, roughly one screen per package, on iPad portrait and
-     half-width laptop windows. Below 721 the carousel takes over anyway, so
-     the single-column rule only ever applied in that awkward band. */
-  .step-cards { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
   .ba-grid { grid-template-columns: 1fr; }
   .testimonials { grid-template-columns: repeat(2, 1fr); }
@@ -3071,9 +2709,7 @@ input, select, textarea {
     font-size: 14px;
     line-height: 1.2;
   }
-  #upgrades .service-card__price {
-    font-size: 12px;
-  }
+
   #upgrades .service-card p {
     font-size: 12px;
     line-height: 1.35;
@@ -3348,31 +2984,7 @@ input, select, textarea {
     padding: 10px 10px 0;
     border-radius: 16px;
   }
-  .ba-card__media {
-    aspect-ratio: 4 / 5;
-    border-radius: 11px;
-  }
-  .ba-card__media img {
-    object-fit: contain;
-    object-position: center center;
-    background: #0f0f10;
-  }
-  .ba-card__media::after {
-    display: none;
-  }
-  .ba-card:nth-child(2) .ba-card__media,
-  .ba-card:nth-child(3) .ba-card__media {
-    aspect-ratio: 1080 / 1437;
-  }
-  .ba-card:nth-child(2) .ba-card__media img,
-  .ba-card:nth-child(3) .ba-card__media img {
-    object-position: center center;
-  }
-  .ba-card__label {
-    font-size: 9px;
-    padding: 3px 8px;
-    letter-spacing: 0.12em;
-  }
+
   .ba-card figcaption {
     padding: 10px 6px 14px;
   }
@@ -3597,8 +3209,7 @@ input, select, textarea {
     padding-bottom: 42px;
     align-items: flex-start;
   }
-  .hero__video,
-  .hero__image {
+  .hero__video {
     transform: scale(1.12);
   }
   .hero__inner { width: 100%; }
@@ -3769,9 +3380,7 @@ input, select, textarea {
   #recent-work .gallery {
     grid-auto-rows: 132px;
   }
-  .ba-card__media {
-    aspect-ratio: 4 / 5;
-  }
+
   #our-promise .steps,
   #how-it-works .steps {
     gap: 8px;
@@ -4121,45 +3730,6 @@ input, select, textarea {
   background: var(--accent-soft);
 }
 .contact-quote .quote__stars-text { color: var(--text); }
-
-/* Services page: à la carte price list */
-.price-block {
-  max-width: 760px;
-  margin: 0 auto;
-  display: grid;
-  gap: clamp(28px, 4vw, 40px);
-}
-.price-group__title {
-  font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin: 0 0 6px;
-}
-.price-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border-top: 1px solid var(--border);
-}
-.price-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 14px 2px;
-  border-bottom: 1px solid var(--border);
-}
-.price-row__name { color: var(--text); font-weight: 500; }
-.price-row__amt {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 17px;
-  color: var(--accent);
-  white-space: nowrap;
-}
 
 /* ---------- Before/After comparison slider (drag to reveal) ---------- */
 /* Two-column layout: text left, comparison right */
