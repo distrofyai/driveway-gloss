@@ -128,21 +128,46 @@
   });
 
   // ---------- Hero video ----------
-  // Always try to autoplay (muted + playsinline = allowed on iOS/Android).
-  // If the browser blocks it, show the play button as a fallback.
+  // Autoplay inline when the browser allows it, and keep the manual fallback
+  // visible whenever a mobile browser pauses or blocks playback.
   const hero = document.getElementById('hero');
   const heroVideo = document.getElementById('hero-video');
   const heroPlayBtn = document.getElementById('hero-video-play');
 
   if (hero && heroVideo && heroPlayBtn) {
+    heroVideo.defaultMuted = true;
+    heroVideo.muted = true;
+
+    const syncVideoState = () => {
+      hero.classList.toggle('is-mobile-paused', heroVideo.paused);
+    };
+
     const startVideo = () => {
+      if (document.hidden) return;
       const playPromise = heroVideo.play();
       if (playPromise && typeof playPromise.then === 'function') {
         playPromise
-          .then(() => { hero.classList.remove('is-mobile-paused'); })
-          .catch(() => { hero.classList.add('is-mobile-paused'); });
+          .then(syncVideoState)
+          .catch(syncVideoState);
       }
     };
+
+    heroVideo.addEventListener('playing', syncVideoState);
+    heroVideo.addEventListener('pause', syncVideoState);
+    heroVideo.addEventListener('loadeddata', () => {
+      if (heroVideo.paused) startVideo();
+    }, { once: true });
+    window.addEventListener('pageshow', () => {
+      if (heroVideo.paused) startVideo();
+    });
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && heroVideo.paused) startVideo();
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && heroVideo.paused) startVideo();
+      }).observe(heroVideo);
+    }
 
     startVideo();
 
